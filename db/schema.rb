@@ -10,10 +10,56 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170616153349) do
+ActiveRecord::Schema.define(version: 20170618183453) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "board_shares", force: :cascade do |t|
+    t.integer  "board_id",   null: false
+    t.integer  "user_id",    null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["board_id"], name: "index_board_shares_on_board_id", using: :btree
+    t.index ["user_id"], name: "index_board_shares_on_user_id", using: :btree
+  end
+
+  create_table "boards", force: :cascade do |t|
+    t.integer  "author_id",                     null: false
+    t.string   "name",                          null: false
+    t.boolean  "privacy_status", default: true
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.index ["author_id"], name: "index_boards_on_author_id", using: :btree
+  end
+
+  create_table "cards", force: :cascade do |t|
+    t.integer "list_id",                   null: false
+    t.integer "order",                     null: false
+    t.string  "body",                      null: false
+    t.date    "due_date"
+    t.boolean "completed", default: false
+    t.index ["list_id"], name: "index_cards_on_list_id", using: :btree
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.integer  "author_id",  null: false
+    t.integer  "card_id",    null: false
+    t.string   "body",       null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["author_id"], name: "index_comments_on_author_id", using: :btree
+    t.index ["card_id"], name: "index_comments_on_card_id", using: :btree
+  end
+
+  create_table "lists", force: :cascade do |t|
+    t.integer  "board_id",   null: false
+    t.string   "name",       null: false
+    t.integer  "order",      null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["board_id"], name: "index_lists_on_board_id", using: :btree
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "username",        null: false
