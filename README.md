@@ -1,7 +1,6 @@
-# README
+# QuickBoard Production Readme
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+To Be Completed
 
 Things you may want to cover:
 

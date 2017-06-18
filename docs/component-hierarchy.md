@@ -16,20 +16,20 @@
   - Search (later)
 
 **BoardIndex**            | mapStateProps: boardIndexPage
-  - BoardLink             | pass Props: boardIndexPage.data (element)
+  - BoardLink             | passed Props: boardIndexPage.data (element)
   - CreateBoardDropdown
 
 **BoardShow**             | mapStateProps: boardShowPage
-  - List                  | pass Props: boardShowPage.data.lists (element)
-  - CreateList            | pass Props: boardShowPage.data.id
+  - List                  | passed Props: boardShowPage.data.lists (element)
+  - CreateList            | passed Props: boardShowPage.data.id
 
-**List**                  | pass Props: list (from boardShowPage.data.lists (element))
-  - Card                  | pass Props: list.cards (element)
-  - NewCardDropdown       | pass Props: list.id
+**List**                | passed Props: list (from boardShowPage.data.lists (element))
+  - Card                  | passed Props: list.cards (element)
+  - NewCardDropdown       | passed Props: list.id
 
-**Card**                  | pass Props: card (from list.cards (element))
-  - CardDetailModal       | pass Props: 
+**Card**                  | passed Props: card (from list.cards (element))
+  - CardDetailModal       | mapStateProps: cardModalPage
 
 **CardDetailModal**
-  - NewCommentBox
-  - CommentIndex
+  - NewCommentBox         | passed Props: card.id
+  - CommentIndex          | passed Props: cardModalPage.data.comments

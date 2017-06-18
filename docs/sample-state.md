@@ -54,12 +54,17 @@ state = {
     asyncStatus: "SUCCESS",
     error: null,
     data: {
-      card: {
         id: 4,
         body: "I herd u liek mudkipz",
-        due_date: "Sun Apr 16 2017 16:32:13 GMT-0400 (EDT)"
-      }
-  }
+        due_date: "Sun June 18 2017",
+        comments: [
+          {
+            id: 1,
+            author_name: "Zack Yang",
+            body: "Yes I do"
+          }
+        ]
+    }
 }
 
 //How do my sample states interact with my boards??
