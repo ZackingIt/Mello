@@ -1,6 +1,25 @@
 ```js
 //User Profile Fetch
 state = {
+  // header state
+  header: {
+    asyncStatus: "SUCCESS",
+    error: null,
+    data: {
+      boards: [
+        {
+          id: 1,
+          title: "My Board",
+        }
+      ]
+      user: {
+        id: 1,
+        username: "zackyang",
+        name: "Zack Yang"
+      }
+    }
+  }
+
   // index state
   boardIndexPage: {
     asyncStatus: "SUCCESS",

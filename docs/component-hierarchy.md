@@ -9,10 +9,10 @@
     - BoardIndex
     - BoardShow
 
-**Header**
-  - BoardMenuDropdown
+**Header** ________________ mapStateProps: header
+  - BoardMenuDropdown _____ passed Props: header.boards
   - NewBoardDropdown
-  - UserMenuDropdown
+  - UserMenuDropdown ______ passed Props: header.user
   - Search (later)
 
 **BoardIndex** ____________ mapStateProps: boardIndexPage
