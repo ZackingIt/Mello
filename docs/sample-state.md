@@ -24,6 +24,8 @@ state = {
     asyncStatus: "SUCCESS",
     error: null,
     data: {
+      id: 1,
+      title: "My Board",
       lists: [
         {
           id: 22,
@@ -42,12 +44,10 @@ state = {
         {
           id: 22,
           title: "Second list",
-          cards: [],
-        },
-      ],
-      id: 1,
-      title: "My Board",
-    },
+          cards: []
+        }
+      ]
+    }
   }
 
   cardModalPage: {
