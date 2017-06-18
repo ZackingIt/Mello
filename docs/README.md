@@ -41,7 +41,8 @@ Objective: Functioning rails project with front-end Authentication
 
 Phase 2: Board Model, API, and components (2 days)
 
-Objective: Boards can be created, read, edited and destroyed through the API.
+Objective: Boards can be created, read, edited and destroyed through the API, including
+loading status, etc.
 
 Phase 3: List Model + Cards, API, and Components (3 days)
 
@@ -58,4 +59,4 @@ Objective: Clicking on a card will pop up a modal that is editable.
 Bonus Features (TBD)
 
  Search notes by content
- Giphy integration
+ Giphy integration in card modal

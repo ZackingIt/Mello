@@ -4,7 +4,7 @@
 #
 #  id             :integer          not null, primary key
 #  author_id      :integer          not null
-#  name           :string           not null
+#  title          :string           not null
 #  privacy_status :boolean          default("true")
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
