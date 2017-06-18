@@ -28,8 +28,8 @@
   - NewCardDropdown ______ passed Props: list.id
 
 **Card** _________________ passed Props: card (from list.cards (element))
-  - CardDetailModal       | mapStateProps: cardModalPage
+  - CardDetailModal ______ mapStateProps: cardModalPage
 
 **CardDetailModal**
-  - NewCommentBox         | passed Props: card.id
-  - CommentIndex          | passed Props: cardModalPage.data.comments
+  - NewCommentBox ________ passed Props: card.id
+  - CommentIndex _________ passed Props: cardModalPage.data.comments
