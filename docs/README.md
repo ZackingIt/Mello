@@ -49,13 +49,14 @@ loading status, etc.
 
 **Objective:** Lists + Cards can be created, read, edited and destroyed through the API.
 
-### Phase 4: Board Sharing (1 days)
+### Phase 4: Card Modals (1 day)
+
+**Objective:** Clicking on a card will pop up a modal that is editable.
+
+### Phase 5: Board Sharing (1 day)
 
 **Objective:** Boards can be shared among users.
 
-### Phase 5: Card Modals (1 day)
-
-**Objective:** Clicking on a card will pop up a modal that is editable.
 
 ### Bonus Features (TBD)
 

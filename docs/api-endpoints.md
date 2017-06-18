@@ -6,13 +6,12 @@
 
 - `GET /`
 
-
 ## JSON API
 
 ### Users
-- `POST /api/users`
 - `GET /api/users/:id`
-  - state payload for user profile page
+- state payload for header information
+- `POST /api/users`
 - `PATCH /api/users`
 
 ### Session
@@ -35,13 +34,14 @@
 - `DELETE /api/lists/:id`
 
 ### Cards
+- `GET /api/cards/:id/`
+  - state payload for card modal page
+  - returns associated comments as well
 - `POST /api/cards`
 - `PATCH /api/cards/:id`
 - `DELETE /api/cards/:id`
 
 ### Comments
-- `GET /api/cards/:id/comments`
-  - index of all comments for a card
 - `POST /api/comments`
 - `PATCH /api/comments/:id`
 - `DELETE /api/comments/:id`
