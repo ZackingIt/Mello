@@ -10,7 +10,7 @@
 
 ### Users
 - `GET /api/users/:id`
-- state payload for header information
+    - state payload for header information
 - `POST /api/users`
 - `PATCH /api/users`
 
