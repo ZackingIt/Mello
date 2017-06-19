@@ -14,6 +14,15 @@ export const login = ({username, password}) => {
   });
 };
 
+export const boardIndex = (fulldata) => {
+  return $.ajax({
+    method: 'GET',
+    url: '/api/boards',
+    data: { fulldata }
+  });
+};
+
+
 export const logout = () => {
   return $.ajax({
     method: 'DELETE',

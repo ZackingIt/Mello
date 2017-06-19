@@ -11,7 +11,7 @@
 #
 
 class Board < ApplicationRecord
-validates :author, :name, presence: true
+validates :author, :title, presence: true
 validates :privacy_status, inclusion: [true, false]
 
 belongs_to :author,
