@@ -4,7 +4,7 @@
 [Trello link][trello]
 
 [heroku]: https://herokuapp.com
-[trello]: www.trello.com
+[trello]: https://trello.com/b/Ha1BAOzo/quickboard
 
 
 
