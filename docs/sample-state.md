@@ -1,7 +1,7 @@
 ```js
-//User Profile Fetch
 state = {
   // header state
+  //note that asyncStatus enables us to display 'Loading' interstitial.
   header: {
     asyncStatus: "SUCCESS",
     error: null,
