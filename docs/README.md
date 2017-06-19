@@ -3,7 +3,7 @@
 
 [Trello link][trello]
 
-[heroku]: https://tomodomo.herokuapp.com
+[heroku]: https://herokuapp.com
 [trello]: www.trello.com
 
 
