@@ -33,3 +33,11 @@
 **CardDetailModal**
   - NewCommentBox ________ passed Props: card.id
   - CommentIndex _________ passed Props: cardModalPage.data.comments
+
+### Routes
+  Path               | Component    |
+  -------------------|--------------|
+  /signup            | Greeting     |
+  /signin            | Greeting     |
+  /home              | BoardIndex   |
+  /home/:id          | BoardShow    |
