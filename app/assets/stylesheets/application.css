@@ -13,3 +13,26 @@
  *= require_tree .
  *= require_self
  */
+
+.landing-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-family: sans-serif;
+
+}
+
+.landing-icon{
+  width: 50px;
+  height: 50px;
+  border: 1px dotted black;
+}
+.landing-header{
+  border: 1px solid red;
+}
+
+.landing-sign-up-bar{
+  border: 1px solid green;
+
+
+}
