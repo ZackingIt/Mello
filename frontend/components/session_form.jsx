@@ -50,7 +50,6 @@ class SessionForm extends React.Component{
       label = "Sign Up";
     }
 
-    // debugger
     const errors = this.props.errors.map((error, idx) => <li key={idx}>{error}</li>);
     const {username, password} = this.state;
     return (

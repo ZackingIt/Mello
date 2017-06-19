@@ -21,7 +21,7 @@ state = {
   }
 
   // index state
-  boardIndexPage: {
+  boardIndex: {
     asyncStatus: "SUCCESS",
     error: null,
     data: [
@@ -39,7 +39,7 @@ state = {
   },
 
   // show state for board
-  boardShowPage: {
+  boardShow: {
     asyncStatus: "SUCCESS",
     error: null,
     data: {
@@ -69,7 +69,7 @@ state = {
     }
   }
 
-  cardModalPage: {
+  cardModal: {
     asyncStatus: "SUCCESS",
     error: null,
     data: {
@@ -90,7 +90,7 @@ state = {
 //See examples below
 
 // action creator
-export const fetchBoards(status, data, error) => {
+export const fetchBoards(status, error, data) => {
   return {
     type: "FETCH_BOARDS",
     asyncStatus: status,
@@ -109,7 +109,7 @@ export const fetchBoardsAsync() => {
           dispatch(fetchBoards("SUCCESS", null, data))
         },
       (error) => {
-        dispatch(fetchBoards("ERROR", {}, error.errorMessage))
+        dispatch(fetchBoards("ERROR", {}, error.responseText))
       }
     )
   }
