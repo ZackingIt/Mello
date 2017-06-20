@@ -1,4 +1,5 @@
 import { RECEIVE_INDEX_BOARD } from '../actions/board_index_actions';
+export const SUCCESS = "SUCCESS";
 
 const defaultState = {
   asyncStatus: "LOADING",
@@ -12,7 +13,7 @@ const boardIndexReducer = (state = defaultState, action) => {
     case RECEIVE_INDEX_BOARD:
       let newState = {
         asyncStatus: action.asyncStatus,
-        data: action.asyncStatus === "SUCCESS" ? action.data : state.data,
+        data: action.asyncStatus === SUCCESS ? action.data : state.data,
         error: action.error
       };
       return newState;

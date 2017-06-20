@@ -1,10 +1,5 @@
-json.asyncStatus "SUCCESS"
-json.error ""
-json.set! :data do
-  json.set! :boards do
-    json.array! @boards do |board|
-      json.extract! board, :id, :title, :privacy_status
-    end
+json.set! :boards do
+  json.extract! @boards do |board|
+    json.extract! board, :id, :title, :privacy_status
   end
-  json.user @user, :id, :username, :name
 end

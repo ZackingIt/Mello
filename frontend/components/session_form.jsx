@@ -13,12 +13,20 @@ class SessionForm extends React.Component{
 		};
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.handleDemo = this.handleDemo.bind(this);
   }
 
   handleSubmit(e) {
     e.preventDefault();
     const user = Object.assign({}, this.state);
     this.props.processForm(this.props.formType, user);
+  }
+
+  handleDemo(e){
+    e.preventDefault();
+    this.setState((prevState, props) => {
+      return {username: "demo@mello.com", password: "password"};
+    });
   }
 
   handleChange(field) {
@@ -33,7 +41,7 @@ class SessionForm extends React.Component{
   render() {
     if (this.props.loggedIn) {
       return (
-        <Redirect to='/' />
+        <Redirect to='/home' />
       );
     }
 
@@ -41,30 +49,56 @@ class SessionForm extends React.Component{
     let header, label, link;
 
     if (formType === 'login') {
-      header = "Log in to QuickBoard"
+      header = "Log in to Mello";
       label = "Log In";
     } else if (formType === 'signup') {
-      header = "Sign Up for QuickBoard"
+      header = "Sign Up for Mello";
       label = "Sign Up";
     }
 
     const errors = this.props.errors.map((error, idx) => <li key={idx}>{error}</li>);
     const {username, password} = this.state;
     return (
-
-      <section>
-        {header}
-        <form>
-          <input onChange={this.handleChange("username")} value={username}/>
-          <input onChange={this.handleChange("password")} value={password}/>
-          <button onClick={this.handleSubmit}>{label}</button>
-        </form>
-        {link}
-        <ul>{errors}</ul>
-        <div class="fullscreen-bg">
-              <source src="video/big_buck_bunny.webm" type="video/webm" />
+      <div className="landing-body-container">
+        <div className="landing-body-alignment-container">
+        <div className="landing-body-title">
+          Welcome to Mello!
         </div>
-      </section>
+        <div className="landing-body-header">
+          {header}
+        </div>
+          <form className="landing-body-form">
+            <div className="landing-body-form-username">
+              <div className="landing-body-form-username-text">
+                Email
+              </div>
+              <div className="landing-body-form-box-username">
+                <input className="landing-body-form-box-username" onChange={this.handleChange("username")} value={this.state.username} />
+              </div>
+            </div>
+
+            <div className="landing-body-form-password">
+              <div className="landing-body-form-password-text">
+                Password
+              </div>
+
+              <input className="landing-body-form-box-password" onChange={this.handleChange("password")} value={this.state.password}/>
+            </div>
+
+          <div className="landing-body-button">
+            <button className="landing-body-button" onClick={this.handleSubmit}>{label}</button>
+          </div>
+          <div className="landing-body-button-spacer">
+          </div>
+          <div className="landing-body-button">
+            <button className="landing-body-button" onClick={this.handleDemo}>Demo</button>
+          </div>
+
+          </form>
+          <ul>{errors}</ul>
+
+        </div>
+      </div>
     );
   }
 
