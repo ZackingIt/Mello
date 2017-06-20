@@ -14,6 +14,39 @@
  *= require_self
  */
 
+ html, head, body, header,
+nav, h1, a, ul, li, main,
+section, p, footer, small {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font: inherit;
+  color: inherit;
+  text-align: inherit;
+  text-decoration: inherit;
+  vertical-align: inherit;
+  box-sizing: inherit;
+  background: transparent;
+}
+
+header, nav, main, section,
+footer, small {
+  display: block;
+}
+
+ul {
+  list-style: none;
+}
+
+/* Clearfix */
+
+.group:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
  body{
    margin: 0px;
 
@@ -30,46 +63,61 @@ html {
 .landing-icon{
   width: 150px;
   height: 50px;
-  border: 1px dotted black;
   padding: 1px;
 }
 .landing-header{
   font-family: sans-serif;
-  border: 2px solid indigo;
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
+  justify-content: space-between;
   width: 100%;
   background: #0079BF;
-  border: 1px solid yellow;
   padding: 10px;
-}
-
-.landing-header-spacer{
-  width: 70%;
-  border: 2px solid black;
+  align-items: center;
 }
 
 .landing-header-left{
-  border: 1px solid red;
   display: block;
   height: 100%;
-  width: 100%;
-
+  width: 23vh;
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  justify-content: space-between;
 }
 
-.landing-sign-up-bar{
 
-  border: 1px solid green;
+.landing-sign-up-bar, .landing-login-bar{
   border-radius: 5px;
-  background: white;
+  font-size: 19px;
+  color: white;
+  text-decoration: none;
+  text-align: center
 }
+
 
 .landing-login-bar{
-  border: 1px solid black;
-  border-radius: 5px;
-  background: white;
+  height: 34px;
+  width: 10vh;
+  background: #026AA7;
+  box-shadow: 2px 2px 2px #0C3953;
+  padding: 6px;
+}
 
+.landing-login-bar:hover{
+  background: #055A8C;
+}
+
+
+
+.landing-sign-up-bar{
+  background: #61BD4F;
+  box-shadow: 2px 2px 2px #0C3953;
+  padding: 6px;
+  font-weight: bold;
+  font-size: 18px;
+  height: 34px;
+  width: 12vh;
 }
 
 

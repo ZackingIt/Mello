@@ -41,18 +41,17 @@ class SessionForm extends React.Component{
     let header, label, link;
 
     if (formType === 'login') {
-      header = (<header>Log In</header>);
-      link = <Link to='/signup'>Sign Up</Link>;
+      header = "Log in to QuickBoard"
       label = "Log In";
     } else if (formType === 'signup') {
-      header = <header>Sign Up</header>;
-      link = <Link to='/login'>Log In</Link>;
+      header = "Sign Up for QuickBoard"
       label = "Sign Up";
     }
 
     const errors = this.props.errors.map((error, idx) => <li key={idx}>{error}</li>);
     const {username, password} = this.state;
     return (
+
       <section>
         {header}
         <form>
@@ -62,6 +61,9 @@ class SessionForm extends React.Component{
         </form>
         {link}
         <ul>{errors}</ul>
+        <div class="fullscreen-bg">
+              <source src="video/big_buck_bunny.webm" type="video/webm" />
+        </div>
       </section>
     );
   }
