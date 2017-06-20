@@ -32,18 +32,17 @@ class Greeting extends React.Component {
       );
     } else {
       return (
-        <section className="landing-container">
           <div className="landing-header">
-                      <img className="landing-icon" src="http://media.istockphoto.com/vectors/lightning-icon-red-circle-on-gray-background-vector-id493855699?k=6&m=493855699&s=612x612&w=0&h=8AZ-L-6kVpuVdoFblBH49c_rhs9xpS1GRqMfZI7Jquw=" />
-            Welcome to QuickBoard!
-            <Link className="landing-sign-up-bar" to='/signup'>Sign Up</Link>
-            <Link className="landing-sign-up-bar" to='/login'>Log In</Link>
-          </div>
+            <img className="landing-icon" src="https://d2k1ftgv7pobq7.cloudfront.net/meta/u/res/images/trello-header-logos/af7af6ed478d3460709d715d9b3f74a4/trello-logo-white.svg" />
+            <div className="landing-header-spacer"></div>
 
-          <div className="">
-            This is the body
+            <div className="landing-header-section">
+                <div className="landing-header-left">
+                  <Link className="landing-sign-up-bar" to='/signup'>Sign Up</Link>
+                  <Link className="landing-login-bar" to='/login'>Log In</Link>
+                </div>
+            </div>
           </div>
-        </section>
       );
     }
   }
