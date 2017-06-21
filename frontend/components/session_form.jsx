@@ -27,6 +27,7 @@ class SessionForm extends React.Component{
     this.setState((prevState, props) => {
       return {username: "demo@mello.com", password: "password"};
     });
+
   }
 
   handleChange(field) {
