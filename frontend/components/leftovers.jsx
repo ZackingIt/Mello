@@ -13,6 +13,7 @@
 </div>
 
 
+<img className="board-menu-dropdown-icon" src="https://trello.com/favicon.ico"/>  "https://cdn.worldvectorlogo.com/logos/trello.svg"
 
 .landing-container{
   display: flex;

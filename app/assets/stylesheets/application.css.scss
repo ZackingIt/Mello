@@ -14,6 +14,10 @@
  *= require_self
  */
 
+@import "font-awesome-sprockets";
+@import "font-awesome";
+
+
  html, head, body, header,
 nav, h1, a, ul, li, main,
 section, p, footer, small {
@@ -178,6 +182,8 @@ html {
 
 input.landing-body-form-box-username, input.landing-body-form-box-password{
   padding: 10px;
+  background: #EDEFF0;
+
 }
 
 button.landing-body-button{
@@ -244,5 +250,4 @@ div.landing-body-form-password{
 
 .landing-body-form{
   align-self: center;
-
 }

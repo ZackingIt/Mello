@@ -7,7 +7,7 @@ import { Redirect } from 'react-router';
 
 const App = () => (
   <div>
-      <Greeting />
+    <Greeting />
     <Route exact path="/">
       <Redirect to="/login"/>
     </Route>

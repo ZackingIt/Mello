@@ -1,22 +1,62 @@
 import * as APIUtil from '../util/session_api_util';
-export const RECEIVE_INDEX_BOARD = "RECEIVE_INDEX_BOARD";
+export const RECEIVE_BOARD_INDEX = "RECEIVE_BOARD_INDEX";
+export const REMOVE_BOARD = 'REMOVE_BOARD';
+export const RECEIVE_BOARD = 'RECEIVE_BOARD';
 
-export const receiveBoardIndex = (status, error, data) => {
+import { hashHistory } from 'react-router';
+
+
+export const receiveBoards = (data) => {
+  // debugger
   return {
-    type: RECEIVE_INDEX_BOARD,
-    asyncStatus: status,
-    error: error,
-    data: data
+    type: RECEIVE_BOARD_INDEX,
+    boards: data.boards,
+    lists: data.lists,
+    cards: data.cards
   };
 };
 
-export const requestBoardIndex = () => {
+export const removeBoard = (boardId) => {
+  return {
+    type: REMOVE_BOARD,
+    boardId
+  };
+};
+
+export const receiveBoard = (board) => {
+  return {
+    type: RECEIVE_BOARD,
+    board
+  };
+};
+
+export const requestBoard = () => {
   return (dispatch) => {
-    dispatch(receiveBoardIndex("LOADING", null, {}));
     return APIUtil.boardIndex()
-      .then(payload => {
-        return dispatch(receiveBoardIndex("SUCCESS", payload.error, payload.data));
+      .then(data => {
+        return dispatch(receiveBoards(data));
       }
     );
   };
+};
+
+export const createBoard = (newBoard) => (dispatch) => {
+  return APIUtil.createBoard(newBoard).then(
+    (board) => {
+      dispatch(receiveBoard(board));
+      hashHistory.push(`/boards/${board.id}`);
+    }
+  );
+};
+
+export const updateBoard = (updatedBoard) => (dispatch) => {
+  return APIUtil.updateBoard(updatedBoard).then(
+    (board) => dispatch(receiveBoard(board))
+  );
+};
+
+export const deleteBoard = (boardId) => (dispatch) => {
+  return APIUtil.deleteBoard(boardId).then(
+    () => dispatch(removeBoard(boardId))
+  );
 };

@@ -1,0 +1,141 @@
+
+$offwhite: #EDEFF0;
+$light-grey: #DCDCDC;
+$babby-blue: #C7E2F1;
+
+.header-container{
+  border: 1px solid red;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  background-color: white;
+
+
+}
+.header-nav-bar{
+  border: 2px solid orange;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 4px;
+}
+
+
+.board-menu-container{
+  width: 200px;
+  background-color: #FFFFFF;
+  font-family: "Helvetica Neue";
+  border-radius: 3px;
+  box-shadow: 3px 3px 5px $light-grey;
+  padding-top: 15px;
+  padding-bottom: 4px;
+  padding-right: 4px;
+  padding-left: 3px;
+  position: absolute;
+  top: 40px;
+  left: 3px;
+  border: 1px solid $light-grey;
+
+}
+
+.board-menu-container{
+
+  top: -100px;
+  left: -300px;
+
+
+}
+
+.expanded-board-menu-container{
+  width: 200px;
+  background-color: #FFFFFF;
+  font-family: "Helvetica Neue";
+  border-radius: 3px;
+  box-shadow: 3px 3px 5px $light-grey;
+  padding-top: 15px;
+  padding-bottom: 4px;
+  padding-right: 4px;
+  padding-left: 3px;
+  position: absolute;
+  top: 40px;
+  left: 3px;
+  border: 1px solid $light-grey;
+}
+
+.board-menu-item{
+  width: 180px;
+background-color: $babby-blue;
+margin-left: 3px;
+margin-bottom: 5px;
+padding-left: 10px;
+padding-top: 5px;
+border-radius: 3px;
+height: 34px;
+align-content: center;
+text-align: justify;
+font-weight: bolder;
+font-size: 13px;
+color: #696969;
+
+}
+
+.board-menu-text{
+  height: 200px;
+  width: 100px;
+
+}
+
+.board-menu-button{
+  color: $offwhite;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 28px;
+  width: 88px;
+  border-radius: 3px;
+  font-family: "Helvetica Neue";
+  background-color: #298FCA;
+  cursor: pointer;
+  border: none;
+
+  // box-shadow: 1px 1px 1px #0C3953;
+}
+
+.board-menu-button:hover{
+  background-color: #5BA4CF;
+}
+
+.board-menu-button-icon{
+  padding-top: 1px;
+  padding-left: 3px;
+  font-size: 16px;
+}
+
+
+.board-menu-button-text{
+  padding-top: 3px;
+  padding-right: 4px;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+
+
+
+.new-board-dropdown-container{
+  border: 1px solid black;
+  height: 50px;
+  width: 100px;
+
+
+}
+.user-menu-container{
+  display: flex;
+  flex-direction: row;
+
+  border: 1px solid black;
+  height: 200px;
+  width: 200px;
+
+
+}

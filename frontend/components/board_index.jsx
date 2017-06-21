@@ -1,8 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { requestBoardIndex,  } from '../actions/board_index_actions';
-
+import { requestBoard,  } from '../actions/board_index_actions';
+import { values } from 'lodash';
+import Header from './header';
 
 class BoardIndex extends React.Component{
   constructor(props){
@@ -10,36 +11,41 @@ class BoardIndex extends React.Component{
   }
 
   componentDidMount(){
-    this.props.requestBoardIndex();
+    this.props.requestBoard();
+    // debugger
   }
 
   render(){
-    if (this.props.boardIndex.data.boards !== undefined){
-      var currentBoardArray = this.props.boardIndex.data.boards.map( (board) => {
+    const {boards, lists, cards} = this.props;
+    if (boards === undefined){
+      return null;
+    } else {
+      var currentBoardArray = values(boards).map( (board) => {
         return board.title;
       });
     }
-
       return(
         <div>
-          {currentBoardArray}
+          <Header boardMenu={currentBoardArray}/>
         </div>
       );
     }
 }
 
-const mapStateToProps = ({boardIndexReducer}) => {
-
+const mapStateToProps = (state) => {
+  // debugger
   return {
-    boardIndex: boardIndexReducer
+    boards: state.boards,
+    lists: state.lists,
+    cards: state.cards
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    requestBoardIndex: () => {
-      return dispatch(requestBoardIndex());
-    }
+    requestBoard: () => {
+      return dispatch(requestBoard());
+    },
   };
 };
 

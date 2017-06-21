@@ -22,9 +22,8 @@ class Greeting extends React.Component {
     if (user) {
       return (
 
-        <div>
-            {`Welcome: ${user.username}`}
-            <button onClick={this.handleLogout}>Logout</button>
+        <div >
+
         </div>
       );
     } else {
