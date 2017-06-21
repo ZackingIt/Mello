@@ -74,13 +74,17 @@ html {
   background: #0079BF;
   padding: 25px;
   align-items: center;
-  height: 12vh;
+  height: 76px;
 }
 
 .landing-header-left{
+  position: absolute;
+  top: 19px;
+  right: 40px;
+
   display: block;
   height: 100%;
-  width: 30vh;
+  width: 215px;
   display: flex;
   flex-direction: row;
   align-content: center;

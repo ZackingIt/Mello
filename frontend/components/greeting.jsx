@@ -19,16 +19,13 @@ class Greeting extends React.Component {
 
   render() {
     const user = this.props.user;
-    // How do I actually route myself from my greeting page to my board page in the best way?
     if (user) {
       return (
-        // <section className="landingContainer">
-        //   <div className="landing">
+
         <div>
             {`Welcome: ${user.username}`}
             <button onClick={this.handleLogout}>Logout</button>
         </div>
-        // </section>
       );
     } else {
       return (

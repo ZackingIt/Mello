@@ -29,8 +29,7 @@ class BoardIndex extends React.Component{
 }
 
 const mapStateToProps = ({boardIndexReducer}) => {
-  // console.log("below is your mapped state to board index");
-  // console.log(boardIndex);
+
   return {
     boardIndex: boardIndexReducer
   };

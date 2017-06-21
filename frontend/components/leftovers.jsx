@@ -16,11 +16,7 @@
 
 .landing-container{
   display: flex;
-  /*flex-direction: column;*/
-  /*min-height: 100vh;
-  min-width: 100%;*/
   font-family: sans-serif;
-  /*border: 2px solid indigo;*/
 }
 
 .landing-icon{
@@ -30,20 +26,12 @@
   padding: 1px;
 }
 .landing-header{
-  /*height: 10vh;*/
   display: flex;
   padding: 10px;
-  /*flex-direction: row;*/
-  /*align-items: center*/
   justify-content: space-between;
   background-color: #0079BF
 
 }
-
-/*.landing-header-spacer{
-  width: 87%;
-  border: 1px solid pink;
-}*/
 
 .landing-sign-up-bar{
   border: 1px solid green;
@@ -57,7 +45,6 @@
 .landing-login-bar{
   border: 1px solid green;
   align-self: flex-end;
-  /*vertical-align: center;*/
   padding: 5px;
   border-radius: 15px;
   background: gray;

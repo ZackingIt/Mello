@@ -11,7 +11,7 @@
 #
 
 class Card < ApplicationRecord
-  validates :title, :order, :list, presence: true
+  validates :body, :order, :list_id, presence: true
 
   belongs_to :list,
   class_name: :List,

@@ -1,7 +1,26 @@
 class Api::BoardsController < ApplicationController
 
   def index
+
     @boards = Board.where(author_id: current_user.id)
+    @lists, @cards, @list_ids, @card_ids = [], [], [], []
+
+    @boards.each do |board|
+      @lists.concat(List.where(board_id: board.id))
+    end
+
+    @lists.each do |list|
+      @list_ids.push(list.id)
+    end
+
+    @list_ids.each do |list_id|
+      @cards.concat(Card.where(list_id: list_id))
+    end
+
+    @cards.each do |card|
+      @card_ids.push(card.id)
+    end
+
     @user = User.find(current_user.id)
     render :index
   end
@@ -22,7 +41,7 @@ class Api::BoardsController < ApplicationController
   end
 
   def board_params
-    params.require(:board).permit(:author_id, :title, :privacy_status)
+    params.require(:board).permit(:id, :author_id, :title, :privacy_status)
   end
 
 
