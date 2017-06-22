@@ -4,6 +4,15 @@ class BoardMenuDropdown extends React.Component{
 
   constructor(props){
     super(props);
+    this.state = {modalPresence: false};
+    this.toggleBoardDropdown = this.toggleBoardDropdown.bind(this);
+
+  }
+
+  toggleBoardDropdown() {
+    this.setState(prevState => ({
+      modalPresence: !prevState.modalPresence
+    }));
   }
 
   render () {
@@ -12,6 +21,16 @@ class BoardMenuDropdown extends React.Component{
         <div className="board-menu-item"> {board} </div>
       );
     });
+
+    let boardMenuModal;
+    if ( this.state.modalPresence === true ){
+      boardMenuModal = (
+                      <div className="expanded-board-menu-container">
+                        {output}
+                      </div>
+                      );
+    }
+
     return (
       <div>
         <button onClick={this.toggleBoardDropdown} className="board-menu-button">
@@ -22,13 +41,7 @@ class BoardMenuDropdown extends React.Component{
             Boards
           </div>
         </button>
-
-        <img src="https://d2k1ftgv7pobq7.cloudfront.net/meta/u/res/images/trello-header-logos/af7af6ed478d3460709d715d9b3f74a4/trello-logo-white.svg"/>
-
-
-        <div className="board-menu-container">
-          {output}
-        </div>
+        {boardMenuModal}
       </div>
     );
   }

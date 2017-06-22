@@ -13,18 +13,9 @@ class Header extends React.Component{
     return(
       <div className="header-container">
         <div className="header-nav-bar">
-          <button onClick={this.toggleBoardDropdown} className="board-menu-button">
-            <div className="board-menu-button-icon">
-              <i className="fa fa-trello"></i>
-            </div>
-            <div className="board-menu-button-text">
-              Boards
-            </div>
-          </button>
-
+          <BoardMenuDropdown boardMenu={this.props.boardMenu}/>
           <img src="https://d2k1ftgv7pobq7.cloudfront.net/meta/u/res/images/trello-header-logos/af7af6ed478d3460709d715d9b3f74a4/trello-logo-white.svg"/>
 
-          <BoardMenuDropdown boardMenu={this.props.boardMenu}/>
           <CreateBoardDropdown/>
           <UserMenu />
         </div>
