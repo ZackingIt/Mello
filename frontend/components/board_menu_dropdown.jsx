@@ -6,9 +6,6 @@ class BoardMenuDropdown extends React.Component{
     super(props);
   }
 
-
-
-
   render () {
     let output = this.props.boardMenu.map((board) => {
       return (
@@ -22,11 +19,7 @@ class BoardMenuDropdown extends React.Component{
         </div>
       </div>
     );
-
   }
-
-
-
 }
 
 

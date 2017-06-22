@@ -9,6 +9,7 @@ class UserMenu extends React.Component {
   constructor(props) {
     super(props);
     this.handleLogout = this.handleLogout.bind(this);
+
   }
   handleLogout() {
     this.props.logout().then(
@@ -16,15 +17,24 @@ class UserMenu extends React.Component {
     );
   }
 
-  
+  toggleUserDropdown(){
+    $("div.user-menu-container").toggleClass("expanded-board-menu-container");
+  }
 
   render(){
     let user = this.props.user;
     if (user) {
       return (
-        <div >
-            {`Welcome: ${user.username}`}
-            <button onClick={this.handleLogout}>Logout</button>
+        <div className="outerEnclosingDiv">
+          <button onClick={this.toggleUserDropdown} className="user-profile-photo">
+            {`${user.username.slice(0,1).toUpperCase()}`}
+          </button>
+
+          <div className="user-menu-container">
+            <div className="user-menu-container-spacer">
+              <button className="user-profile-logout-button" onClick={this.handleLogout}>Logout</button>
+            </div>
+          </div>
         </div>
       );
     } else {

@@ -2,22 +2,26 @@
 $offwhite: #EDEFF0;
 $light-grey: #DCDCDC;
 $babby-blue: #C7E2F1;
+$header-blue: #026AA7;
+button:focus {outline:0;};
+$dark-grey: #404040;
+$menu-hover-blue:#298FCA;
 
 .header-container{
-  border: 1px solid red;
   display: flex;
   justify-content: center;
   flex-direction: column;
   background-color: white;
-
-
 }
+
 .header-nav-bar{
-  border: 2px solid orange;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   padding: 4px;
+  padding-top: 6px;
+  height: 40px;
+  background-color: $header-blue;
 }
 
 
@@ -64,19 +68,22 @@ $babby-blue: #C7E2F1;
 
 .board-menu-item{
   width: 180px;
-background-color: $babby-blue;
-margin-left: 3px;
-margin-bottom: 5px;
-padding-left: 10px;
-padding-top: 5px;
-border-radius: 3px;
-height: 34px;
-align-content: center;
-text-align: justify;
-font-weight: bolder;
-font-size: 13px;
-color: #696969;
+  background-color: #E4F0F6;
+  margin-left: 3px;
+  margin-bottom: 5px;
+  padding-left: 10px;
+  padding-top: 5px;
+  border-radius: 3px;
+  height: 34px;
+  align-content: center;
+  text-align: justify;
+  font-weight: bolder;
+  font-size: 13px;
+  color: $dark-grey;
+}
 
+.board-menu-item:hover{
+  background-color: $babby-blue;
 }
 
 .board-menu-text{
@@ -120,22 +127,128 @@ color: #696969;
 }
 
 
-
-
 .new-board-dropdown-container{
-  border: 1px solid black;
   height: 50px;
   width: 100px;
-
-
 }
+
 .user-menu-container{
   display: flex;
   flex-direction: row;
+  position: relative;
+  top: 38px;
+  right: -50em;
+  // right: -250px;
+  width: 50px;
+  background-color: #FFFFFF;
+  font-family: "Helvetica Neue";
+  border-radius: 3px;
+  box-shadow: 3px 3px 5px $light-grey;
+  padding-top: 15px;
+  padding-bottom: 4px;
+  padding-right: 4px;
+  padding-left: 3px;
+  border: 1px solid $light-grey;
+}
 
-  border: 1px solid black;
-  height: 200px;
+.expanded-user-menu-container{
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  top: 50px;
+  // right: 500em;
   width: 200px;
+  background-color: #FFFFFF;
+  font-family: "Helvetica Neue";
+  border-radius: 3px;
+  box-shadow: 3px 3px 5px $light-grey;
+  padding-top: 15px;
+  padding-bottom: 4px;
+  border: 1px solid $light-grey;
+  align-content: center;
+  align-items: center;
+}
 
+.user-menu-container.expanded-board-menu-container{
+  left: -160px;
+  padding-left: 14px;
+  padding-bottom: 15px;
+}
+div.user-menu-container.expanded-board-menu-container{
+  width: 200px;
+}
 
+div.outerEnclosingDiv{
+  width: 50px;
+}
+
+.user-profile-photo{
+  height: 28px;
+  width: 28px;
+  font-size: 11px;
+  font-weight: bold;
+  background: $light-grey;
+  font-family: "Helvetica Neue";
+  border-radius: 3px;
+  padding-left: 8px;
+  padding-top: 4px;
+  color: #4d4d4d;
+  position: absolute;
+  right: 15px;
+  border: none;
+}
+
+.user-profile-logout-button{
+  width: 160px;
+  padding: 10px;
+
+  color: $dark-grey;
+  border: none;
+  background-color: white;
+  padding-left: 20px;
+  align-self: center;
+  text-align: left;
+  font-weight: bolder;
+}
+
+.user-profile-photo:hover{
+  background-color: #B6BBBF;
+}
+
+.user-menu-container-spacer{
+  border-top: 1px solid $dark-grey;
+  border-bottom: 1px solid $dark-grey;
+  padding: 5px;
+  background-color: white
+
+}
+
+.user-profile-logout-button:hover{
+  background-color: $menu-hover-blue;
+  color: white;
+}
+
+.create-board-dropdown-container{
+  height: 50px;
+  width: 40px;
+}
+
+.create-board-dropdown-button{
+  height: 28px;
+  width: 28px;
+  font-size: 11px;
+  font-weight: bold;
+  background: $menu-hover-blue;
+  font-family: "Helvetica Neue";
+  border-radius: 3px;
+  padding-left: 7px;
+  padding-top: 4px;
+  color: white;
+  border: none;
+  position: relative;
+  right: -70px;
+}
+
+.create-board-dropdown-button:hover{
+  background-color: #5BA4CF
 }

@@ -27,6 +27,9 @@ class BoardIndex extends React.Component{
       return(
         <div>
           <Header boardMenu={currentBoardArray}/>
+          <div className="board-index-container">
+            
+          </div>
         </div>
       );
     }

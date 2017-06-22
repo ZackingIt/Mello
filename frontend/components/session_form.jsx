@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link, withRouter, Redirect } from 'react-router-dom';
-import {login, signup} from '../actions/session_actions';
+import {login, signup, clearErrors} from '../actions/session_actions';
 
 
 class SessionForm extends React.Component{
@@ -39,12 +39,19 @@ class SessionForm extends React.Component{
     };
   }
 
+  componentWillReceiveProps(nextProps){
+    if(this.props.location.pathname !== nextProps.location.pathname){
+      this.props.clearErrors();
+    }
+  }
+
   render() {
     if (this.props.loggedIn) {
       return (
         <Redirect to='/home' />
       );
     }
+
 
     const formType = this.props.formType;
     let header, label, link;
@@ -120,6 +127,9 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
     } else if (formType === 'signup') {
       dispatch(signup(user));
     }
+  },
+  clearErrors: () => {
+    dispatch(clearErrors());
   }
 });
 

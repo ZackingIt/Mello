@@ -21,9 +21,7 @@ class Greeting extends React.Component {
     const user = this.props.user;
     if (user) {
       return (
-
         <div >
-
         </div>
       );
     } else {
@@ -32,7 +30,6 @@ class Greeting extends React.Component {
           <div className="landing-header">
             <img className="landing-icon" src="https://d2k1ftgv7pobq7.cloudfront.net/meta/u/res/images/trello-header-logos/af7af6ed478d3460709d715d9b3f74a4/trello-logo-white.svg" />
             <div className="landing-header-spacer"></div>
-
                 <div className="landing-header-left">
                   <Link className="landing-login-bar" to='/login'>Log In</Link>
                   <Link className="landing-sign-up-bar" to='/signup'>Sign Up</Link>
