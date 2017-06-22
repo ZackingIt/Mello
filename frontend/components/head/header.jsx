@@ -1,6 +1,6 @@
 import React from 'react';
 import BoardMenuDropdown from './board_menu_dropdown';
-import Greeting from './greeting';
+import Greeting from '../greeting';
 import UserMenu from './user_menu';
 import CreateBoardDropdown from './create_board_dropdown';
 

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { requestBoard,  } from '../actions/board_index_actions';
 import { values } from 'lodash';
-import Header from './header';
+import Header from './head/header';
 
 class BoardIndex extends React.Component{
   constructor(props){
@@ -28,7 +28,7 @@ class BoardIndex extends React.Component{
         <div>
           <Header boardMenu={currentBoardArray}/>
           <div className="board-index-container">
-            
+
           </div>
         </div>
       );
