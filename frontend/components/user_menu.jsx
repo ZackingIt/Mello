@@ -9,6 +9,8 @@ class UserMenu extends React.Component {
   constructor(props) {
     super(props);
     this.handleLogout = this.handleLogout.bind(this);
+    this.toggleUserDropdown = this.toggleUserDropdown.bind(this);
+    this.state = {modalPresence: false};
 
   }
   handleLogout() {
@@ -18,11 +20,26 @@ class UserMenu extends React.Component {
   }
 
   toggleUserDropdown(){
-    $("div.user-menu-container").toggleClass("expanded-board-menu-container");
+    console.log("woof woof");
+    this.setState(prevState => ({
+      modalPresence: !prevState.modalPresence
+    }));
   }
 
   render(){
     let user = this.props.user;
+    let userDropdown;
+    if ( this.state.modalPresence === true ){
+      userDropdown = (
+        <div>
+          <div className="expanded-user-menu-container">
+            <div className="user-menu-container-spacer">
+              <button className="user-profile-logout-button" onClick={this.handleLogout}>Logout</button>
+            </div>
+          </div>
+      </div>
+      );
+    }
     if (user) {
       return (
         <div className="outerEnclosingDiv">
@@ -30,11 +47,8 @@ class UserMenu extends React.Component {
             {`${user.username.slice(0,1).toUpperCase()}`}
           </button>
 
-          <div className="user-menu-container">
-            <div className="user-menu-container-spacer">
-              <button className="user-profile-logout-button" onClick={this.handleLogout}>Logout</button>
-            </div>
-          </div>
+          {userDropdown}
+
         </div>
       );
     } else {
