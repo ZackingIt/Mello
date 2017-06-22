@@ -12,7 +12,6 @@ class BoardIndex extends React.Component{
 
   componentDidMount(){
     this.props.requestBoard();
-    // debugger
   }
 
   render(){
