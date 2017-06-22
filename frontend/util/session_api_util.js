@@ -22,6 +22,14 @@ export const boardIndex = (fulldata) => {
   });
 };
 
+export const createBoard = (board) => {
+  return $.ajax({
+    method: "POST",
+    url: '/api/boards',
+    data: { board }
+  });
+};
+
 
 export const logout = () => {
   return $.ajax({

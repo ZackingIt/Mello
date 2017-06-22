@@ -20,9 +20,9 @@ belongs_to :author,
   foreign_key: :author_id
 
 has_many :lists,
-class_name: :List,
-foreign_key: :list_id,
-dependent: :destroy
+  class_name: :List,
+  foreign_key: :board_id,
+  dependent: :destroy
 
 has_many :cards,
   through: :lists,

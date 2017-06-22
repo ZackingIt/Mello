@@ -16,6 +16,10 @@ class User < ApplicationRecord
   validates :password, length: {minimum: 6, allow_nil: true}
   validates_uniqueness_of :username
 
+  has_many :boards,
+  foreign_key: :author_id,
+  class_name: :Board
+
   attr_accessor :password
 
   after_initialize :ensure_session_token

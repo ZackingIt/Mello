@@ -156,7 +156,7 @@ $menu-hover-blue:#298FCA;
   flex-direction: row;
   position: relative;
   top: 39px;
-  right: 155px;
+  right: 175px;
   // right: 500em;
   width: 200px;
   background-color: #FFFFFF;
@@ -181,7 +181,7 @@ div.user-menu-container.expanded-board-menu-container{
 }
 
 div.outerEnclosingDiv{
-  width: 50px;
+  width: 30px;
 }
 
 .user-profile-photo{
@@ -253,4 +253,74 @@ div.outerEnclosingDiv{
 
 .create-board-dropdown-button:hover{
   background-color: #5BA4CF
+}
+
+.create-board-dropdown-menu-container{
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  top: 12px;
+  right: 129px;
+  width: 144px;
+  background-color: #FFFFFF;
+  font-family: "Helvetica Neue";
+  border-radius: 3px;
+  box-shadow: 3px 3px 5px #DCDCDC;
+  padding-top: 3px;
+  padding-bottom: 4px;
+  border: 1px solid #DCDCDC;
+  /* padding: 15px; */
+  width: 271px;
+  height: 151px;
+  position: relative;
+  padding-right: 10px;
+  padding-left: 10px;
+
+
+}
+
+.create-board-dropdown-menu-header{
+  color: gray;
+  font-family: "Helvetica Neue";
+  border-bottom: 1px solid gray;
+  padding: 5px;
+  text-align: center;
+  font-size: 14px;
+
+}
+
+.create-board-dropdown-menu-title{
+  color: $dark-grey;
+  font-size: 12px;
+  font-weight: bolder;
+  padding-bottom: 5px;
+  padding-top: 5px;
+}
+
+input.create-board-dropdown-menu-input {
+    border-radius: 4px;
+    border: 1px solid #298FCA;
+    height: 26px;
+    color: gray;
+    padding-left: 3px;
+    font-size: 13px;
+}
+
+button.create-board-dropdown-menu-button {
+    background-color: #61BD4F;
+    box-shadow: 2px 2px 2px #0C3953;
+    padding: 7px;
+    font-weight: bold;
+    font-size: 13px;
+    height: 32px;
+    border-radius: 10px;
+    color: #EDEFF0;
+    width: 87px;
+    border: none;
+    align-self: left;
+    margin-top: 10px;
+}
+
+button.create-board-dropdown-menu-button:hover{
+  background-color: #519839
 }

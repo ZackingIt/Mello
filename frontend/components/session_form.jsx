@@ -94,12 +94,12 @@ class SessionForm extends React.Component{
             </div>
 
           <div className="landing-body-button">
-            <button className="landing-body-button" onClick={this.handleSubmit}>{label}</button>
+            <button className="landing-body-button" onSubmit={this.handleSubmit}>{label}</button>
           </div>
           <div className="landing-body-button-spacer">
           </div>
           <div className="landing-body-button">
-            <button className="landing-body-button" onClick={this.handleDemo}>Demo</button>
+            <button className="landing-body-button" onSubmit={this.handleDemo}>Demo</button>
           </div>
 
           </form>

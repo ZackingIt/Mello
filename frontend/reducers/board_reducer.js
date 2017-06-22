@@ -7,10 +7,11 @@ const boardReducer = (state = {}, action) => {
   //we are only returning the partial state back to the root reducer;
 
   switch (action.type){
+    // debugger
     case RECEIVE_BOARD_INDEX:
       return action.boards; //could merge return something weird?
     case RECEIVE_BOARD:
-      return merge({}, state, {[action.board.id]: action.board});
+      return merge({}, state, {[action.response.board.id]: action.response.board});
     case REMOVE_BOARD:
       let newState = merge({}, state);
       delete newState[action.boardId]; //check for boardId

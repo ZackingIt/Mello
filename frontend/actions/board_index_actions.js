@@ -23,10 +23,12 @@ export const removeBoard = (boardId) => {
   };
 };
 
-export const receiveBoard = (board) => {
+export const receiveBoard = (response) => {
+  console.log("receiveBoard action is firing!");
+  console.log(response);
   return {
     type: RECEIVE_BOARD,
-    board
+    response: response,
   };
 };
 
@@ -40,11 +42,12 @@ export const requestBoard = () => {
   };
 };
 
-export const createBoard = (newBoard) => (dispatch) => {
-  return APIUtil.createBoard(newBoard).then(
-    (board) => {
-      dispatch(receiveBoard(board));
-      hashHistory.push(`/boards/${board.id}`);
+export const createBoard = (board) => (dispatch) => {
+  debugger
+  return APIUtil.createBoard(board).then(
+    (response) => {
+      dispatch(receiveBoard(response));
+      // hashHistory.push(`/boards/${board.id}`); do this in component layer instead!  use history not hashhistory
     }
   );
 };

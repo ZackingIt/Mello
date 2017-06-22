@@ -1,5 +1,5 @@
 class Api::BoardsController < ApplicationController
-  before_action :require_login 
+  before_action :require_login
 
   def index
 
@@ -27,7 +27,10 @@ class Api::BoardsController < ApplicationController
   end
 
   def create
-    @board = Board.new(board_params)
+    @board = current_user.boards.new(board_params)
+    # @board = Board.new(board_params)
+    # @board.author_id = current_user.id
+
     if @board.save
       render :show
     else

@@ -3,10 +3,12 @@ state = {
   // header state
   //note that asyncStatus enables us to display 'Loading' interstitial.
 boards: {1: {
+              author_id: 1,
               title: "Building a house",
               listIds: [2, 3, 4]
             },
         2: {
+              author_id: 1,
               title: "Building a house",
               listIds: [2, 3, 4]
             }
