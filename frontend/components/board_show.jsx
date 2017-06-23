@@ -57,7 +57,7 @@ const mapStateToProps = (state, ownProps) => {
     board: state.boards[ownProps.match.params.id],
     lists: state.lists, // select the lists for this board - write a SELECTOR
     cards: state.cards, // select the cards for these lists
-  }
+  };
 };
 
 

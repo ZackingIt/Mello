@@ -11,9 +11,8 @@ import { AuthRoute, ProtectedRoute } from '../util/route_util';
 const App = () => (
   <div>
     <Greeting />
-    <Header />
+    <ProtectedRoute path='/' component={Header}/>
     <Switch>
-
       <Route exact path="/">
         <Redirect to="/login"/>
       </Route>
