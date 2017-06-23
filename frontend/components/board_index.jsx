@@ -40,13 +40,16 @@ class BoardIndex extends React.Component{
       return(
         <div>
           <Header boardMenu={menuPropsArray}/>
-          <div className="board-index-header">
-            <i className="fa fa-user-o"></i>
+          
+          <div className="board-index-section">
+            <div className="board-index-header">
+              <i className="fa fa-user-o"></i>
 
-            <text className="board-index-header-text"> Personal Boards </text>
-          </div>
-          <div className="board-index-container">
-            {boardLinkArray}
+              <text className="board-index-header-text"> Personal Boards </text>
+            </div>
+            <div className="board-index-container">
+              {boardLinkArray}
+            </div>
           </div>
         </div>
       );
