@@ -23,7 +23,7 @@ export const removeBoard = (boardId) => {
 };
 
 export const receiveBoard = (response) => {
-  console.log("receiveBoard action is firing!");
+  console.log("receiveBoard action creator response BELOW");
   console.log(response);
   return {
     type: RECEIVE_BOARD,

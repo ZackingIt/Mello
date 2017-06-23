@@ -15,7 +15,7 @@ const listReducer = (state = {}, action) => {
     }
       // debugger
       return output;
-      return merge({}, state, output);
+      // return merge({}, state, output);
       // we need to merge in the new lists with the old
     default:
       return state;
