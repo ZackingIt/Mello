@@ -7,7 +7,6 @@ import { hashHistory } from 'react-router';
 
 
 export const receiveBoards = (data) => {
-  // debugger
   return {
     type: RECEIVE_BOARD_INDEX,
     boards: data.boards,
@@ -43,11 +42,9 @@ export const requestBoard = () => {
 };
 
 export const createBoard = (board) => (dispatch) => {
-  debugger
   return APIUtil.createBoard(board).then(
     (response) => {
       dispatch(receiveBoard(response));
-      // hashHistory.push(`/boards/${board.id}`); do this in component layer instead!  use history not hashhistory
     }
   );
 };

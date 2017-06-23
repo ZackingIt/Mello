@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { requestBoard,  } from '../actions/board_index_actions';
-import { values } from 'lodash';
+import { values, keys } from 'lodash';
 import Header from './head/header';
 
 class BoardIndex extends React.Component{
@@ -16,18 +16,37 @@ class BoardIndex extends React.Component{
 
   render(){
     const {boards, lists, cards} = this.props;
-    if (boards === undefined){
+    if (Object.keys(boards).length === 0){
       return null;
     } else {
-      var currentBoardArray = values(boards).map( (board) => {
-        return board.title;
-      });
-    }
+      var boardLinkArray = [];
+      var menuPropsArray = [];
+        for (let key in boards){
+          menuPropsArray.push(
+            <Link to={`/boards/${key}`}>
+              {boards[key].title}
+            </Link>
+          );
+          boardLinkArray.push(
+              <Link key={key} className="board-index-link" to={`/boards/${key}`}>
+                {boards[key].title}
+              </Link>
+          );
+        }
+
+
+      }
+
       return(
         <div>
-          <Header boardMenu={currentBoardArray}/>
-          <div className="board-index-container">
+          <Header boardMenu={menuPropsArray}/>
+          <div className="board-index-header">
+            <i className="fa fa-user-o"></i>
 
+            <text className="board-index-header-text"> Personal Boards </text>
+          </div>
+          <div className="board-index-container">
+            {boardLinkArray}
           </div>
         </div>
       );

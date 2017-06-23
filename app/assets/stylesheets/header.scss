@@ -4,7 +4,7 @@ $light-grey: #DCDCDC;
 $babby-blue: #C7E2F1;
 $header-blue: #026AA7;
 button:focus {outline:0;};
-$dark-grey: #404040;
+$dark-grey: #505050;
 $menu-hover-blue:#298FCA;
 
 .header-container{
@@ -255,28 +255,26 @@ div.outerEnclosingDiv{
   background-color: #5BA4CF
 }
 
-.create-board-dropdown-menu-container{
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  top: 12px;
-  right: 129px;
-  width: 144px;
-  background-color: #FFFFFF;
-  font-family: "Helvetica Neue";
-  border-radius: 3px;
-  box-shadow: 3px 3px 5px #DCDCDC;
-  padding-top: 3px;
-  padding-bottom: 4px;
-  border: 1px solid #DCDCDC;
-  /* padding: 15px; */
-  width: 271px;
-  height: 151px;
-  position: relative;
-  padding-right: 10px;
-  padding-left: 10px;
-
-
+.create-board-dropdown-menu-container {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 45px;
+    right: 14px;
+    width: 144px;
+    background-color: #FFFFFF;
+    font-family: "Helvetica Neue";
+    border-radius: 3px;
+    box-shadow: 3px 3px 5px #DCDCDC;
+    padding-top: 3px;
+    padding-bottom: 4px;
+    border: 1px solid #DCDCDC;
+    /* padding: 15px; */
+    width: 271px;
+    height: 151px;
+    /* position: relative; */
+    padding-right: 10px;
+    padding-left: 10px;
 }
 
 .create-board-dropdown-menu-header{
@@ -322,5 +320,10 @@ button.create-board-dropdown-menu-button {
 }
 
 button.create-board-dropdown-menu-button:hover{
-  background-color: #519839
+  background-color: #519839;
+}
+
+button.create-board-dropdown-button {
+    position: absolute;
+    right: 59px;
 }
