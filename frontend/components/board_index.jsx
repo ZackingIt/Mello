@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { requestBoard,  } from '../actions/board_index_actions';
+import { requestBoards,  } from '../actions/board_actions';
 import { values, keys } from 'lodash';
 import Header from './head/header';
 
@@ -11,7 +11,7 @@ class BoardIndex extends React.Component{
   }
 
   componentDidMount(){
-    this.props.requestBoard();
+    this.props.requestBoards();
   }
 
   render(){
@@ -20,27 +20,16 @@ class BoardIndex extends React.Component{
       return null;
     } else {
       var boardLinkArray = [];
-      var menuPropsArray = [];
-        for (let key in boards){
-          menuPropsArray.push(
-            <Link to={`/boards/${key}`}>
+    for (let key in boards){
+        boardLinkArray.push(
+            <Link key={key} className="board-index-link" to={`/board/${key}`}>
               {boards[key].title}
             </Link>
-          );
-          boardLinkArray.push(
-              <Link key={key} className="board-index-link" to={`/boards/${key}`}>
-                {boards[key].title}
-              </Link>
-          );
-        }
-
-
+        );
       }
 
       return(
         <div>
-          <Header boardMenu={menuPropsArray}/>
-          
           <div className="board-index-section">
             <div className="board-index-header">
               <i className="fa fa-user-o"></i>
@@ -54,6 +43,7 @@ class BoardIndex extends React.Component{
         </div>
       );
     }
+  }
 }
 
 const mapStateToProps = (state) => {
@@ -67,8 +57,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    requestBoard: () => {
-      return dispatch(requestBoard());
+    requestBoards: () => {
+      return dispatch(requestBoards());
     },
   };
 };

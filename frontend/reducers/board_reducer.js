@@ -1,4 +1,4 @@
-import { RECEIVE_BOARD_INDEX, REMOVE_BOARD, RECEIVE_BOARD } from '../actions/board_index_actions';
+import { RECEIVE_BOARD_INDEX, REMOVE_BOARD, RECEIVE_BOARD } from '../actions/board_actions';
 import { merge } from 'lodash';
 
 const boardReducer = (state = {}, action) => {
@@ -7,7 +7,6 @@ const boardReducer = (state = {}, action) => {
   //we are only returning the partial state back to the root reducer;
 
   switch (action.type){
-    // debugger
     case RECEIVE_BOARD_INDEX:
       return action.boards; //could merge return something weird?
     case RECEIVE_BOARD:

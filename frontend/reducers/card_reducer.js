@@ -1,4 +1,4 @@
-import { RECEIVE_BOARD } from '../actions/board_index_actions';
+import { RECEIVE_BOARD } from '../actions/board_actions';
 import { merge } from 'lodash';
 
 const cardReducer = (state = {}, action) => {
@@ -13,7 +13,8 @@ const cardReducer = (state = {}, action) => {
     } else {
       output = action.response.cards;
     }
-      return merge({}, state, output);
+      return output;
+      // return merge({}, state, output);
     default:
       return state;
   }

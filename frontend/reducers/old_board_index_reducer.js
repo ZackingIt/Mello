@@ -1,4 +1,4 @@
-import { RECEIVE_INDEX_BOARD } from '../actions/board_index_actions';
+import { RECEIVE_INDEX_BOARD } from '../actions/board_actions';
 export const SUCCESS = "SUCCESS";
 
 const defaultState = {

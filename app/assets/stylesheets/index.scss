@@ -1,7 +1,7 @@
 $offwhite: #EDEFF0;
 $header-blue: #026AA7;
 $dark-grey: #505050;
-
+$board-item-blue: #0469A4;
 
 
 .board-index-container {
@@ -9,7 +9,7 @@ $dark-grey: #505050;
   justify-content: flex-start;
   flex-wrap: wrap;
   padding: 20px;
-  border: 2px solid blue;
+  // border: 2px solid blue;
   width: 1300px;
 }
 
@@ -18,7 +18,6 @@ a.board-index-link {
   font-family: "Helvetica Neue";
   font-weight: bold;
   text-decoration: none;
-  background-color: #EEEEEE;
   color: #333333;
   padding: 2px 6px 2px 6px;
   border-top: 1px solid #CCCCCC;
@@ -33,13 +32,20 @@ a.board-index-link {
   flex-direction: row;
   margin-bottom: 20px;
   margin-right: 15px;
-  background-color: #5AAC44;
+  background-color: $board-item-blue;
   color: white;
   padding-top: 10px;
   padding-left: 12px;
   font-size: 15px;
   border-radius: 4px;
+  background-color: #015B8F;
+
+
   border: none;
+}
+
+a.board-index-link:hover{
+  background-color: #015B8F;
 }
 
 .fa-user-o:before{
@@ -72,10 +78,10 @@ text.board-index-header-text {
   width: 1500px;
   position: absolute;
   left: 60px;
-  border: 3px solid red;
+  // border: 3px solid red;
 }
 
 .index-container{
-  border: 20px solid green;
+  // border: 20px solid green;
 
 }

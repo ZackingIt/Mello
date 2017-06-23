@@ -31,7 +31,16 @@ export const receiveBoard = (response) => {
   };
 };
 
-export const requestBoard = () => {
+export const requestBoard = (id) =>{
+  return (dispatch) => {
+    return APIUtil.boardShow(id)
+      .then(data => {
+        return dispatch(receiveBoard(data));
+      });
+  };
+};
+
+export const requestBoards = () => {
   return (dispatch) => {
     return APIUtil.boardIndex()
       .then(data => {
