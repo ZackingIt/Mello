@@ -18,7 +18,6 @@ const cardReducer = (state = {}, action) => {
     case RECEIVE_CARD:
     //console.log("receive card action response BELOW.  Use for structuring your state output");
     //console.log(action.response);
-    debugger
     if (action.response.card === undefined) {
       output = {};
     } else {

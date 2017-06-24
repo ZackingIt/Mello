@@ -38,13 +38,19 @@ export const createBoard = (board) => {
 };
 
 export const createCard = (card) => {
-  // debugger
   return $.ajax({
     method: "POST",
     url: '/api/cards',
     data: {card},
   });
+};
 
+export const createList = (list) => {
+  return $.ajax({
+    method: "POST",
+    url: '/api/lists',
+    data: { list: list }  //list sets the key: "list"
+  });
 };
 
 

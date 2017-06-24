@@ -6,9 +6,10 @@ class List extends React.Component{
   constructor(props){
     super(props);
     // this.state = {cardParams: { listId: props.listId, order: null, body: "", due_date: null, completed: false } };
-    this.state = {cardBody: "", listId: props.listId, order: values(this.props.listObj).length};
+    //state refers to card state, not list state.
+    this.state = {cardBody: "", listId: props.listId, order: values(props.listObj.cardIds).length};
     this.handleCreateCard = this.handleCreateCard.bind(this);
-    this.handleBodyChange = this.handleBodyChange.bind(this);
+    this.handleCreateCardBodyChange = this.handleCreateCardBodyChange.bind(this);
   }
 
   handleCreateCard(e) {
@@ -16,7 +17,7 @@ class List extends React.Component{
     this.props.createCard(this.state.listId, this.state.order, this.state.cardBody);
   }
 
-  handleBodyChange(e){
+  handleCreateCardBodyChange(e){
     e.preventDefault();
     // const newCardParams = merge({}, this.state.cardParams, {body: e.currentTarget.value});
     this.setState({
@@ -32,8 +33,8 @@ class List extends React.Component{
 
 
   render(){
-    // //console.log("my specific list obj below");
-    console.log(this.props.listObj);
+    // console.log("my specific props below");
+    // console.log(this.props);
     let listTitle = this.props.listObj.title;
     let cardsBodyArray = this.props.listObj.cardIds.map( (cardId) => {
       const currentCard = this.props.cards[cardId];
@@ -49,7 +50,7 @@ class List extends React.Component{
           {cardsBodyArray}
         </div>
         <div className="add-card-button-container">
-          <input onChange={this.handleBodyChange} className="add-card-input-element" value={this.state.cardBody}/>
+          <input onChange={this.handleCreateCardBodyChange} className="add-card-input-element" value={this.state.cardBody}/>
           <button onClick={this.handleCreateCard} className="add-card-button-element">Add Card</button>
         </div>
       </section>);
