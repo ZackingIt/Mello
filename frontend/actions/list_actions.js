@@ -9,6 +9,11 @@ export const receiveList = (response) => {
   };
 };
 
+// export const requestLists = (dispatch) => {
+//   return dispatch()
+//
+// }
+
 export const createList = (listParams) => {
   // debugger
   return (dispatch) => {

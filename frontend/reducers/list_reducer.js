@@ -19,10 +19,11 @@ const listReducer = (state = {}, action) => {
       return output;
       // we need to merge in the new lists with the old
     case RECEIVE_LIST:
-    if (action.response.lists === undefined) {
+    if (action.response.list === undefined) {
       output = {};
     } else {
-      output = action.response.lists;
+
+      output = action.response.list;
     }
       return merge({}, state, output);
 

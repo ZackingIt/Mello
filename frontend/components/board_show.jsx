@@ -6,7 +6,7 @@ import Header from './head/header';
 import List from './list';
 
 import { requestBoard } from '../actions/board_actions';
-import { createList } from '../actions/list_actions';
+import { requestLists, createList } from '../actions/list_actions';
 import { createCard } from '../actions/card_actions';
 
 
@@ -25,12 +25,14 @@ class BoardShow extends React.Component{
 
   handleCreateList(e) {
     e.preventDefault();
-    this.props.createList(this.props.board.id, this.props.board.listIds.length, this.state.listTitle);
+    let locationString = (this.props.location.pathname || "");
+    const board_id = parseInt(locationString.slice(7));
+    this.props.createList(board_id, this.props.board.listIds.length, this.state.listTitle);
   }
 
   componentDidMount(){
-    let locationString = this.props.location.pathname;
-    const id = parseInt(locationString.slice(locationString.length-1));
+    let locationString = (this.props.location.pathname || "");
+    const id = parseInt(locationString.slice(7));
     this.props.requestBoard(id);
   }
 
@@ -44,7 +46,7 @@ class BoardShow extends React.Component{
     //this is causing everything elseto fail.
     if (JSON.stringify(this.props) !== JSON.stringify(nextProps)){
       let locationString = (nextProps.location.pathname || "");
-      const id = parseInt(locationString.slice(locationString.length-1));
+      const id = parseInt(locationString.slice(7));
       this.props.requestBoard(id);
       //console.log("REQUESTED NEW BOARD, ID of " + id);
     }
@@ -56,12 +58,12 @@ class BoardShow extends React.Component{
     const {board, lists, cards} = this.props;
     let outputListArray = [];
     if (Object.keys(lists).length === 0) {
-      return null;
+        //refactor to if (lists)
     } else {
       for (let key in lists) {
         let listObj = lists[key];
 
-        outputListArray.push(<List createCard={this.props.createCard} listId={parseInt(key)} listObj={listObj} cards={cards}/>);
+        outputListArray.push(<List key={key} createCard={this.props.createCard} listId={parseInt(key)} listObj={listObj} cards={cards}/>);
       }
     }
     return (
@@ -109,6 +111,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     requestBoard: (id) => {
       return dispatch(requestBoard(id));
+    },
+    requestLists: () => {
+      return dispatch(requestLists());
     },
     createList: (board_id, order, title) => {
       return dispatch(createList({ board_id: board_id, order: order, title: title} ));
