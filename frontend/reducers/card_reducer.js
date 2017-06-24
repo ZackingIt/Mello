@@ -1,20 +1,30 @@
 import { RECEIVE_BOARD } from '../actions/board_actions';
+import { RECEIVE_CARD } from '../actions/card_actions';
+
 import { merge } from 'lodash';
 
 const cardReducer = (state = {}, action) => {
   Object.freeze(state);
   //debugger
+  let output;
   switch (action.type){
     case RECEIVE_BOARD:
-    let output;
     if (action.response.cards === undefined) {
-      console.log("cards it is indeed undefined");
       output = {};
     } else {
       output = action.response.cards;
     }
       return output;
-      // return merge({}, state, output);
+    case RECEIVE_CARD:
+    //console.log("receive card action response BELOW.  Use for structuring your state output");
+    //console.log(action.response);
+    debugger
+    if (action.response.card === undefined) {
+      output = {};
+    } else {
+      output = action.response.card;
+    }
+    return output;
     default:
       return state;
   }

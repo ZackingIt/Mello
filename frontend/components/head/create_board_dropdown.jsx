@@ -17,7 +17,7 @@ class CreateBoardDropdown extends React.Component {
  }
 
  handleSubmit(e){
-   console.log("handle submit in create board firing");
+   //console.log("handle submit in create board firing");
      e.preventDefault();
      this.props.createBoard(this.state.title);
  }

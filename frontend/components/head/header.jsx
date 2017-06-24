@@ -62,11 +62,11 @@ const mapDispatchToProps = dispatch => {
 
   return {
     createBoard: (title) => {
-      console.log(`my title is ${title}`);
+      //console.log(`my title is ${title}`);
       return dispatch(createBoard({author_id: 7, title: title, privacy_status: false, listIds: []}));
     },
     requestBoards: () => {
-      console.log("requesting board!");
+      //console.log("requesting board!");
       return dispatch(requestBoards());
     }
   };

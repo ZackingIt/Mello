@@ -23,8 +23,8 @@ export const removeBoard = (boardId) => {
 };
 
 export const receiveBoard = (response) => {
-  console.log("receiveBoard action creator response BELOW");
-  console.log(response);
+  //console.log("receiveBoard action creator response BELOW");
+  //console.log(response);
   return {
     type: RECEIVE_BOARD,
     response: response,
@@ -50,8 +50,8 @@ export const requestBoards = () => {
   };
 };
 
-export const createBoard = (board) => (dispatch) => {
-  return APIUtil.createBoard(board).then(
+export const createBoard = (boardParams) => (dispatch) => {
+  return APIUtil.createBoard(boardParams).then(
     (response) => {
       dispatch(receiveBoard(response));
     }

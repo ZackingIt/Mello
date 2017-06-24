@@ -20,7 +20,7 @@ class UserMenu extends React.Component {
   }
 
   toggleUserDropdown(){
-    console.log("woof woof");
+    //console.log("woof woof");
     this.setState(prevState => ({
       modalPresence: !prevState.modalPresence
     }));
