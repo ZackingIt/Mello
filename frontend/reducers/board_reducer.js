@@ -8,7 +8,7 @@ const boardReducer = (state = {}, action) => {
 
   switch (action.type){
     case RECEIVE_BOARD_INDEX:
-      return action.boards; //could merge return something weird?
+      return merge({}, state, action.boards); //could merge return something weird?
     case RECEIVE_BOARD:
       return merge({}, state, {[action.response.board.id]: action.response.board});
     case REMOVE_BOARD:

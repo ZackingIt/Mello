@@ -26,7 +26,7 @@ class Header extends React.Component{
         for (let key in boards){
           menuPropsArray.push(
             <Link key={key} to={`/board/${key}`}>
-              {boards[key].title}
+              {boards[key].title.slice(0,20)}
             </Link>
           );
           boardLinkArray.push(
@@ -63,7 +63,7 @@ const mapDispatchToProps = dispatch => {
   return {
     createBoard: (title) => {
       //console.log(`my title is ${title}`);
-      return dispatch(createBoard({author_id: 7, title: title, privacy_status: false, listIds: []}));
+      return dispatch(createBoard({title: title, privacy_status: false, listIds: []}));
     },
     requestBoards: () => {
       //console.log("requesting board!");

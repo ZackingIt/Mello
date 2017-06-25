@@ -14,11 +14,11 @@ export const login = ({username, password}) => {
   });
 };
 
-export const boardIndex = (fulldata) => {
+export const boardIndex = ( boards ) => {
   return $.ajax({
     method: 'GET',
     url: '/api/boards',
-    data: { fulldata }
+    data: { boards }
   });
 };
 
@@ -41,7 +41,7 @@ export const createCard = (card) => {
   return $.ajax({
     method: "POST",
     url: '/api/cards',
-    data: {card},
+    data: { card },
   });
 };
 
