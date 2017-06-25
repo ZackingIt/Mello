@@ -58,7 +58,7 @@ class BoardShow extends React.Component{
       }
     }
     return (
-      <section>
+      <section className="board-show-wrapper">
         <div className="board-show-title">
           {boardTitle}
         </div>

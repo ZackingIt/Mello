@@ -30,7 +30,6 @@ class List extends React.Component{
   //therefore putting params in bind when the params are async is dangerous -- binding will not sync with params
   //our method here works because render is re-called, so bind is re-bound at every keystroke.
 
-
   render(){
     if (!this.props.listObj) {
       // TODO: render loading state here
@@ -55,7 +54,6 @@ class List extends React.Component{
           <button onClick={this.handleCreateCard} className="add-card-button-element">Add</button>
         </div>
       </section>);
-    // //console.log(cards);
     return(
       <div> {listElement} </div>
 

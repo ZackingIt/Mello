@@ -17,22 +17,29 @@ $menu-hover-blue:#298FCA;
 
 }
 
+.board-show-wrapper{
+  overflow-x: auto;
+  overflow-y: auto;
+  height: auto;
+}
+
 .board-show-container{
+  min-height: 100vh;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   color: white;
   font-family: "Helvetica Neue";
   height: 100%;
-  padding-left: 10px;
-  padding-top: 14px;
+  // padding-left: 10px;
+  // padding-top: 14px;
   background-color: #0079BF;
   flex-wrap: wrap;
   align-items: flex-start;
   margin: 0 auto;
   background-color: #0079BF;
   // background: linear-gradient(180deg, #0079BF, #C7E2F1);
-
+  padding-left: 5px;
 
 }
 
@@ -40,13 +47,14 @@ $menu-hover-blue:#298FCA;
   padding: 10px 7px 7px;
   background-color: #E2E4E6;
   color: $dark-grey;
-  margin: 10px;
+  margin: 5px;
+
   border-radius: 3px;
   width: 270px;
   // flex: 1 0 auto; // <--
   // position: relative;
   // break-inside: avoid;
-  padding: 5px;
+  padding: 8px;
 
 
 }
@@ -57,6 +65,7 @@ $menu-hover-blue:#298FCA;
   margin-left: 3px;
   font-size: 14px;
   color: $dark-grey;
+  word-break: break-all;
 
 }
 
@@ -70,9 +79,15 @@ $menu-hover-blue:#298FCA;
   box-shadow: 0px 0.5px $light-grey;
   font-size: 13px;
   color: $dark-grey;
+  word-break: break-all;
 
 
 
+
+}
+
+.card-item-element:hover{
+  background-color: #EDEFF0;
 }
 
 .add-card-button-container{

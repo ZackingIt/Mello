@@ -18,8 +18,8 @@ class BoardMenuDropdown extends React.Component{
   render () {
     let output = this.props.boardMenu.map((board, idx) => {
       return (
-      <div key={idx} className="board-item-wrapper">
-        <div className="board-menu-item-left-box"/> <div key={idx} className="board-menu-item"> {board} </div>
+      <div  className="board-item-wrapper">
+        <div key={idx} className="board-menu-item-left-box"/> {board}
       </div>
       );
     });

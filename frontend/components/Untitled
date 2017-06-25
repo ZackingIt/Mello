@@ -24,10 +24,8 @@ $menu-hover-blue:#298FCA;
   background-color: $header-blue;
 }
 
-.trello-image-link {
-  height: 30px;
-  position: absolute;
-  left: 45vw;
+.trello-image-link{
+  width: 150px;
 
 }
 

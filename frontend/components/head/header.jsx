@@ -25,7 +25,7 @@ class Header extends React.Component{
     if (Object.keys(this.props.boards).length !== 0){
         for (let key in boards){
           menuPropsArray.push(
-            <Link key={key} to={`/board/${key}`}>
+            <Link className="board-menu-item" key={key} to={`/board/${key}`}>
               {boards[key].title.slice(0,20)}
             </Link>
           );
@@ -41,7 +41,9 @@ class Header extends React.Component{
       <div className="header-container">
         <div className="header-nav-bar">
           <BoardMenuDropdown boardMenu={menuPropsArray}/>
-          <img src="https://d2k1ftgv7pobq7.cloudfront.net/meta/u/res/images/trello-header-logos/af7af6ed478d3460709d715d9b3f74a4/trello-logo-white.svg"/>
+          <Link to={'/'}>
+            <img className="trello-image-link" src="https://d2k1ftgv7pobq7.cloudfront.net/meta/u/res/images/trello-header-logos/af7af6ed478d3460709d715d9b3f74a4/trello-logo-white.svg"/>
+          </Link>
           <CreateBoardDropdown createBoard={this.props.createBoard} requestBoards={this.props.requestBoards}/>
           <UserMenu />
         </div>
