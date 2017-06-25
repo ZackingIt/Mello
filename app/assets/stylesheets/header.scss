@@ -125,8 +125,6 @@ $menu-hover-blue:#298FCA;
   background-color: #298FCA;
   cursor: pointer;
   border: none;
-
-  // box-shadow: 1px 1px 1px #0C3953;
 }
 
 .board-menu-button:hover{
@@ -152,25 +150,7 @@ $menu-hover-blue:#298FCA;
   height: 50px;
   width: 100px;
 }
-//
-// .user-menu-container{
-//   display: flex;
-//   flex-direction: row;
-//   position: relative;
-//   top: 38px;
-//   right: -50em;
-//   // right: -250px;
-//   width: 50px;
-//   background-color: #FFFFFF;
-//   font-family: "Helvetica Neue";
-//   border-radius: 3px;
-//   box-shadow: 3px 3px 5px $light-grey;
-//   padding-top: 15px;
-//   padding-bottom: 4px;
-//   padding-right: 4px;
-//   padding-left: 3px;
-//   border: 1px solid $light-grey;
-// }
+
 
 .expanded-user-menu-container{
   display: flex;
@@ -194,7 +174,6 @@ $menu-hover-blue:#298FCA;
 }
 
 .user-menu-container.expanded-board-menu-container{
-  // left: -160px;
   padding-left: 14px;
   padding-bottom: 15px;
 }
@@ -293,10 +272,8 @@ div.outerEnclosingDiv{
     padding-top: 3px;
     padding-bottom: 4px;
     border: 1px solid #DCDCDC;
-    /* padding: 15px; */
     width: 271px;
     height: 151px;
-    /* position: relative; */
     padding-right: 10px;
     padding-left: 10px;
 }

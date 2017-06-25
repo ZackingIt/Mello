@@ -50,7 +50,7 @@ class List extends React.Component{
         </div>
         <div className="add-card-button-container">
           <input onChange={this.handleCreateCardBodyChange} className="add-card-input-element" value={this.state.cardBody}/>
-          <button onClick={this.handleCreateCard} className="add-card-button-element">Add Card</button>
+          <button onClick={this.handleCreateCard} className="add-card-button-element">Add</button>
         </div>
       </section>);
     // //console.log(cards);

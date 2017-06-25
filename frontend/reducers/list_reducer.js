@@ -11,28 +11,19 @@ const listReducer = (state = {}, action) => {
 
   switch (action.type){
     case RECEIVE_BOARD:
-    if (action.response.lists === undefined) {
-      output = {};
-    } else {
       output = action.response.lists;
-    }
       return output;
       // we need to merge in the new lists with the old
     case RECEIVE_LIST:
-    if (action.response.list === undefined) {
-      output = {};
-    } else {
-
       output = action.response.list;
-    }
-      return merge({}, state, output);
+
+      return merge({}, state, {[output.id]: output});
 
     case RECEIVE_CARD:
+      // TODO FIX THIS
       return {};
       //SHOULDNT THIS BREAK???
       //why doesn't my list reducer need to know anything??  still works..
-
-
     default:
       return state;
   }

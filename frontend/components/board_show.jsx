@@ -6,7 +6,7 @@ import Header from './head/header';
 import List from './list';
 
 import { requestBoard } from '../actions/board_actions';
-import { requestLists, createList } from '../actions/list_actions';
+import { createList } from '../actions/list_actions';
 import { createCard } from '../actions/card_actions';
 
 
@@ -25,41 +25,32 @@ class BoardShow extends React.Component{
 
   handleCreateList(e) {
     e.preventDefault();
-    let locationString = (this.props.location.pathname || "");
-    const board_id = parseInt(locationString.slice(7));
-    this.props.createList(board_id, this.props.board.listIds.length, this.state.listTitle);
+    const boardId = parseInt(this.props.match.params.id);
+    this.props.createList(boardId, this.props.board.listIds.length, this.state.listTitle);
   }
 
   componentDidMount(){
-    let locationString = (this.props.location.pathname || "");
-    const id = parseInt(locationString.slice(7));
-    this.props.requestBoard(id);
+    let boardId = parseInt(this.props.match.params.id);
+    this.props.requestBoard(boardId);
   }
 
 
 
   componentWillReceiveProps(nextProps){
-    //this props refers to old props;
-    //newProps
-
-    //BECAUSE my rquestBoard isn't working my i'm not able to update my props
-    //this is causing everything elseto fail.
-    if (JSON.stringify(this.props) !== JSON.stringify(nextProps)){
-      let locationString = (nextProps.location.pathname || "");
-      const id = parseInt(locationString.slice(7));
-      this.props.requestBoard(id);
-      //console.log("REQUESTED NEW BOARD, ID of " + id);
+    const nextPropsId = nextProps.match.params.id;
+    if (this.props.match.params.id !== nextPropsId) {
+      this.props.requestBoard(parseInt(nextPropsId));
     }
   }
 
   render() {
-    console.log("this is my show state:");
-    console.log(this.props);
     const {board, lists, cards} = this.props;
     let outputListArray = [];
+    let boardTitle="";
     if (Object.keys(lists).length === 0) {
-        //refactor to if (lists)
+        //Most restrictive check for mapped state to props.  If (lists) doesn't work here.
     } else {
+      boardTitle = this.props.board.title;
       for (let key in lists) {
         let listObj = lists[key];
 
@@ -67,16 +58,19 @@ class BoardShow extends React.Component{
       }
     }
     return (
+      <section>
+        <div className="board-show-title">
+          {boardTitle}
+        </div>
+        <div className="board-show-container">
+          {outputListArray}
+            <div className="add-list-button-container">
+              <input onChange={this.handleCreateListTitleChange} className="add-list-input-element" value={this.state.listTitle}/>
+              <button onClick={this.handleCreateList} className="add-list-button-element">Add List</button>
 
-      <div>
-        board show renders
-        {outputListArray}
-          <div className="add-list-button-container">
-            <input onChange={this.handleCreateListTitleChange} className="add-list-input-element" value={this.state.listTitle}/>
-            <button onClick={this.handleCreateList} className="add-list-button-element">Add List</button>
-
-          </div>
-      </div>
+            </div>
+        </div>
+      </section>
 
     );
   }
@@ -111,9 +105,6 @@ const mapDispatchToProps = (dispatch) => {
   return {
     requestBoard: (id) => {
       return dispatch(requestBoard(id));
-    },
-    requestLists: () => {
-      return dispatch(requestLists());
     },
     createList: (board_id, order, title) => {
       return dispatch(createList({ board_id: board_id, order: order, title: title} ));
