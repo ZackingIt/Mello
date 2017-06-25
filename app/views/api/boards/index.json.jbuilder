@@ -1,3 +1,4 @@
+json.boards = {}
 json.set! :boards do
   @boards.each do |board|
     json.set! board.id do

@@ -10,6 +10,11 @@ class Api::ListsController < ApplicationController
     end
   end
 
+  def show
+    @list = List.find(params[:id])
+    render :show
+  end
+
   def list_params
     params.require(:list).permit(:board_id, :title, :order)
   end
