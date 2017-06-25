@@ -14,6 +14,9 @@ class List extends React.Component{
   handleCreateCard(e) {
     e.preventDefault();
     this.props.createCard(this.state.listId, this.state.order, this.state.cardBody);
+    this.setState({
+      cardBody: ""
+    });
   }
 
   handleCreateCardBodyChange(e){
@@ -29,17 +32,16 @@ class List extends React.Component{
 
 
   render(){
-    // console.log("my specific props below");
-    // console.log(this.props);
-    let listTitle = this.props.listObj.title;
-    let cardsBodyArray = [];
-    if (this.props.listObj.cardIds){
-      cardsBodyArray = this.props.listObj.cardIds.map( (cardId) => {
-        const currentCard = this.props.cards[cardId];
-        //console.log(currentCard)
-        return ( <div key={cardId} className="card-item-element"> {currentCard.body} </div> );
-      });
+    if (!this.props.listObj) {
+      // TODO: render loading state here
+      return <div>Loading...</div>;
     }
+    const listTitle = this.props.listObj.title;
+    const allCards = this.props.cards;
+    const cardsBodyArray = this.props.listObj.cardIds.map( (cardId) => {
+      const currentCard = allCards[cardId];
+      return ( <div key={cardId} className="card-item-element"> {currentCard.body} </div> );
+    });
     let listElement = (
       <section className="list-element">
         <div className="list-title-element">

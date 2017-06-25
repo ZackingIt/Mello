@@ -5,6 +5,7 @@ json.set! :board do
   json.listIds @board.lists.map{|el| el.id}
 end
 
+json.lists({})
 json.set! :lists do
 
   @board.lists.each do |list|
@@ -17,6 +18,7 @@ json.set! :lists do
   end
 end
 
+json.cards({})
 json.set! :cards do
   @board.cards.each do |card|
     json.set! card.id do

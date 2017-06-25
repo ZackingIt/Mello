@@ -16,14 +16,9 @@ const cardReducer = (state = {}, action) => {
     }
       return output;
     case RECEIVE_CARD:
-    //console.log("receive card action response BELOW.  Use for structuring your state output");
-    //console.log(action.response);
-    if (action.response.card === undefined) {
-      output = {};
-    } else {
-      output = action.response.card;
-    }
-    return output;
+      const newCard = action.response.card;
+      const newState = merge({}, state, {[newCard.id]: newCard});
+      return newState;
     default:
       return state;
   }

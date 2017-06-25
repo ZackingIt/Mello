@@ -1,4 +1,6 @@
+
 json.set! :card do
+  json.id @card.id
   json.list_id @card.list_id
   json.order @card.order
   json.body @card.body

@@ -20,10 +20,11 @@ const listReducer = (state = {}, action) => {
       return merge({}, state, {[output.id]: output});
 
     case RECEIVE_CARD:
-      // TODO FIX THIS
-      return {};
-      //SHOULDNT THIS BREAK???
-      //why doesn't my list reducer need to know anything??  still works..
+      const newCard = action.response.card;
+      const parentList = state[newCard.list_id]; //accessing only the single corresponding list of the new card.
+      const newState = merge({}, state, {[newCard.list_id]: parentList}); //duping the new state
+      newState[newCard.list_id].cardIds.push(action.response.card.id); //this allows our later JSX component to update new cards on re-render
+      return newState;
     default:
       return state;
   }
