@@ -17,9 +17,16 @@ module.exports = {
         exclude: /(node_modules)/,
         loader: 'babel-loader',
         query: {
-          cacheDirectory: true,
-          plugins: ['transform-decorators-legacy' ],
-          presets: ['es2015', 'stage-0', 'react']
+          presets: [
+            'babel-preset-es2015',
+            'babel-preset-react',
+            'babel-preset-stage-0',
+          ].map(require.resolve),
+        },
+        // query: {
+        //   cacheDirectory: true,
+        //   plugins: ['transform-decorators-legacy' ],
+        //   presets: ['es2015', 'stage-0', 'react']
         }
       }
     ]
