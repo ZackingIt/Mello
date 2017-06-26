@@ -3,18 +3,20 @@ import React from 'react';
 import { values, merge } from 'lodash';
 
 import PropTypes from 'prop-types';
-import { DragSource, DragDropContextProvider, DropTarget } from 'react-dnd';
+import { DragSource, DragDropContext, DragDropContextProvider, DropTarget } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 import Card from './card'
 
-
-class List extends React.Component{
+@DragDropContext(HTML5Backend)
+export default class List extends React.Component{
   constructor(props){
     super(props);
 
     this.state = {cardBody: "", listId: props.listId, order: values(props.listObj.cardIds).length};
     this.handleCreateCard = this.handleCreateCard.bind(this);
     this.handleCreateCardBodyChange = this.handleCreateCardBodyChange.bind(this);
+    this.moveCard = this.moveCard.bind(this);
+
   }
 
   handleCreateCard(e) {
@@ -31,6 +33,29 @@ class List extends React.Component{
       cardBody: e.currentTarget.value,
     });
   }
+  static propTypes = {
+    // connectDragSource: PropTypes.func.isRequired,
+    // connectDropTarget: PropTypes.func.isRequired,
+    // index: PropTypes.number.isRequired,
+    // isDragging: PropTypes.bool.isRequired,
+    // id: PropTypes.any.isRequired,
+    // text: PropTypes.string.isRequired,
+    // moveCard: PropTypes.func.isRequired,
+  };
+
+  moveCard(dragIndex, hoverIndex) {
+    const { cards } = this.state;
+    const dragCard = cards[dragIndex];
+
+    this.setState(update(this.state, {
+      cards: {
+        $splice: [
+          [dragIndex, 1],
+          [hoverIndex, 0, dragCard],
+        ],
+      },
+    }));
+  }
 
   //arguments of bind are evaluated when bind is invoked(at moment of binding, not onclick)
   //therefore putting params in bind when the params are async is dangerous -- binding will not sync with params
@@ -46,7 +71,7 @@ class List extends React.Component{
     const cardsBodyArray = this.props.listObj.cardIds.map( (cardId) => {
       const currentCard = allCards[cardId];
       // return ( <div key={cardId} className="card-item-element"> {currentCard.body} </div> );
-      return (<Card key={cardId} body={currentCard.body}/>);
+      return (<Card moveCard={this.moveCard} key={cardId} body={currentCard.body}/>);
     });
     let listElement = (
       <section className="list-element">
@@ -71,4 +96,4 @@ class List extends React.Component{
 
 }
 
-export default List;
+// export default List;

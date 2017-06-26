@@ -1,8 +1,8 @@
 import React from 'react';
 import { values, merge } from 'lodash';
-
+import { findDOMNode } from 'react-dom';
 import PropTypes from 'prop-types';
-import { DragSource, DragDropContextProvider, DropTarget } from 'react-dnd';
+import { DragSource, DragDropContext, DragDropContextProvider, DropTarget } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 
 const style = {
@@ -84,31 +84,53 @@ const cardTarget = {
 
 
 
-@dragDropContext(HTML5Backend)
-export default class Card extends Component{
+export default class Card extends React.Component{
   constructor(props){
-    super(props);
-    
-
+    super(props)
+    this.moveCard = this.moveCard.bind(this)
   }
 
   static propTypes = {
-    connectDragSource: PropTypes.func.isRequired,
-    connectDropTarget: PropTypes.func.isRequired,
-    index: PropTypes.number.isRequired,
-    isDragging: PropTypes.bool.isRequired,
-    id: PropTypes.any.isRequired,
-    text: PropTypes.string.isRequired,
-    moveCard: PropTypes.func.isRequired,
-};
+    // connectDragSource: PropTypes.func.isRequired,
+    // connectDropTarget: PropTypes.func.isRequired,
+    // index: PropTypes.number.isRequired,
+    // isDragging: PropTypes.bool.isRequired,
+    // id: PropTypes.any.isRequired,
+    // text: PropTypes.string.isRequired,
+    // moveCard: PropTypes.func.isRequired,
+  };
 
+  moveCard(dragIndex, hoverIndex) {
+
+    const { cards } = this.state;
+    const dragCard = cards[dragIndex];
+    console.log("Drag Index Below")
+    console.log(dragIndex);
+
+    console.log("Hover index below")
+    console.log(hoverIndex);
+
+    this.setState(update(this.state, {
+      cards: {
+        $splice: [
+          [dragIndex, 1],
+          [hoverIndex, 0, dragCard],
+        ],
+      },
+    }));
+  }
+
+  //
   render(){
+    console.log("MY CARD PROPSSSSSSS")
+    console.log(this.props)
     if (!this.props.body) {
       return <div>Loading...</div>;
     }
     let bodyText = this.props.body;
 
     const { isDragging, connectDragSource, connectDropTarget } = this.props;
+
     const opacity = isDragging ? 0 : 1;
       return connectDragSource(connectDropTarget(
         <div className="card-item-element" style={{ ...style, opacity }}>
@@ -119,4 +141,4 @@ export default class Card extends Component{
 
 }
 
-export default Card;
+// export default Card;

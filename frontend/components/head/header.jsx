@@ -26,7 +26,7 @@ class Header extends React.Component{
         for (let key in boards){
           menuPropsArray.push(
             <Link className="board-menu-item" key={key} to={`/board/${key}`}>
-              {boards[key].title.slice(0,20)}
+              {boards[key].title.slice(0,23)}
             </Link>
           );
           boardLinkArray.push(
