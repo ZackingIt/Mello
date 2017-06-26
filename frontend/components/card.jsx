@@ -69,10 +69,10 @@ const cardTarget = {
   },
 };
 
-DropTarget(ItemTypes.CARD, cardTarget, connect => ({
+@DropTarget(ItemTypes.CARD, cardTarget, connect => ({
   connectDropTarget: connect.dropTarget(),
 }))
-DragSource(ItemTypes.CARD, cardSource, (connect, monitor) => ({
+@DragSource(ItemTypes.CARD, cardSource, (connect, monitor) => ({
   connectDragSource: connect.dragSource(),
   isDragging: monitor.isDragging(),
 }))
