@@ -14,6 +14,8 @@ class SessionForm extends React.Component{
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleDemo = this.handleDemo.bind(this);
+    this.processForm = this.props.processForm.bind(this);
+    this.formType = this.props.formType
   }
 
   handleSubmit(e) {
@@ -22,13 +24,42 @@ class SessionForm extends React.Component{
     this.props.processForm(this.props.formType, user);
   }
 
-  handleDemo(e){
-    e.preventDefault();
-    this.setState((prevState, props) => {
-      return {username: "demo@mello.com", password: "password"};
-    });
+  handleDemo(e) {
+      let that = this;
+      e.preventDefault();
+    //   let prom = new Promise(function (resolve, reject) {
 
-  }
+    //  });
+      this.setState(
+        { username: 'demo@mello.com', password: 'password' },
+        () => {
+          const user = Object.assign({}, this.state);
+          setTimeout(function () {
+            that.props.processForm('login', user); }, 1000);
+        });
+    }
+
+    handleDemo(e) {
+        let that = this;
+        e.preventDefault();
+
+        this.setState(
+          { username: 'demo@mello.com', password: 'password' },
+          () => {
+            const user = Object.assign({}, this.state);
+            that.props.processForm('login', user);
+          });
+      }
+
+  //
+  // handleDemo(e) {
+  //   e.preventDefault();
+  //   const user = Object.assign({}, this.state);
+  //   this.setState(
+  //     { username: 'demo@mello.com', password: 'password' },
+  //     () => this.props.processForm(this.props.formType, user)
+  //   );
+  // }
 
   handleChange(field) {
     return (e) => {
@@ -63,8 +94,17 @@ class SessionForm extends React.Component{
       header = "Sign Up for Mello";
       label = "Sign Up";
     }
+    // debugger
 
     const errors = this.props.errors.map((error, idx) => <li key={idx}>{error}</li>);
+
+    let errorsWrapped;
+    if (errors.length > 0 ){
+      errorsWrapped = (<div className="error-box"> {errors} </div>);
+    } else {
+      errorsWrapped = "";
+    }
+
     const {username, password} = this.state;
     return (
       <div className="landing-body-container">
@@ -75,11 +115,14 @@ class SessionForm extends React.Component{
         <div className="landing-body-header">
           {header}
         </div>
+
           <form className="landing-body-form">
             <div className="landing-body-form-username">
               <div className="landing-body-form-username-text">
                 Email
               </div>
+
+
               <div className="landing-body-form-box-username">
                 <input className="landing-body-form-box-username" onChange={this.handleChange("username")} value={this.state.username} />
               </div>
@@ -91,8 +134,8 @@ class SessionForm extends React.Component{
               </div>
 
               <input className="landing-body-form-box-password" onChange={this.handleChange("password")} value={this.state.password}/>
+              <ul >{errorsWrapped}</ul>
             </div>
-
           <div className="landing-body-button">
             <button className="landing-body-button" onClick={this.handleSubmit}>{label}</button>
           </div>
@@ -102,8 +145,9 @@ class SessionForm extends React.Component{
             <button className="landing-body-button" onClick={this.handleDemo}>Demo</button>
           </div>
 
+
           </form>
-          <ul>{errors}</ul>
+
 
         </div>
       </div>

@@ -76,6 +76,28 @@ button:focus {outline:0;}
   height: 50px;
   padding: 1px;
 }
+
+.error-box{
+  margin-top: 20px;
+  background-color: #B04632;
+  box-shadow: 2px 2px 2px #0C3953;
+  padding: 10px;
+  font-weight: bold;
+  font-size: 12px;
+  height: 100%;
+  border-radius: 2px;
+  color: #EDEFF0;
+  width: 150px;
+  border: none;
+  align-self: center;
+  word-wrap: normal;
+  text-align: center;
+}
+
+ul{
+  justify-content: center;
+  display: flex;
+}
 .landing-header{
   font-family: "Helvetica Neue";
   display: flex;
@@ -191,6 +213,10 @@ input.landing-body-form-box-username, input.landing-body-form-box-password{
   padding: 10px;
   background: #EDEFF0;
 
+}
+
+input.landing-body-form-box-password{
+  -webkit-text-security: disc;
 }
 
 button.landing-body-button{
