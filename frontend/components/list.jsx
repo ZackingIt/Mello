@@ -5,6 +5,7 @@ import { values, merge } from 'lodash';
 import PropTypes from 'prop-types';
 import { DragSource, DragDropContextProvider, DropTarget } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
+import Card from './card'
 
 
 class List extends React.Component{
@@ -44,7 +45,8 @@ class List extends React.Component{
     const allCards = this.props.cards;
     const cardsBodyArray = this.props.listObj.cardIds.map( (cardId) => {
       const currentCard = allCards[cardId];
-      return ( <div key={cardId} className="card-item-element"> {currentCard.body} </div> );
+      // return ( <div key={cardId} className="card-item-element"> {currentCard.body} </div> );
+      return (<Card key={cardId} body={currentCard.body}/>);
     });
     let listElement = (
       <section className="list-element">
