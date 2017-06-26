@@ -19,8 +19,7 @@ module.exports = {
         query: {
           presets: [
             'babel-preset-es2015',
-            'babel-preset-react',
-            'babel-preset-stage-0',
+            'babel-preset-react'
           ].map(require.resolve),
         },
         // query: {
