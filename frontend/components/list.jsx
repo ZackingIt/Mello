@@ -7,8 +7,7 @@ import { DragSource, DragDropContext, DragDropContextProvider, DropTarget } from
 import HTML5Backend from 'react-dnd-html5-backend';
 import Card from './card'
 
-@DragDropContext(HTML5Backend)
-export default class List extends React.Component{
+class List extends React.Component{
   constructor(props){
     super(props);
 
@@ -90,12 +89,8 @@ export default class List extends React.Component{
       </section>);
     return(
       <div> {listElement} </div>
-
     );
-
-
   }
-
 }
 
-// export default List;
+export default DragDropContext(HTML5Backend)(List);
