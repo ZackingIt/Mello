@@ -131,7 +131,8 @@ class Card extends React.Component{
 
     const opacity = isDragging ? 0 : 1;
       return connectDragSource(connectDropTarget(
-        <div className="card-item-element" style={{ ...style, opacity }}>
+
+        <div className="card-item-element" style={Object.assign({ opacity }, style)}>
           {bodyText}
         </div>,
       ));
