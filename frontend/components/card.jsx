@@ -13,6 +13,11 @@ const style = {
   cursor: 'move',
 };
 
+const ItemTypes = {
+  CARD: 'card',
+};
+
+
 const cardSource = {
   beginDrag(props) {
     return {
@@ -79,11 +84,11 @@ const cardTarget = {
 
 
 
-
-class Card extends React.Component{
+@dragDropContext(HTML5Backend)
+export default class Card extends Component{
   constructor(props){
     super(props);
-
+    
 
   }
 
