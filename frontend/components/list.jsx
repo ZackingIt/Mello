@@ -2,7 +2,6 @@
 import React from 'react';
 import { values, merge } from 'lodash';
 
-import PropTypes from 'prop-types';
 import { DragSource, DragDropContext, DragDropContextProvider, DropTarget } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 import Card from './card'
@@ -32,15 +31,6 @@ class List extends React.Component{
       cardBody: e.currentTarget.value,
     });
   }
-  static propTypes = {
-    // connectDragSource: PropTypes.func.isRequired,
-    // connectDropTarget: PropTypes.func.isRequired,
-    // index: PropTypes.number.isRequired,
-    // isDragging: PropTypes.bool.isRequired,
-    // id: PropTypes.any.isRequired,
-    // text: PropTypes.string.isRequired,
-    // moveCard: PropTypes.func.isRequired,
-  };
 
   moveCard(cardStartingIndex, cardHoverIndex) {
     const { cards } = this.state;
