@@ -43,15 +43,15 @@ export default class List extends React.Component{
     // moveCard: PropTypes.func.isRequired,
   };
 
-  moveCard(dragIndex, hoverIndex) {
+  moveCard(cardStartingIndex, cardHoverIndex) {
     const { cards } = this.state;
-    const dragCard = cards[dragIndex];
+    const dragCard = cards[cardStartingIndex];
 
     this.setState(update(this.state, {
       cards: {
         $splice: [
-          [dragIndex, 1],
-          [hoverIndex, 0, dragCard],
+          [cardStartingIndex, 1],
+          [cardHoverIndex, 0, dragCard],
         ],
       },
     }));
@@ -66,12 +66,14 @@ export default class List extends React.Component{
       // TODO: render loading state here
       return <div>Loading...</div>;
     }
+    console.log("my listId is...")
+    console.log(this.state.listId)
     const listTitle = this.props.listObj.title;
     const allCards = this.props.cards;
     const cardsBodyArray = this.props.listObj.cardIds.map( (cardId) => {
       const currentCard = allCards[cardId];
       // return ( <div key={cardId} className="card-item-element"> {currentCard.body} </div> );
-      return (<Card moveCard={this.moveCard} key={cardId} body={currentCard.body}/>);
+      return (<Card moveCard={this.moveCard} key={cardId} id={cardId} listId={this.state.listId} cardIndex={this.props.listObj.cardIds.indexOf(cardId)} body={currentCard.body}/>);
     });
     let listElement = (
       <section className="list-element">

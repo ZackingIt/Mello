@@ -20,20 +20,43 @@ const ItemTypes = {
 
 const cardSource = {
   beginDrag(props) {
+    console.log("Dragging 2!!!");
+    console.log(props.id);
+    console.log( "mah bindddd "+ props.index);
     return {
-      id: props.id,
-      index: props.index,
+      card_id: props.id,
+      cardIndex: props.cardIndex,
+      listIndex: props.listId,
+
     };
   },
 };
 
 const cardTarget = {
-  hover(props, monitor, component) {
-    const dragIndex = monitor.getItem().index;
-    const hoverIndex = props.index;
 
-    // Don't replace items with themselves
-    if (dragIndex === hoverIndex) {
+  hover(props, monitor, component) {
+    // debugger
+    console.log("Dragging 4!!!");
+
+    const cardStartingIndex = monitor.getItem().cardIndex;
+    const listStartingIndex = monitor.getItem().listIndex;
+
+    const cardHoverIndex = props.cardIndex;
+    const listHoverIndex = props.listIndex;
+
+    console.log("My cardHoverIndex below");
+    console.log(cardHoverIndex);
+
+    console.log("My cardStartingIndex below");
+    console.log(cardStartingIndex);
+
+    console.log("my listStartingIndex below");
+    console.log(listStartingIndex);
+
+    console.log("my list hover index below (maybe)");
+    console.log(listHoverIndex);
+
+    if (cardStartingIndex === cardHoverIndex) {
       return;
     }
 
@@ -54,23 +77,23 @@ const cardTarget = {
     // When dragging upwards, only move when the cursor is above 50%
 
     // Dragging downwards
-    if (dragIndex < hoverIndex && hoverClientY < hoverMiddleY) {
+    if (cardStartingIndex < cardHoverIndex && hoverClientY < hoverMiddleY) {
       return;
     }
 
     // Dragging upwards
-    if (dragIndex > hoverIndex && hoverClientY > hoverMiddleY) {
+    if (cardStartingIndex > cardHoverIndex && hoverClientY > hoverMiddleY) {
       return;
     }
 
     // Time to actually perform the action
-    props.moveCard(dragIndex, hoverIndex);
+    props.moveCard(listStartingIndex, listEndingIndex, cardStartingIndex, cardHoverIndex);
 
     // Note: we're mutating the monitor item here!
     // Generally it's better to avoid mutations,
     // but it's good here for the sake of performance
     // to avoid expensive index searches.
-    monitor.getItem().index = hoverIndex;
+    monitor.getItem().cardIndex = cardHoverIndex;
   },
 };
 
@@ -100,28 +123,24 @@ export default class Card extends React.Component{
     // moveCard: PropTypes.func.isRequired,
   };
 
-  moveCard(dragIndex, hoverIndex) {
+  moveCard(startingListId, listHoverIndex, cardStartingIndex, cardHoverIndex) {
 
-    const { cards } = this.state;
-    const dragCard = cards[dragIndex];
-    console.log("Drag Index Below")
-    console.log(dragIndex);
+    // const { cards } = this.state;
+    // const dragCard = cards[cardStartingIndex];
+    // this.setState(update(this.state, {
+    //   cards: {
+    //     $splice: [
+    //       [cardStartingIndex, 1],
+    //       [cardHoverIndex, 0, dragCard],
+    //     ],
+    //   },
+    // }));
 
-    console.log("Hover index below")
-    console.log(hoverIndex);
 
-    this.setState(update(this.state, {
-      cards: {
-        $splice: [
-          [dragIndex, 1],
-          [hoverIndex, 0, dragCard],
-        ],
-      },
-    }));
   }
 
-  //
   render(){
+
     console.log("MY CARD PROPSSSSSSS")
     console.log(this.props)
     if (!this.props.body) {
