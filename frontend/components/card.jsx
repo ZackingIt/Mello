@@ -103,19 +103,13 @@ class Card extends React.Component{
     }
     let bodyText = this.props.body;
 
-    return (
-
-      const { isDragging, connectDragSource, connectDropTarget } = this.props;
-      const opacity = isDragging ? 0 : 1;
-
+    const { isDragging, connectDragSource, connectDropTarget } = this.props;
+    const opacity = isDragging ? 0 : 1;
       return connectDragSource(connectDropTarget(
         <div className="card-item-element" style={{ ...style, opacity }}>
           {bodyText}
         </div>,
       ));
-
-    );
-
   }
 
 }
