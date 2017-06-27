@@ -71,15 +71,11 @@ class List extends React.Component{
     const { isDragging, connectDragSource, connectDropTarget } = this.props;
 
     const allCards = this.props.cards;
-
     const cardsBodyArray = this.props.listObj.cardIds.map( (cardId) => {
       const currentCard = allCards[cardId];
       // return ( <div key={cardId} className="card-item-element"> {currentCard.body} </div> );
       return (<Card key={cardId} id={cardId} listId={this.state.listId} cardIndex={this.props.listObj.cardIds.indexOf(cardId)} body={currentCard.body}/>);
     });
-
-
-
     let listElement = (
       <section className="list-element">
         <div className="list-title-element">
@@ -111,6 +107,7 @@ const listTarget = {
 
     // Obtain the dragged item
     const item = monitor.getItem();
+    console.log("LIST DROP PROPS ARE FIRING")
     console.log(props)
     // You can do something with it
     // ChessActions.movePiece(item.fromPosition, props.position);
@@ -126,11 +123,11 @@ const listTarget = {
     const listStartingIndex = monitor.getItem().listTarget;
     const listHoverIndex = props.listTarget;
 
-    // console.log("my listTarget Starting Index below");
-    // console.log(listStartingIndex);
-    //
-    // console.log("my listHover Index below (maybe)");
-    // console.log(listHoverIndex);
+    console.log("my listTarget Starting Index below");
+    console.log(listStartingIndex);
+
+    console.log("my listHover Index below (maybe)");
+    console.log(listHoverIndex);
 
     if (listStartingIndex === listHoverIndex) {
       return;
@@ -171,9 +168,6 @@ const cardTarget = {
     if (monitor.didDrop()) {
       return;
     }
-
-    console.log("my drop target is below");
-    console.log(props);
 
     const item = monitor.getItem();
     return { moved: true };

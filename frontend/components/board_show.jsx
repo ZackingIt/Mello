@@ -53,7 +53,6 @@ class BoardShow extends React.Component{
       boardTitle = this.props.board.title;
       for (let key in lists) {
         let listObj = lists[key];
-
         outputListArray.push(<List key={key} createCard={this.props.createCard} listId={parseInt(key)} listObj={listObj} cards={cards}/>);
       }
     }

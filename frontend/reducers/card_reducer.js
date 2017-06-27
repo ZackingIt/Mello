@@ -1,12 +1,14 @@
 import { RECEIVE_BOARD } from '../actions/board_actions';
-import { RECEIVE_CARD } from '../actions/card_actions';
+import { RECEIVE_CARD, UPDATE_CARD } from '../actions/card_actions';
 
 import { merge } from 'lodash';
 
 const cardReducer = (state = {}, action) => {
   Object.freeze(state);
-  //debugger
+
   let output;
+  let newCard;
+  let newState;
   switch (action.type){
     case RECEIVE_BOARD:
     if (action.response.cards === undefined) {
@@ -16,9 +18,19 @@ const cardReducer = (state = {}, action) => {
     }
       return output;
     case RECEIVE_CARD:
-      const newCard = action.response.card;
-      const newState = merge({}, state, {[newCard.id]: newCard});
+      newCard = action.response.card;
+      newState = merge({}, state, {[newCard.id]: newCard});
       return newState;
+    case UPDATE_CARD:
+      console.log("my prior state");
+      console.log(state);
+      newCard = action.response;
+      newState = merge({}, state, {[newCard.id]: newCard});
+      console.log("my new state");
+      console.log(newState);
+      return newState;
+    case "IGNORE":
+      return state;
     default:
       return state;
   }

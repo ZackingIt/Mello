@@ -1,5 +1,5 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import { connect as connectOriginal } from 'react-redux';
 import { values, merge } from 'lodash';
 import { findDOMNode } from 'react-dom';
 import { DragSource, DragDropContext, DragDropContextProvider, DropTarget } from 'react-dnd';
@@ -54,9 +54,7 @@ const cardTarget = {
     console.log("my ending state");
     myState = merge(myState, {ending: props});
     console.log(myState);
-    debugger
     props.moveCard(myState);
-    debugger
     // You can also do nothing and return a drop result,
     // which will be available as monitor.getDropResult()
     // in the drag source's endDrag() method
@@ -157,10 +155,8 @@ function connectTarget(connect){
 }
 
 const mapDispatchToProps = (dispatch) => {
-  debugger
   return {
     moveCard: (thisState) => {
-      debugger;
       return dispatch(moveCard( thisState ));
     },
   };
@@ -170,6 +166,7 @@ const mapDispatchToProps = (dispatch) => {
 //   DropTarget(ItemTypes.CARD, cardTarget, connectTarget)(Card))
 // ));
 
-// export default connect(null, mapDispatchToProps)((DragSource( ItemTypes.CARD, cardSource, connectSource)(
-//   DropTarget(ItemTypes.CARD, cardTarget, connectTarget)(Card))
-// ));
+export default connectOriginal(null, mapDispatchToProps)(
+  DragSource( ItemTypes.CARD, cardSource, connectSource)(
+  DropTarget(ItemTypes.CARD, cardTarget, connectTarget)(Card))
+);
