@@ -53,7 +53,7 @@ class BoardShow extends React.Component{
       boardTitle = this.props.board.title;
       for (let key in lists) {
         let listObj = lists[key];
-        outputListArray.push(<List key={key} createCard={this.props.createCard} listId={parseInt(key)} listObj={listObj} cards={cards}/>);
+        outputListArray.push(<List key={Math.random()*1000} createCard={this.props.createCard} listId={parseInt(key)} listObj={listObj} cards={cards}/>);
       }
     }
     return (
@@ -105,11 +105,11 @@ const mapDispatchToProps = (dispatch) => {
     requestBoard: (id) => {
       return dispatch(requestBoard(id));
     },
-    createList: (board_id, order, title) => {
-      return dispatch(createList({ board_id: board_id, order: order, title: title} ));
+    createList: (board_id, ord, title) => {
+      return dispatch(createList({ board_id: board_id, ord: ord, title: title} ));
     },
-    createCard: (list_id, order, body) => {
-      return dispatch(createCard({ list_id: list_id, order: order, body: body, due_date: null, completed: false } ));
+    createCard: (list_id, ord, body) => {
+      return dispatch(createCard({ list_id: list_id, ord: ord, body: body, due_date: null, completed: false } ));
     },
 
   };

@@ -10,7 +10,7 @@ const listSource = {
   beginDrag(props) {
     return {
       list_id: props.listId,
-      listTarget: props.listObj.order
+      listTarget: props.listObj.ord
     };
   },
 };
@@ -33,16 +33,16 @@ const ItemTypes = {
 class List extends React.Component{
   constructor(props){
     super(props);
-
-    this.state = {cardBody: "", listId: props.listId, order: values(props.listObj.cardIds).length};
+    console.log("my constructor props below")
+    console.log(props)
+    this.state = {cardBody: "", listId: props.listId, ord: values(props.listObj.cardIds).length};
     this.handleCreateCard = this.handleCreateCard.bind(this);
     this.handleCreateCardBodyChange = this.handleCreateCardBodyChange.bind(this);
-
   }
 
   handleCreateCard(e) {
     e.preventDefault();
-    this.props.createCard(this.state.listId, this.state.order, this.state.cardBody);
+    this.props.createCard(this.state.listId, this.state.ord, this.state.cardBody);
     this.setState({
       cardBody: ""
     });
@@ -62,7 +62,7 @@ class List extends React.Component{
 
   render(){
     if (!this.props.listObj) {
-      return <div></div>;
+      return <div key={Math.random()*100}></div>;
     }
 
     const opacity = isDragging ? 0 : 1;
@@ -71,13 +71,38 @@ class List extends React.Component{
     const { isDragging, connectDragSource, connectDropTarget } = this.props;
 
     const allCards = this.props.cards;
-
+    console.log("higher ord props")
+    console.log(this.props);
     const cardsBodyArray = this.props.listObj.cardIds.map( (cardId) => {
       const currentCard = allCards[cardId];
       // return ( <div key={cardId} className="card-item-element"> {currentCard.body} </div> );
-      return (<Card key={cardId} id={cardId} listId={this.state.listId} cardIndex={this.props.listObj.cardIds.indexOf(cardId)} body={currentCard.body}/>);
+      return (<Card key={Math.random()*100} ord={ "test" } id={cardId} listId={this.state.listId} cardIndex={this.props.listObj.cardIds.indexOf(cardId)} body={currentCard.body}/>);
     });
-
+    // let cardsBodyArray = [];
+    // for (let key in this.props.cards) {
+    //   if ( this.props.cards[key].list_id == this.props.listId ){
+    //     let newObj = this.props.cards[key];
+    //     newObj.id = key;
+    //     cardsBodyArray.push(newObj);
+    //   }
+    // }
+    //
+    // function compare(a,b) {
+    //   return (parseInt(a.ord) - parseInt(b.ord));
+    // }
+    //
+    // console.log("my card body array before sorting");
+    // console.log(cardsBodyArray);
+    // cardsBodyArray.sort(compare);
+    // console.log("my card body array after sorting");
+    // console.log(cardsBodyArray);
+    // let sortedWrappedCardArray = [];
+    // sortedWrappedCardArray = cardsBodyArray.map( ( currentCard ) => {
+    //   debugger
+    //   // console.log("my listObj card indices are below")
+    //   // console.log(this.props.listObj.cardIds.indexOf(parseInt(currentCard.id)))
+    //   return (<Card key={Math.random()*100} id={parseInt(currentCard.id)} listId={parseInt(this.state.listId)} cardIndex={currentCard.ord} body={currentCard.body}/>);
+    // });
 
 
     let listElement = (
@@ -86,6 +111,7 @@ class List extends React.Component{
           {listTitle}
         </div>
         <div className="card-array-element">
+          {/* { sortedWrappedCardArray } */}
           {cardsBodyArray}
         </div>
         <div className="add-card-button-container">

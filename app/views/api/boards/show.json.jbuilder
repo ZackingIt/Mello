@@ -12,7 +12,7 @@ json.set! :lists do
     json.set! list.id do
       json.board_id list.board_id
       json.title list.title
-      json.order list.order
+      json.ord list.ord
       json.cardIds list.cards.map{|el| el.id}
     end
   end
@@ -24,7 +24,7 @@ json.set! :cards do
     json.set! card.id do
       json.list_id card.list_id
       json.body card.body
-      json.order card.order
+      json.ord card.ord
       json.due_date card.due_date
     end
   end

@@ -43,18 +43,28 @@ const listReducer = (state = {}, action) => {
     case UPDATE_CARD:
       newState = merge({}, state); //duping the new state
 
-      for (let key in newState){
-        newState[key].cardIds.remove(parseInt(action.response.starting.id));
-        if (parseInt(key) == parseInt(action.response.ending.listId)) {
-          newState[key].cardIds.forEach((cardId) => {
-            if (cardId == parseInt(action.response.ending.id)){
-              newState[key].cardIds.splice(newState[key].cardIds.indexOf(cardId)+1, 0, parseInt(action.response.starting.id));
-            }
-          });
-          newState[key].cardIds.push(action.response.id);
-        }
-      }
+      // for (let key in newState){
+      //   newState[key].cardIds.remove(parseInt(action.response.starting.id));
+      //   if (parseInt(key) == parseInt(action.response.ending.listId)) {
+      //     newState[key].cardIds.forEach((cardId) => {
+      //       if (cardId == parseInt(action.response.ending.id)){
+      //         newState[key].cardIds.splice(newState[key].cardIds.indexOf(cardId)+1, 0, parseInt(action.response.starting.id));
+      //       }
+      //     });
+      //     newState[key].cardIds.push(action.response.id);
+      //   }
+      // }
+      // debugger
+      console.log(state);
+      console.log("LIST REUDCER")
+      console.log(action.response)
+      newState[action.response.cardLoad.starting.listId].cardIds = action.response.cardIds.fromPile;
+      newState[action.response.cardLoad.ending.listId].cardIds = action.response.cardIds.toPile;
 
+      console.log("New State")
+      // debugger
+      console.log(newState)
+      // debugger
       return newState;
 
     default:

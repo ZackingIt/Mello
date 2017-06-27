@@ -5,13 +5,13 @@
 #  id         :integer          not null, primary key
 #  board_id   :integer          not null
 #  title      :string           not null
-#  order      :integer          not null
+#  ord      :integer          not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
 
 class List < ApplicationRecord
-  validates :title, :board, :order, presence: true
+  validates :title, :board, :ord, presence: true
 
   belongs_to :board,
   class_name: :Board,

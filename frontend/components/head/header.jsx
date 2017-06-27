@@ -25,7 +25,7 @@ class Header extends React.Component{
     if (Object.keys(this.props.boards).length !== 0){
         for (let key in boards){
           menuPropsArray.push(
-            <Link className="board-menu-item" key={key} to={`/board/${key}`}>
+            <Link className="board-menu-item" key={Math.random()*1000} to={`/board/${key}`}>
               {boards[key].title.slice(0,20)}
             </Link>
           );

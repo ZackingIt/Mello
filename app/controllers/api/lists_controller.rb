@@ -16,7 +16,7 @@ class Api::ListsController < ApplicationController
   end
 
   def list_params
-    params.require(:list).permit(:board_id, :title, :order)
+    params.require(:list).permit(:board_id, :title, :ord)
   end
 
 end

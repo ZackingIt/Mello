@@ -4,14 +4,14 @@
 #
 #  id        :integer          not null, primary key
 #  list_id   :integer          not null
-#  order     :integer          not null
+#  ord     :integer          not null
 #  body      :string           not null
 #  due_date  :date
 #  completed :boolean          default("false")
 #
 
 class Card < ApplicationRecord
-  validates :body, :order, :list_id, presence: true
+  validates :body, :ord, :list_id, presence: true
 
   belongs_to :list,
   class_name: :List,

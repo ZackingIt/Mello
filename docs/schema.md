@@ -21,7 +21,7 @@ column name | data type | details
 id          | integer   | not null, primary key
 board_id    | integer   | not null, foreign key (references boards), indexed
 title       | string    | not null
-order       | integer   | not null
+ord       | integer   | not null
 
 ## cards
 column name | data type | details
