@@ -45,6 +45,15 @@ export const createCard = (card) => {
   });
 };
 
+export const moveCard = (cardLoad) => {
+  debugger
+  return $.ajax({
+    method: "POST",
+    url: `/api/moves/`,
+    data: { cardLoad },
+  });
+};
+
 export const createList = (list) => {
   return $.ajax({
     method: "POST",

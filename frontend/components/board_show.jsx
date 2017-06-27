@@ -111,12 +111,8 @@ const mapDispatchToProps = (dispatch) => {
     },
     createCard: (list_id, order, body) => {
       return dispatch(createCard({ list_id: list_id, order: order, body: body, due_date: null, completed: false } ));
-      //where is card: card: being set?
     },
-    moveCardThunk: ( list_id, starting_card_index, ending_card_index ) => {
-      // return dispatch(moveCardThunk( { list_id: list_id, starting_card_index: starting_card_index, ending_card_index: ending_card_index } ));
-      console.log("Moving dat card");
-    }
+
   };
 
 };

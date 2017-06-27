@@ -1,15 +1,16 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { values, merge } from 'lodash';
 import { findDOMNode } from 'react-dom';
 import { DragSource, DragDropContext, DragDropContextProvider, DropTarget } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
-
+import { moveCard } from '../actions/card_actions';
 
 const style = {
-  border: '1px dashed gray',
-  padding: '0.5rem 1rem',
+  border: 'none',
+  padding: 'none',
   marginBottom: '.5rem',
-  backgroundColor: 'white',
+  backgroundColor: 'none',
   cursor: 'move',
 };
 
@@ -21,9 +22,11 @@ const ItemTypes = {
 
 const cardSource = {
   beginDrag(props) {
-    // console.log("Dragging 2!!!");
-    // console.log(props.id);
-    // console.log( "mah bindddd "+ props.index);
+
+    console.log("my starting state");
+    myState = merge(myState, {starting: props});
+    console.log(myState);
+
     return {
       card_id: props.id,
       cardIndex: props.cardIndex,
@@ -32,6 +35,8 @@ const cardSource = {
     };
   },
 };
+
+var myState = {starting: {}, ending: {}};
 
 const cardTarget = {
 
@@ -44,13 +49,14 @@ const cardTarget = {
 
     // Obtain the dragged item
     const item = monitor.getItem();
-
-    // You can do something with it
-    // ChessActions.movePiece(item.fromPosition, props.position);
-    console.log("Item from position!!");
-    console.log(item);
+    console.log("my props");
     console.log(props);
-
+    console.log("my ending state");
+    myState = merge(myState, {ending: props});
+    console.log(myState);
+    debugger
+    props.moveCard(myState);
+    debugger
     // You can also do nothing and return a drop result,
     // which will be available as monitor.getDropResult()
     // in the drag source's endDrag() method
@@ -59,7 +65,6 @@ const cardTarget = {
 
   hover(props, monitor, component) {
     // debugger
-    console.log("Dragging 4!!!");
 
     const cardStartingIndex = monitor.getItem().cardIndex;
     const listStartingIndex = monitor.getItem().listIndex;
@@ -100,18 +105,6 @@ const cardTarget = {
     // Time to actually perform the action
     // props.moveCard(listStartingIndex, listHoverIndex, cardStartingIndex, cardHoverIndex);
 
-    console.log("My cardHoverIndex below");
-    console.log(cardHoverIndex);
-
-    console.log("My cardStartingIndex below");
-    console.log(cardStartingIndex);
-
-    console.log("my listStartingIndex below");
-    console.log(listStartingIndex);
-
-    console.log("my list hover index below (maybe)");
-    console.log(listHoverIndex);
-
 
     // Note: we're mutating the monitor item here!
     // Generally it's better to avoid mutations,
@@ -121,31 +114,16 @@ const cardTarget = {
   },
 };
 
-// @DropTarget(ItemTypes.CARD, cardTarget, connect => ({
-//   connectDropTarget: connect.dropTarget(),
-// }))
-// @DragSource(ItemTypes.CARD, cardSource, (connect, monitor) => ({
-//   connectDragSource: connect.dragSource(),
-//   isDragging: monitor.isDragging(),
-// }))
-
-
-
 class Card extends React.Component{
   constructor(props){
-    super(props)
-    this.moveCard = this.moveCard.bind(this)
+    super(props);
   }
 
-
-  moveCard(startingListId, listHoverIndex, cardStartingIndex, cardHoverIndex) {
-
-
-  }
-
+  // moveCard(startingListId, listHoverIndex, cardStartingIndex, cardHoverIndex) {
+  // }
+  //
   render(){
-    //
-    // console.log("MY CARD PROPzzzzzzzzzzz")
+    // console.log("MY CARD PROPS")
     // console.log(this.props)
     if (!this.props.body) {
       return <div>Loading...</div>;
@@ -164,15 +142,6 @@ class Card extends React.Component{
   }
 }
 
-// export const DragCard = DragSource(ItemTypes.CARD, cardSource, (connect, monitor) => ({
-//   connectDragSource: connect.dragSource(),
-//   isDragging: monitor.isDragging(),
-// }))(Card);
-//
-// export const DropCard = DropTarget(ItemTypes.CARD, cardTarget, connect => ({
-//   connectDropTarget: connect.dropTarget(),
-// }))(Card);
-
 function connectSource(connect, monitor){
   return{
     connectDragPreview: connect.dragPreview(),
@@ -187,6 +156,20 @@ function connectTarget(connect){
   };
 }
 
-export default DragSource( ItemTypes.CARD, cardSource, connectSource)(
-  DropTarget(ItemTypes.CARD, cardTarget, connectTarget)(Card)
-);
+const mapDispatchToProps = (dispatch) => {
+  debugger
+  return {
+    moveCard: (thisState) => {
+      debugger;
+      return dispatch(moveCard( thisState ));
+    },
+  };
+};
+
+// export default connect(null, mapDispatchToProps)((DragSource( ItemTypes.CARD, cardSource, connectSource)(
+//   DropTarget(ItemTypes.CARD, cardTarget, connectTarget)(Card))
+// ));
+
+// export default connect(null, mapDispatchToProps)((DragSource( ItemTypes.CARD, cardSource, connectSource)(
+//   DropTarget(ItemTypes.CARD, cardTarget, connectTarget)(Card))
+// ));

@@ -10,8 +10,21 @@ class Api::CardsController < ApplicationController
     end
   end
 
+  def update
+    @card = Card.find(params[:id])
+
+    if @card.update(card_params)
+      render json: @card
+    else
+      render json: @card.errors.full_messages, status: 422
+    end
+
+    # need to change list ID
+  end
+
   def card_params
-    params.require(:card).permit(:list_id, :order, :body, :due_date, :completed)
+    params.require(:card).permit(:list_id, :order, :body, :due_date, :completed, :cardLoad)
+
   end
 
 end

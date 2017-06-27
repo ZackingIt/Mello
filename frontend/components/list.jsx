@@ -15,6 +15,14 @@ const listSource = {
   },
 };
 
+const style = {
+  border: 'none',
+  padding: '0px',
+  marginBottom: '.5rem',
+  backgroundColor: 'none',
+  cursor: 'move',
+};
+
 const ItemTypes = {
   CARD: 'card',
   LIST: 'list',
@@ -29,7 +37,6 @@ class List extends React.Component{
     this.state = {cardBody: "", listId: props.listId, order: values(props.listObj.cardIds).length};
     this.handleCreateCard = this.handleCreateCard.bind(this);
     this.handleCreateCardBodyChange = this.handleCreateCardBodyChange.bind(this);
-    this.moveCard = this.moveCard.bind(this);
 
   }
 
@@ -48,19 +55,6 @@ class List extends React.Component{
     });
   }
 
-  moveCard(cardStartingIndex, cardHoverIndex) {
-    const { cards } = this.state;
-    const dragCard = cards[cardStartingIndex];
-
-    this.setState(update(this.state, {
-      cards: {
-        $splice: [
-          [cardStartingIndex, 1],
-          [cardHoverIndex, 0, dragCard],
-        ],
-      },
-    }));
-  }
 
   //arguments of bind are evaluated when bind is invoked(at moment of binding, not onclick)
   //therefore putting params in bind when the params are async is dangerous -- binding will not sync with params
@@ -68,19 +62,19 @@ class List extends React.Component{
 
   render(){
     if (!this.props.listObj) {
-      // TODO: render loading state here
       return <div>Loading...</div>;
     }
-    // console.log("my listId is...");
-    // console.log(this.state.listId);
-    // console.log("my LIST PROPSSSSSSSSS")
-    // console.log(this.props);
+
+    const opacity = isDragging ? 0 : 1;
+
     const listTitle = this.props.listObj.title;
+    const { isDragging, connectDragSource, connectDropTarget } = this.props;
+
     const allCards = this.props.cards;
     const cardsBodyArray = this.props.listObj.cardIds.map( (cardId) => {
       const currentCard = allCards[cardId];
       // return ( <div key={cardId} className="card-item-element"> {currentCard.body} </div> );
-      return (<Card moveCard={this.moveCard} key={cardId} id={cardId} listId={this.state.listId} cardIndex={this.props.listObj.cardIds.indexOf(cardId)} body={currentCard.body}/>);
+      return (<Card key={cardId} id={cardId} listId={this.state.listId} cardIndex={this.props.listObj.cardIds.indexOf(cardId)} body={currentCard.body}/>);
     });
     let listElement = (
       <section className="list-element">
@@ -95,9 +89,10 @@ class List extends React.Component{
           <button onClick={this.handleCreateCard} className="add-card-button-element">Add</button>
         </div>
       </section>);
-    return (
-            <div> {listElement} </div>
-          );
+      return connectDragSource(connectDropTarget(
+            <div style={Object.assign({ opacity }, style)}> {listElement} </div>
+          )
+        );
   }
 }
 
@@ -163,14 +158,41 @@ const listTarget = {
       return;
     }
 
-    // Time to actually perform the action
-    // props.moveCard(listStartingIndex, listEndingIndex, listStartingIndex, listHoverIndex);
+  },
+};
 
-    // Note: we're mutating the monitor item here!
-    // Generally it's better to avoid mutations,
-    // but it's good here for the sake of performance
-    // to avoid expensive index searches.
-    monitor.getItem().listTarget = listHoverIndex;
+const cardTarget = {
+
+  drop(props, monitor, component) {
+    if (monitor.didDrop()) {
+      return;
+    }
+
+    const item = monitor.getItem();
+    return { moved: true };
+  },
+
+  hover(props, monitor, component) {
+    const cardStartingIndex = monitor.getItem().cardIndex;
+    const listStartingIndex = monitor.getItem().listTarget;
+    const cardHoverIndex = props.cardIndex;
+    const listHoverIndex = props.listTarget;
+
+    if (cardStartingIndex === cardHoverIndex) {
+      return;
+    }
+
+    const hoverBoundingRect = findDOMNode(component).getBoundingClientRect();
+    const hoverMiddleY = (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2;
+    const clientOffset = monitor.getClientOffset();
+    const hoverClientY = clientOffset.y - hoverBoundingRect.top;
+    if (cardStartingIndex < cardHoverIndex && hoverClientY < hoverMiddleY) {
+      return;
+    }
+    if (cardStartingIndex > cardHoverIndex && hoverClientY > hoverMiddleY) {
+      return;
+    }
+
   },
 };
 
@@ -187,7 +209,7 @@ function connectTarget(connect){
     connectDropTarget: connect.dropTarget(),
   };
 }
-// export default List;
+
 export default DragSource( ItemTypes.LIST, listSource, connectSource)(
-  DropTarget(ItemTypes.LIST, listTarget, connectTarget)(List)
+  DropTarget(ItemTypes.CARD, cardTarget, connectTarget)(List)
 );
