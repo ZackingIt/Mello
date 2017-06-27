@@ -13,11 +13,11 @@ class Api::MovesController < ApplicationController
       p @card
       p "MY CARD WITH NEW LOCATION"
 
-      @card.order = params[:cardLoad][:ending][:cardIndex]
-      @card.list_id = params[:cardLoad][:ending][:listId]
-      p @card
+      # @card.order = params[:cardLoad][:ending][:cardIndex]
+      # @card.list_id = params[:cardLoad][:ending][:listId]
 
-      render json: @card
+      @card.update(list_id: params[:cardLoad][:ending][:listId], order: params[:cardLoad][:ending][:cardIndex])
+      render json: params[:cardLoad]
     else
       render json: {}
     end

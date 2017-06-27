@@ -124,7 +124,7 @@ class Card extends React.Component{
     // console.log("MY CARD PROPS")
     // console.log(this.props)
     if (!this.props.body) {
-      return <div>Loading...</div>;
+      return <div></div>;
     }
     let bodyText = this.props.body;
 

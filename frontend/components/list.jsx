@@ -62,7 +62,7 @@ class List extends React.Component{
 
   render(){
     if (!this.props.listObj) {
-      return <div>Loading...</div>;
+      return <div></div>;
     }
 
     const opacity = isDragging ? 0 : 1;

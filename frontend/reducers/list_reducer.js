@@ -42,16 +42,18 @@ const listReducer = (state = {}, action) => {
       return newState;
     case UPDATE_CARD:
       newState = merge({}, state); //duping the new state
-      // console.log("LIST REDUCER: my previous state prior to card update")
-      // console.log(newState);
+
       for (let key in newState){
-        newState[key].cardIds.remove(action.response.id);
-        if (key == action.response.list_id) {
+        newState[key].cardIds.remove(parseInt(action.response.starting.id));
+        if (parseInt(key) == parseInt(action.response.ending.listId)) {
+          newState[key].cardIds.forEach((cardId) => {
+            if (cardId == parseInt(action.response.ending.id)){
+              newState[key].cardIds.splice(newState[key].cardIds.indexOf(cardId)+1, 0, parseInt(action.response.starting.id));
+            }
+          });
           newState[key].cardIds.push(action.response.id);
         }
       }
-      // console.log("LIST REDUCER: my post state after update")
-      // console.log(newState);
 
       return newState;
 
