@@ -15,14 +15,15 @@ const style = {
 
 const ItemTypes = {
   CARD: 'card',
+  LIST: 'list',
 };
 
 
 const cardSource = {
   beginDrag(props) {
-    console.log("Dragging 2!!!");
-    console.log(props.id);
-    console.log( "mah bindddd "+ props.index);
+    // console.log("Dragging 2!!!");
+    // console.log(props.id);
+    // console.log( "mah bindddd "+ props.index);
     return {
       card_id: props.id,
       cardIndex: props.cardIndex,
@@ -66,18 +67,6 @@ const cardTarget = {
     const cardHoverIndex = props.cardIndex;
     const listHoverIndex = props.listIndex;
 
-    console.log("My cardHoverIndex below");
-    console.log(cardHoverIndex);
-
-    console.log("My cardStartingIndex below");
-    console.log(cardStartingIndex);
-
-    console.log("my listStartingIndex below");
-    console.log(listStartingIndex);
-
-    console.log("my list hover index below (maybe)");
-    console.log(listHoverIndex);
-
     if (cardStartingIndex === cardHoverIndex) {
       return;
     }
@@ -109,13 +98,26 @@ const cardTarget = {
     }
 
     // Time to actually perform the action
-    props.moveCard(listStartingIndex, listEndingIndex, cardStartingIndex, cardHoverIndex);
+    // props.moveCard(listStartingIndex, listHoverIndex, cardStartingIndex, cardHoverIndex);
+
+    console.log("My cardHoverIndex below");
+    console.log(cardHoverIndex);
+
+    console.log("My cardStartingIndex below");
+    console.log(cardStartingIndex);
+
+    console.log("my listStartingIndex below");
+    console.log(listStartingIndex);
+
+    console.log("my list hover index below (maybe)");
+    console.log(listHoverIndex);
+
 
     // Note: we're mutating the monitor item here!
     // Generally it's better to avoid mutations,
     // but it's good here for the sake of performance
     // to avoid expensive index searches.
-    monitor.getItem().cardIndex = cardHoverIndex;
+    // monitor.getItem().cardIndex = cardHoverIndex;
   },
 };
 
@@ -142,9 +144,9 @@ class Card extends React.Component{
   }
 
   render(){
-
-    console.log("MY CARD PROPzzzzzzzzzzz")
-    console.log(this.props)
+    //
+    // console.log("MY CARD PROPzzzzzzzzzzz")
+    // console.log(this.props)
     if (!this.props.body) {
       return <div>Loading...</div>;
     }
