@@ -4,7 +4,7 @@ import { values, merge } from 'lodash';
 
 import { DragSource, DragDropContext, DragDropContextProvider, DropTarget } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
-import Card from './card'
+import Card from './card';
 
 class List extends React.Component{
   constructor(props){
@@ -77,10 +77,11 @@ class List extends React.Component{
           <button onClick={this.handleCreateCard} className="add-card-button-element">Add</button>
         </div>
       </section>);
-    return(
-      <div> {listElement} </div>
-    );
+    return (
+            <div> {listElement} </div>
+          );
   }
 }
 
-export default DragDropContext(HTML5Backend)(List);
+export default List;
+// export default DragDropContext(HTML5Backend)(List);

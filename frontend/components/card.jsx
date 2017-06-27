@@ -4,6 +4,7 @@ import { findDOMNode } from 'react-dom';
 import { DragSource, DragDropContext, DragDropContextProvider, DropTarget } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 
+
 const style = {
   border: '1px dashed gray',
   padding: '0.5rem 1rem',
@@ -32,6 +33,28 @@ const cardSource = {
 };
 
 const cardTarget = {
+
+  drop(props, monitor, component) {
+    if (monitor.didDrop()) {
+      // If you want, you can check whether some nested
+      // target already handled drop
+      return;
+    }
+
+    // Obtain the dragged item
+    const item = monitor.getItem();
+
+    // You can do something with it
+    // ChessActions.movePiece(item.fromPosition, props.position);
+    console.log("Item from position!!");
+    console.log(item);
+    console.log(props);
+
+    // You can also do nothing and return a drop result,
+    // which will be available as monitor.getDropResult()
+    // in the drag source's endDrag() method
+    return { moved: true };
+  },
 
   hover(props, monitor, component) {
     // debugger
@@ -120,7 +143,7 @@ class Card extends React.Component{
 
   render(){
 
-    console.log("MY CARD PROPSSSSSSS")
+    console.log("MY CARD PROPzzzzzzzzzzz")
     console.log(this.props)
     if (!this.props.body) {
       return <div>Loading...</div>;
@@ -131,20 +154,37 @@ class Card extends React.Component{
 
     const opacity = isDragging ? 0 : 1;
       return connectDragSource(connectDropTarget(
-
         <div className="card-item-element" style={Object.assign({ opacity }, style)}>
           {bodyText}
-        </div>,
-      ));
+        </div>
+      )
+    );
   }
-
 }
 
-export default DragSource(ItemTypes.CARD, cardSource, (connect, monitor) => ({
-  connectDragSource: connect.dragSource(),
-  isDragging: monitor.isDragging(),
-}))(Card);
+// export const DragCard = DragSource(ItemTypes.CARD, cardSource, (connect, monitor) => ({
+//   connectDragSource: connect.dragSource(),
+//   isDragging: monitor.isDragging(),
+// }))(Card);
+//
+// export const DropCard = DropTarget(ItemTypes.CARD, cardTarget, connect => ({
+//   connectDropTarget: connect.dropTarget(),
+// }))(Card);
 
-export default DropTarget(ItemTypes.CARD, cardTarget, connect => ({
-  connectDropTarget: connect.dropTarget(),
-}))(Card);
+function connectSource(connect, monitor){
+  return{
+    connectDragPreview: connect.dragPreview(),
+    connectDragSource: connect.dragSource(),
+    isDragging: monitor.isDragging(),
+  };
+}
+
+function connectTarget(connect){
+  return {
+    connectDropTarget: connect.dropTarget(),
+  };
+}
+
+export default DragSource( ItemTypes.CARD, cardSource, connectSource)(
+  DropTarget(ItemTypes.CARD, cardTarget, connectTarget)(Card)
+);

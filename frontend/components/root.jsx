@@ -4,6 +4,9 @@ import { Provider } from 'react-redux';
 import { HashRouter } from 'react-router-dom';
 import App from './app';
 
+import { DragSource, DragDropContext, DragDropContextProvider, DropTarget } from 'react-dnd';
+import HTML5Backend from 'react-dnd-html5-backend';
+
 const Root = ({ store }) => (
   <Provider store={ store }>
     <HashRouter>
@@ -12,4 +15,5 @@ const Root = ({ store }) => (
   </Provider>
 );
 
-export default Root;
+// export default Root;
+export default DragDropContext(HTML5Backend)(Root);

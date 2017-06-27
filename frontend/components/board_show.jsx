@@ -114,8 +114,8 @@ const mapDispatchToProps = (dispatch) => {
       //where is card: card: being set?
     },
     moveCardThunk: ( list_id, starting_card_index, ending_card_index ) => {
-      return dispatch(moveCardThunk( { list_id: list_id, starting_card_index: starting_card_index, ending_card_index: ending_card_index } ));
-
+      // return dispatch(moveCardThunk( { list_id: list_id, starting_card_index: starting_card_index, ending_card_index: ending_card_index } ));
+      console.log("Moving dat card");
     }
   };
 
