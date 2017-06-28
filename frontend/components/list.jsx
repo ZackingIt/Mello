@@ -71,12 +71,18 @@ class List extends React.Component{
     const { isDragging, connectDragSource, connectDropTarget } = this.props;
 
     const allCards = this.props.cards;
-    console.log("higher ord props")
+    console.log("higher ord props of specific list");
     console.log(this.props);
     const cardsBodyArray = this.props.listObj.cardIds.map( (cardId) => {
       const currentCard = allCards[cardId];
       // return ( <div key={cardId} className="card-item-element"> {currentCard.body} </div> );
-      return (<Card key={Math.random()*100} ord={ "test" } id={cardId} listId={this.state.listId} cardIndex={this.props.listObj.cardIds.indexOf(cardId)} body={currentCard.body}/>);
+      return (<Card
+        key={Math.random()*100}
+        id={cardId}
+        handleCardEditSubmit={this.props.handleCardEditSubmit}
+        listId={this.state.listId}
+        cardIndex={this.props.listObj.cardIds.indexOf(cardId)}
+        body={currentCard.body}/>);
     });
     // let cardsBodyArray = [];
     // for (let key in this.props.cards) {

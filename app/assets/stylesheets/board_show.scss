@@ -65,7 +65,7 @@ $menu-hover-blue:#298FCA;
   margin-left: 3px;
   font-size: 14px;
   color: $dark-grey;
-  word-break: break-all;
+  word-break: normal;
 
 }
 
@@ -79,7 +79,7 @@ $menu-hover-blue:#298FCA;
   box-shadow: 0px 0.5px $light-grey;
   font-size: 13px;
   color: $dark-grey;
-  word-break: break-all;
+  word-break: normal;
 
 
 
@@ -127,7 +127,7 @@ $menu-hover-blue:#298FCA;
   vertical-align: text-top;
   width: 270px;
   border: none;
-  margin-left: 5px;
+  margin-left: 4px;
   background-color: $light-grey;
   border-radius: 3px;
   margin-top: 5px;
@@ -157,5 +157,40 @@ $menu-hover-blue:#298FCA;
   border-radius: 3px;
   font-weight: bolder;
   font-size: 15px;
+
+}
+
+.card-item-element-true-modal{
+  background-color: white;
+  margin-bottom: 4px;
+  width: 100%;
+  padding: 7px;
+  border-radius: 3px;
+  border: 1px solid $light-grey;
+  box-shadow: 0px 0.5px $light-grey;
+  font-size: 13px;
+  color: $dark-grey;
+  word-break: normal;
+}
+
+.card-item-element-input{
+  background-color: white;
+  margin-bottom: 4px;
+  padding: 7px;
+  border-radius: 3px;
+  border: 1px solid $light-grey;
+  box-shadow: 0px 0.5px $light-grey;
+  font-size: 13px;
+  color: $dark-grey;
+  word-break: normal;
+  min-height: 1.1em;
+
+  width: 100%;
+
+  //copy this for other textareas
+  overflow: hidden;
+  outline: none;
+  resize: vertical;
+
 
 }

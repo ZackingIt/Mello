@@ -5,6 +5,7 @@ import { findDOMNode } from 'react-dom';
 import { DragSource, DragDropContext, DragDropContextProvider, DropTarget } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 import { moveCard } from '../actions/card_actions';
+import CardEditModal from './card_edit_modal';
 
 const style = {
   border: 'none',
@@ -115,14 +116,17 @@ const cardTarget = {
 class Card extends React.Component{
   constructor(props){
     super(props);
+    this.state = {modalPresence: false, title: ""};
   }
 
-  // moveCard(startingListId, listHoverIndex, cardStartingIndex, cardHoverIndex) {
-  // }
-  //
+  handleToggleClick() {
+    this.setState(prevState => ({
+      modalPresence: !prevState.modalPresence
+    }));
+  }
+
   render(){
-    // console.log("MY CARD PROPS")
-    // console.log(this.props)
+
     if (!this.props.body) {
       return <div></div>;
     }
@@ -132,9 +136,10 @@ class Card extends React.Component{
 
     const opacity = isDragging ? 0 : 1;
       return connectDragSource(connectDropTarget(
-        <div className="card-item-element" style={Object.assign({ opacity }, style)}>
-          {bodyText}
+        <div>
+          {<CardEditModal id={ this.props.id } listId={ this.props.listId } cardIndex={ this.props.cardIndex } bodyText={bodyText} handleCardEditSubmit={this.props.handleCardEditSubmit  } />}
         </div>
+
       )
     );
   }
@@ -162,9 +167,6 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-// export default connect(null, mapDispatchToProps)((DragSource( ItemTypes.CARD, cardSource, connectSource)(
-//   DropTarget(ItemTypes.CARD, cardTarget, connectTarget)(Card))
-// ));
 
 export default connectOriginal(null, mapDispatchToProps)(
   DragSource( ItemTypes.CARD, cardSource, connectSource)(

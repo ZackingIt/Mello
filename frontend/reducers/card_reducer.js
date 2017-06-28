@@ -1,5 +1,5 @@
 import { RECEIVE_BOARD } from '../actions/board_actions';
-import { RECEIVE_CARD, UPDATE_CARD } from '../actions/card_actions';
+import { RECEIVE_CARD, UPDATE_CARD, EDIT_CARD } from '../actions/card_actions';
 
 import { merge } from 'lodash';
 
@@ -28,6 +28,12 @@ const cardReducer = (state = {}, action) => {
       newState = merge({}, state, {[newCard.id]: newCard});
       console.log("my new state");
       console.log(newState);
+      return newState;
+    case EDIT_CARD:
+      console.log("my EDIT CARD STATE");
+      console.log(action.response);
+      newCard = action.response;
+      newState = merge({}, state, {[newCard.id]: newCard});
       return newState;
     case "IGNORE":
       return state;

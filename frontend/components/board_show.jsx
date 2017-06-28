@@ -7,7 +7,7 @@ import List from './list';
 
 import { requestBoard } from '../actions/board_actions';
 import { createList } from '../actions/list_actions';
-import { createCard } from '../actions/card_actions';
+import { createCard, receiveCardEdit, editCardText } from '../actions/card_actions';
 
 
 class BoardShow extends React.Component{
@@ -54,7 +54,13 @@ class BoardShow extends React.Component{
       boardTitle = this.props.board.title;
       for (let key in lists) {
         let listObj = lists[key];
-        outputListArray.push(<List key={Math.random()*1000} createCard={this.props.createCard} listId={parseInt(key)} listObj={listObj} cards={cards}/>);
+        outputListArray.push(
+          <List key={Math.random()*1000}
+          handleCardEditSubmit={this.props.handleCardEditSubmit}
+          createCard={this.props.createCard}
+          listId={parseInt(key)}
+          listObj={listObj}
+          cards={cards}/>);
       }
     }
     return (
@@ -108,6 +114,11 @@ const mapDispatchToProps = (dispatch) => {
     },
     createList: (board_id, ord, title) => {
       return dispatch(createList({ board_id: board_id, ord: ord, title: title} ));
+    },
+    handleCardEditSubmit: (card_id, body, list_id, order) => {
+      console.log("HANDLE CARD EDIT SUBMIT IS FIRING FROM FOUR LAYERS DOWN");
+      return dispatch( editCardText( {id: card_id, body: body, list_id: list_id, order: order }) );
+
     },
     createCard: (list_id, ord, body) => {
       return dispatch(createCard({ list_id: list_id, ord: ord, body: body, due_date: null, completed: false } ));

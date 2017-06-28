@@ -4,6 +4,8 @@ import { values } from 'lodash';
 
 export const RECEIVE_CARD = "RECEIVE_CARD";
 export const UPDATE_CARD = "UPDATE_CARD";
+export const EDIT_CARD = "EDIT_CARD";
+
 
 export const receiveCard = (response) => {
   return {
@@ -26,6 +28,13 @@ export const updateCard = (response) => {
   };
 };
 
+export const receiveCardEdit = (response) => {
+  return {
+    type: EDIT_CARD,
+    response: response,
+  };
+};
+
 export const createCard = (cardParams) => {
   return (dispatch) => {
     APIUtil.createCard(cardParams).then( response =>{
@@ -39,6 +48,14 @@ export const moveCard = (cardParams) => {
   return (dispatch) => {
     APIUtil.moveCard(cardParams).then( response =>{
       dispatch(updateCard(response));
+    });
+  };
+};
+
+export const editCardText = ( cardParams ) => {
+  return (dispatch) => {
+    APIUtil.editCard(cardParams).then( response => {
+      dispatch(receiveCardEdit(response));
     });
   };
 };

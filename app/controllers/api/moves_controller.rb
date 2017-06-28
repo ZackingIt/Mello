@@ -14,6 +14,11 @@ class Api::MovesController < ApplicationController
       # @card.ord = params[:cardLoad][:ending][:cardIndex]
       # @card.list_id = params[:cardLoad][:ending][:listId]
       oldList = @card.list
+
+      # IF I EDIT A CARD IN A NEW LIST, I NEED TO PUSH CARDS BEHIND etc
+      #  IF I EDIT CARDS IN SAME LIST, I only update relative value of cards higher than me Post-change.
+      
+
       @card.update(list_id: params[:cardLoad][:ending][:listId].to_i, ord: params[:cardLoad][:ending][:cardIndex].to_i )
       if @card.update(list_id: params[:cardLoad][:ending][:listId].to_i, ord: params[:cardLoad][:ending][:cardIndex].to_i )
         a = Card.where(["list_id = ? AND ord > ? AND id <> ?", params[:cardLoad][:ending][:listId].to_i, params[:cardLoad][:ending][:cardIndex].to_i, @card.id])
