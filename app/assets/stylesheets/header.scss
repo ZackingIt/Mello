@@ -31,6 +31,12 @@ $menu-hover-blue:#298FCA;
 
 }
 
+.create-board-dropdown-form{
+  display: flex;
+  flex-direction: column;
+
+}
+
 
 .board-menu-container{
   width: 200px;
@@ -73,7 +79,7 @@ $menu-hover-blue:#298FCA;
   left: 3px;
   border: 1px solid $light-grey;
   overflow: scroll;
-  height: 100vh;
+  height: 100%;
 }
 
 .board-menu-item-left-box{

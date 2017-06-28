@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 20170627234511) do
 
-  # These are extensions that must be enabled in ord to support this database
+  # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "board_shares", force: :cascade do |t|

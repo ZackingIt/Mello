@@ -114,10 +114,10 @@ class List extends React.Component{
           {/* { sortedWrappedCardArray } */}
           {cardsBodyArray}
         </div>
-        <div className="add-card-button-container">
+        <form className="add-card-button-container" onSubmit={this.handleCreateCard}>
           <input onChange={this.handleCreateCardBodyChange} className="add-card-input-element" value={this.state.cardBody}/>
-          <button onClick={this.handleCreateCard} className="add-card-button-element">Add</button>
-        </div>
+          <button type="submit" className="add-card-button-element">Add</button>
+        </form>
       </section>);
       return connectDropTarget(
             <div style={Object.assign({ opacity }, style)}> {listElement} </div>

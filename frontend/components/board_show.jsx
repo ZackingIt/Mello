@@ -27,6 +27,7 @@ class BoardShow extends React.Component{
     e.preventDefault();
     const boardId = parseInt(this.props.match.params.id);
     this.props.createList(boardId, this.props.board.listIds.length, this.state.listTitle);
+    this.setState( { listTitle: "" } );
   }
 
   componentDidMount(){
@@ -63,11 +64,11 @@ class BoardShow extends React.Component{
         </div>
         <div className="board-show-container">
           {outputListArray}
-            <div className="add-list-button-container">
+            <form onSubmit={this.handleCreateList} className="add-list-button-container">
               <input onChange={this.handleCreateListTitleChange} className="add-list-input-element" value={this.state.listTitle}/>
-              <button onClick={this.handleCreateList} className="add-list-button-element">Add List</button>
+              <button type="submit" className="add-list-button-element">Save</button>
 
-            </div>
+            </form>
         </div>
       </section>
 

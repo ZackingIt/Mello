@@ -91,8 +91,6 @@ $menu-hover-blue:#298FCA;
 }
 
 .add-card-button-container{
-  display: flex;
-  flex-direction: column;
 
 
 }
@@ -109,6 +107,47 @@ $menu-hover-blue:#298FCA;
 
 .add-card-button-element{
   margin-top: 7px;
+  height: 30px;
+  width: 60px;
+  background-color: #61BD4F;
+  box-shadow: 0px 0.5px #0C3953;
+  border: none;
+  color: white;
+  border-radius: 3px;
+  font-weight: bolder;
+  font-size: 15px;
+}
+
+.add-list-button-container{
+  display: flex;
+  flex-direction: column;
+  height: 120px;
+  padding: 7px;
+  text-align: left;
+  vertical-align: text-top;
+  width: 270px;
+  border: none;
+  margin-left: 5px;
+  background-color: $light-grey;
+  border-radius: 3px;
+  margin-top: 5px;
+
+}
+
+.add-list-input-element{
+  margin-top: 2px;
+  height: 65px;
+  padding: 3px;
+  text-align: left;
+  vertical-align: text-top;
+  width: 100%;
+  border-radius: 3px;
+  border: none;
+
+}
+
+.add-list-button-element{
+  margin-top: 10px;
   height: 30px;
   width: 60px;
   background-color: #61BD4F;

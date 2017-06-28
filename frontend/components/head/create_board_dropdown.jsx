@@ -17,9 +17,10 @@ class CreateBoardDropdown extends React.Component {
  }
 
  handleSubmit(e){
-   //console.log("handle submit in create board firing");
      e.preventDefault();
      this.props.createBoard(this.state.title);
+     this.handleToggleClick();
+     this.setState({title: ""})
  }
 
  handleChange(field) {
@@ -41,8 +42,10 @@ class CreateBoardDropdown extends React.Component {
                           <div className="create-board-dropdown-menu-title">
                             Title
                           </div>
+                          <form className="create-board-dropdown-form" onSubmit={this.handleSubmit}>
                             <input className="create-board-dropdown-menu-input" onChange={this.handleChange("title")} value={this.state.title}/>
-                            <button className="create-board-dropdown-menu-button" onClick={this.handleSubmit}> Create </button>
+                            <button className="create-board-dropdown-menu-button"> Create </button>
+                          </form>
                          </div>);
    }
    return (

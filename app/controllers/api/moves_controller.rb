@@ -14,13 +14,18 @@ class Api::MovesController < ApplicationController
       # @card.ord = params[:cardLoad][:ending][:cardIndex]
       # @card.list_id = params[:cardLoad][:ending][:listId]
       oldList = @card.list
+      @card.update(list_id: params[:cardLoad][:ending][:listId].to_i, ord: params[:cardLoad][:ending][:cardIndex].to_i )
       if @card.update(list_id: params[:cardLoad][:ending][:listId].to_i, ord: params[:cardLoad][:ending][:cardIndex].to_i )
-        a = Card.where(["list_id = ? AND ord > ?", params[:cardLoad][:ending][:listId].to_i, params[:cardLoad][:ending][:cardIndex].to_i ])
-        b = Card.where(["list_id = ? AND ord < ?", params[:cardLoad][:ending][:listId].to_i, params[:cardLoad][:ending][:cardIndex].to_i ])
-        # p a.to_a
+        a = Card.where(["list_id = ? AND ord > ? AND id <> ?", params[:cardLoad][:ending][:listId].to_i, params[:cardLoad][:ending][:cardIndex].to_i, @card.id])
+        b = Card.where(["list_id = ? AND ord <= ? AND id <> ?", params[:cardLoad][:ending][:listId].to_i, params[:cardLoad][:ending][:cardIndex].to_i, @card.id ])
+        p a.to_a
+        p b.to_a
         # debugger
         a.to_a.each { |el| el.ord = el.ord + 1}
         b.to_a.each { |el| el.ord = el.ord - 1}
+        p "post conversion"
+        p a.to_a
+        p b.to_a
         # p a.to_a
         # debugger
       end
