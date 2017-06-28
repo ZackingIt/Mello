@@ -79,7 +79,8 @@ $menu-hover-blue:#298FCA;
   box-shadow: 0px 0.5px $light-grey;
   font-size: 13px;
   color: $dark-grey;
-  word-break: normal;
+  word-break: break-all;
+  white-space: pre-wrap;
 
 
 
@@ -170,7 +171,7 @@ $menu-hover-blue:#298FCA;
   box-shadow: 0px 0.5px $light-grey;
   font-size: 13px;
   color: $dark-grey;
-  word-break: normal;
+  word-break: break-all;
 }
 
 .card-item-element-input{
@@ -182,7 +183,7 @@ $menu-hover-blue:#298FCA;
   box-shadow: 0px 0.5px $light-grey;
   font-size: 13px;
   color: $dark-grey;
-  word-break: normal;
+  word-break: break-all;
   min-height: 1.1em;
 
   width: 100%;
