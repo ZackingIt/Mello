@@ -34,7 +34,7 @@ $menu-hover-blue:#298FCA;
   // padding-left: 10px;
   // padding-top: 14px;
   background-color: #0079BF;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   align-items: flex-start;
   margin: 0 auto;
   background-color: #0079BF;
@@ -56,7 +56,6 @@ $menu-hover-blue:#298FCA;
   // break-inside: avoid;
   padding: 8px;
 
-
 }
 
 .list-title-element{
@@ -65,7 +64,7 @@ $menu-hover-blue:#298FCA;
   margin-left: 3px;
   font-size: 14px;
   color: $dark-grey;
-  word-break: normal;
+  word-break: break-all;
 
 }
 
@@ -98,10 +97,13 @@ $menu-hover-blue:#298FCA;
 
 .add-card-input-element{
   height: 65px;
-  padding: 3px;
+  padding: 7px;
   text-align: left;
   vertical-align: text-top;
   width: 100%;
+  resize: vertical;
+  outline: none;
+
 }
 
 
@@ -119,11 +121,20 @@ $menu-hover-blue:#298FCA;
   font-size: 15px;
 }
 
+.add-list-title{
+  color: $dark-grey;
+  padding-top: 2px;
+  padding-left: 2px;
+  font-weight: bold;
+  padding-bottom: 4px;
+}
+
 .add-list-button-container{
   display: flex;
   flex-direction: column;
-  height: 120px;
+  height: 145px;
   padding: 7px;
+  font-size: 14px;
   text-align: left;
   vertical-align: text-top;
   width: 270px;
@@ -132,18 +143,20 @@ $menu-hover-blue:#298FCA;
   background-color: $light-grey;
   border-radius: 3px;
   margin-top: 5px;
-
 }
 
 .add-list-input-element{
   margin-top: 2px;
   height: 65px;
-  padding: 3px;
+  padding: 7px;
   text-align: left;
   vertical-align: text-top;
   width: 100%;
   border-radius: 3px;
   border: none;
+  outline: none;
+  font-size: 13px;
+  resize: vertical;
 
 }
 

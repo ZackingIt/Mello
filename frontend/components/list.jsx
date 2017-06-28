@@ -121,7 +121,7 @@ class List extends React.Component{
           {cardsBodyArray}
         </div>
         <form className="add-card-button-container" onSubmit={this.handleCreateCard}>
-          <input onChange={this.handleCreateCardBodyChange} className="add-card-input-element" value={this.state.cardBody}/>
+          <input style={{'lineHeight': 200 + 'px'}} onChange={this.handleCreateCardBodyChange} className="add-card-input-element" value={this.state.cardBody}/>
           <button type="submit" className="add-card-button-element">Add</button>
         </form>
       </section>);

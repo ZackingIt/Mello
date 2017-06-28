@@ -70,8 +70,11 @@ class BoardShow extends React.Component{
         </div>
         <div className="board-show-container">
           {outputListArray}
-            <form onSubmit={this.handleCreateList} className="add-list-button-container">
-              <input onChange={this.handleCreateListTitleChange} className="add-list-input-element" value={this.state.listTitle}/>
+            <form value="Add a List" onSubmit={this.handleCreateList} className="add-list-button-container">
+              <div className="add-list-title">
+                Add a List
+              </div>
+              <input onChange={this.handleCreateListTitleChange} className="add-list-input-element" value={this.state.listTitle} />
               <button type="submit" className="add-list-button-element">Save</button>
 
             </form>

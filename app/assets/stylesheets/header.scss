@@ -147,6 +147,23 @@ $menu-hover-blue:#298FCA;
   background-color: #5BA4CF;
 }
 
+button.board-sharing-dropdown-container{
+  height: 28px;
+  width: 28px;
+  font-size: 11px;
+  font-weight: bold;
+  background: $menu-hover-blue;
+  font-family: "Helvetica Neue";
+  border-radius: 3px;
+  padding-left: 7px;
+  padding-top: 4px;
+  color: white;
+  border: none;
+  position: absolute;
+  right: 103px;
+
+}
+
 .board-menu-button-icon{
   padding-top: 1px;
   padding-left: 3px;

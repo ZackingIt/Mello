@@ -2,11 +2,12 @@ import React from 'react';
 import BoardMenuDropdown from './board_menu_dropdown';
 import Greeting from '../greeting';
 import UserMenu from './user_menu';
+import BoardSharingDropdown from './board_sharing_dropdown';
 import CreateBoardDropdown from './create_board_dropdown';
-import { createBoard, requestBoards } from '../../actions/board_actions.js';
+import { createBoard, requestBoards } from '../../actions/board_actions';
+import { requestUsers } from '../../actions/user_actions';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-
 
 class Header extends React.Component{
   constructor(props){
@@ -17,8 +18,9 @@ class Header extends React.Component{
     this.props.requestBoards();
   }
 
-
   render(){
+    console.log("MY HEADER PROPS")
+    console.log(this.props)
     const {boards, lists, cards} = this.props;
     var boardLinkArray = [];
     var menuPropsArray = [];
@@ -37,6 +39,9 @@ class Header extends React.Component{
         }
       }
 
+
+    console.log("my props/location");
+    console.log(parseInt(this.props.location.pathname.slice(this.props.location.pathname.length-1)));
     return(
       <div className="header-container">
         <div className="header-nav-bar">
@@ -45,6 +50,9 @@ class Header extends React.Component{
             <img className="trello-image-link" src="https://d2k1ftgv7pobq7.cloudfront.net/meta/u/res/images/trello-header-logos/af7af6ed478d3460709d715d9b3f74a4/trello-logo-white.svg"/>
           </Link>
           <CreateBoardDropdown createBoard={this.props.createBoard} requestBoards={this.props.requestBoards}/>
+          <BoardSharingDropdown
+            boardId={ parseInt(this.props.location.pathname.slice(this.props.location.pathname.length-1))}
+            requestUsers={this.props.requestUsers} />
           <UserMenu />
         </div>
       </div>
@@ -61,7 +69,6 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = dispatch => {
-
   return {
     createBoard: (title) => {
       //console.log(`my title is ${title}`);
@@ -70,7 +77,10 @@ const mapDispatchToProps = dispatch => {
     requestBoards: () => {
       //console.log("requesting board!");
       return dispatch(requestBoards());
-    }
+    },
+    requestUsers: () => {
+      return dispatch(requestUsers());
+    },
   };
 };
 

@@ -69,10 +69,16 @@ export const editCard = (card) => {
   });
 };
 
-
 export const logout = () => {
   return $.ajax({
     method: 'DELETE',
     url: '/api/session'
+  });
+};
+
+export const fetchUsers = () => {
+  return $.ajax({
+    method: 'GET',
+    url: '/api/users'
   });
 };

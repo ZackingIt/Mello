@@ -20,6 +20,14 @@ class User < ApplicationRecord
   foreign_key: :author_id,
   class_name: :Board
 
+  has_many :board_shares,
+  foreign_key: :user_id,
+  class_name: :BoardShare
+
+  has_many :shared_boards,
+  through: :board_shares,
+  source: :board
+
   attr_accessor :password
 
   after_initialize :ensure_session_token
