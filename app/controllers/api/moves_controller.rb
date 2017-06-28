@@ -14,10 +14,15 @@ class Api::MovesController < ApplicationController
       # @card.ord = params[:cardLoad][:ending][:cardIndex]
       # @card.list_id = params[:cardLoad][:ending][:listId]
       oldList = @card.list
-      if @card.update(list_id: params[:cardLoad][:ending][:listId].to_i, ord: params[:cardLoad][:ending][:cardIndex].to_i+1 )
+      if @card.update(list_id: params[:cardLoad][:ending][:listId].to_i, ord: params[:cardLoad][:ending][:cardIndex].to_i )
         a = Card.where(["list_id = ? AND ord > ?", params[:cardLoad][:ending][:listId].to_i, params[:cardLoad][:ending][:cardIndex].to_i ])
-        debugger
-        # a.update_all(ord: el.ord + 1 ) }
+        b = Card.where(["list_id = ? AND ord < ?", params[:cardLoad][:ending][:listId].to_i, params[:cardLoad][:ending][:cardIndex].to_i ])
+        # p a.to_a
+        # debugger
+        a.to_a.each { |el| el.ord = el.ord + 1}
+        b.to_a.each { |el| el.ord = el.ord - 1}
+        # p a.to_a
+        # debugger
       end
       fromPile = oldList.cards.sort_by{|card| card.ord}.pluck(:id)
       toPile = @card.list.cards.sort_by{|card| card.ord}.pluck(:id)
