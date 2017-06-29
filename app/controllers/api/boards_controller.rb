@@ -2,10 +2,10 @@ class Api::BoardsController < ApplicationController
   before_action :require_login
 
   def index
-    @current_user_board_shares = BoardShare.where(user_id: current_user.id)
+    # @current_user_board_shares = BoardShare.where(user_id: current_user.id)
 
-    @boards = Board.where(author_id: current_user.id)
-    @shared_boards = User.find(current_user.id).shared_boards
+    @boards = current_user.boards.includes(:lists)
+    @shared_boards = current_user.shared_boards.includes(:lists)
 
     # @lists, @cards, @list_ids, @card_ids = [], [], [], []
     #
@@ -51,7 +51,7 @@ class Api::BoardsController < ApplicationController
                             .map{|user| user.username}
 
     @user_ids_not_shared_with = User.where.not(id: @user_ids_shared_with)
-                                .where("id <> ?", @board.author_id)
+                                .where.not("id <> ?", @board.author_id) #TODO: this query might be messing you up
                                 .map{|el| el.id}.uniq
 
     @usernames_not_shared_with = User.where(id: @user_ids_not_shared_with)

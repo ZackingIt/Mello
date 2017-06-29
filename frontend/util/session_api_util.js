@@ -90,3 +90,11 @@ export const addUserToBoard = (boardShareParams) => {
     data: { board_share: { user_id: boardShareParams.user_id, board_id: boardShareParams.board_id } }
   });
 };
+
+export const removeUserFromBoard = (boardShareParams) => {
+  return $.ajax({
+    method: "DELETE",
+    url: '/api/board_shares',
+    data: { board_share: { user_id: boardShareParams.user_id, board_id: boardShareParams.board_id } }
+  });
+};

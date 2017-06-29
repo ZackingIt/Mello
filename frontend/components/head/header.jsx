@@ -40,6 +40,17 @@ class Header extends React.Component{
           );
         }
       }
+    let boardSharingDropdown;
+    if (this.props.location.pathname === "/home"){
+      boardSharingDropdown = "";
+    } else {
+      boardSharingDropdown =  <BoardSharingDropdown
+                  boardId={ parseInt(this.props.location.pathname.slice(this.props.location.pathname.length-1))}
+                  users={this.props.users}
+                  addUserToBoard={this.props.addUserToBoard}
+                  shared_users={ this.props.shared_users }
+                  unshared_users={ this.props.unshared_users } />;
+    }
 
 
     console.log("my props/location");
@@ -52,12 +63,7 @@ class Header extends React.Component{
             <img className="trello-image-link" src="http://www.clker.com/cliparts/1/3/R/K/0/D/black-white-rocket-md.png"/>
           </Link>
           <CreateBoardDropdown createBoard={this.props.createBoard} requestBoards={this.props.requestBoards}/>
-          <BoardSharingDropdown
-            boardId={ parseInt(this.props.location.pathname.slice(this.props.location.pathname.length-1))}
-            users={this.props.users}
-            addUserToBoard={this.props.addUserToBoard}
-            shared_users={ this.props.shared_users }
-            unshared_users={ this.props.unshared_users } />
+          {boardSharingDropdown}
           <UserMenu />
         </div>
       </div>

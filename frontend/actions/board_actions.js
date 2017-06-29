@@ -11,7 +11,8 @@ export const receiveBoards = (data) => {
     type: RECEIVE_BOARD_INDEX,
     boards: data.boards,
     lists: data.lists,
-    cards: data.cards
+    cards: data.cards,
+    shared_boards: data.shared_boards,
   };
 };
 

@@ -47,11 +47,9 @@ class BoardShow extends React.Component{
   render() {
     const {board, lists, cards} = this.props;
     let outputListArray = [];
-    let boardTitle="";
-    if (Object.keys(lists).length === 0) {
-        //Most restrictive check for mapped state to props.  If (lists) doesn't work here.
-    } else {
-      boardTitle = this.props.board.title;
+    let boardTitle = "";
+    if ((Object.keys(lists).length > 0) && board && (parseInt(this.props.match.params.id) === parseInt(board.id) )) {
+      boardTitle = (this.props.board.title || "");
       for (let key in lists) {
         let listObj = lists[key];
         outputListArray.push(
@@ -63,6 +61,7 @@ class BoardShow extends React.Component{
           cards={cards}/>);
       }
     }
+
     return (
       <section className="board-show-wrapper">
         <div className="board-show-title">

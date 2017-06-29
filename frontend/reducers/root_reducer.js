@@ -13,7 +13,7 @@ const rootReducer = combineReducers({
   lists: listReducer,
   cards: cardReducer,
   users: userReducer,
-  shared_boards: sharedBoardReducer
+  shared_boards: sharedBoardReducer,
 });
 
 export default rootReducer;

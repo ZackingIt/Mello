@@ -17,7 +17,8 @@ class BoardIndex extends React.Component{
   render(){
     console.log("My props for board index");
     console.log(this.props);
-    const {boards, lists, cards} = this.props;
+    const {boards, lists, cards, shared_boards} = this.props;
+    console.log(shared_boards);
     if (Object.keys(boards).length === 0){
       return null;
     } else {
@@ -27,6 +28,13 @@ class BoardIndex extends React.Component{
         boardLinkArray.push(
             <Link key={key} className="board-index-link" to={`/board/${key}`}>
               {boards[key].title}
+            </Link>
+        );
+      }
+    for (let key in shared_boards){
+        boardShareLinkArray.push(
+            <Link key={key} className="board-index-link" to={`/board/${key}`}>
+              {shared_boards[key].title}
             </Link>
         );
       }
@@ -41,6 +49,10 @@ class BoardIndex extends React.Component{
             <div className="board-index-container">
               {boardLinkArray}
             </div>
+            <div className="not here">
+              testing
+              {boardShareLinkArray}
+            </div>
           </div>
         </div>
       );
@@ -49,11 +61,13 @@ class BoardIndex extends React.Component{
 }
 
 const mapStateToProps = (state) => {
-
+  console.log("my state in board index")
+  console.log(state);
   return {
     boards: state.boards,
     lists: state.lists,
     cards: state.cards,
+    shared_boards: state.shared_boards,  //problematic
   };
 
 };
