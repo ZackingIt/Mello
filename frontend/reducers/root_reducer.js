@@ -12,6 +12,7 @@ const rootReducer = combineReducers({
   lists: listReducer,
   cards: cardReducer,
   users: userReducer,
+  
 });
 
 export default rootReducer;

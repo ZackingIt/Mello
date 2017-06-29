@@ -1,5 +1,6 @@
 import { RECEIVE_BOARD } from '../actions/board_actions';
 import { RECEIVE_CARD, UPDATE_CARD, EDIT_CARD } from '../actions/card_actions';
+import { LOGOUT } from '../actions/session_actions';
 
 import { merge } from 'lodash';
 
@@ -35,6 +36,8 @@ const cardReducer = (state = {}, action) => {
       newCard = action.response;
       newState = merge({}, state, {[newCard.id]: newCard});
       return newState;
+    case LOGOUT:
+        return {};
     case "IGNORE":
       return state;
     default:

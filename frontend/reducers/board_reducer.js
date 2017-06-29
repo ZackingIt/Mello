@@ -1,4 +1,5 @@
 import { RECEIVE_BOARD_INDEX, REMOVE_BOARD, RECEIVE_BOARD } from '../actions/board_actions';
+import { LOGOUT } from '../actions/session_actions';
 import { merge } from 'lodash';
 
 const boardReducer = (state = {}, action) => {
@@ -15,6 +16,8 @@ const boardReducer = (state = {}, action) => {
       let newState = merge({}, state);
       delete newState[action.boardId]; //check for boardId
       return newState;
+    case LOGOUT:
+      return {};
     default:
       return state;
   }

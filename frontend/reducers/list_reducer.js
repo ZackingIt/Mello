@@ -1,6 +1,7 @@
 import { RECEIVE_BOARD } from '../actions/board_actions';
 import { RECEIVE_CARD, UPDATE_CARD } from '../actions/card_actions';
 import { RECEIVE_LIST } from '../actions/list_actions';
+import { LOGOUT } from '../actions/session_actions';
 
 
 import { merge } from 'lodash';
@@ -54,19 +55,12 @@ const listReducer = (state = {}, action) => {
       //     newState[key].cardIds.push(action.response.id);
       //   }
       // }
-      // debugger
-      console.log(state);
-      console.log("LIST REUDCER")
-      console.log(action.response)
       newState[action.response.cardLoad.starting.listId].cardIds = action.response.cardIds.fromPile;
       newState[action.response.cardLoad.ending.listId].cardIds = action.response.cardIds.toPile;
 
-      console.log("New State")
-      // debugger
-      console.log(newState)
-      // debugger
       return newState;
-
+    case LOGOUT:
+      return {};
     default:
       return state;
   }

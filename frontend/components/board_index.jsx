@@ -47,11 +47,11 @@ class BoardIndex extends React.Component{
 }
 
 const mapStateToProps = (state) => {
-  // debugger
+
   return {
     boards: state.boards,
     lists: state.lists,
-    cards: state.cards
+    cards: state.cards,
   };
 };
 

@@ -4,8 +4,8 @@ class Api::BoardsController < ApplicationController
   def index
 
     @boards = Board.where(author_id: current_user.id)
-    @shared_boards = User.where(author_id: current_user.id).shared_boards
-    
+    @shared_boards = User.find(current_user.id).shared_boards
+
     # @lists, @cards, @list_ids, @card_ids = [], [], [], []
     #
     # @boards.each do |board|

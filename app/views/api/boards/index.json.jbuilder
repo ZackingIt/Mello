@@ -1,4 +1,4 @@
-json.boards = {}
+json.boards {}
 json.set! :boards do
   @boards.each do |board|
     json.set! board.id do
@@ -9,7 +9,7 @@ json.set! :boards do
   end
 end
 json.set! :shared_boards do
-  @boards.each do |board|
+  @shared_boards.each do |board|
     json.set! board.id do
       json.author_id board.author_id
       json.title board.title
