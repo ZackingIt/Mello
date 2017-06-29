@@ -49,8 +49,12 @@ class BoardIndex extends React.Component{
             <div className="board-index-container">
               {boardLinkArray}
             </div>
-            <div className="not here">
-              testing
+            <div className="board-index-header">
+              <i className="fa fa-users"></i>
+              <text className="board-index-header-text"> Shared Boards </text>
+            </div>
+
+            <div className="board-index-container-shared-boards">
               {boardShareLinkArray}
             </div>
           </div>
