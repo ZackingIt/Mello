@@ -11,6 +11,8 @@
 
 class BoardShare < ApplicationRecord
   validates :user, :board, presence: true
+  validates :user, uniqueness: { scope: :board }
+  validates_uniqueness_of :user_id, :scope => :board_id
 
   belongs_to :user,
   foreign_key: :user_id,

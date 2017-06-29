@@ -2,6 +2,7 @@ class Api::BoardsController < ApplicationController
   before_action :require_login
 
   def index
+    @current_user_board_shares = BoardShare.where(user_id: current_user.id)
 
     @boards = Board.where(author_id: current_user.id)
     @shared_boards = User.find(current_user.id).shared_boards
@@ -43,6 +44,19 @@ class Api::BoardsController < ApplicationController
 
   def show
     @board = Board.find(params[:id])
+    @user_ids_shared_with = BoardShare.where(board_id: params[:id])
+                            .map{|el| el.user_id}.uniq
+
+    @usernames_shared_with = User.where(id: @user_ids_shared_with)
+                            .map{|user| user.username}
+
+    @user_ids_not_shared_with = User.where.not(id: @user_ids_shared_with)
+                                .where("id <> ?", @board.author_id)
+                                .map{|el| el.id}.uniq
+
+    @usernames_not_shared_with = User.where(id: @user_ids_not_shared_with)
+                                .map{|user| user.username}
+
     render :show
   end
 

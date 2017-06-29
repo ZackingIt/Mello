@@ -29,3 +29,15 @@ json.set! :cards do
     end
   end
 end
+
+json.set! :user_sharing do
+  json.set! :shared_users do
+    json.shared_user_ids @user_ids_shared_with
+    json.shared_usernames @usernames_shared_with
+  end
+  json.set! :unshared_users do
+    json.unshared_user_ids @user_ids_not_shared_with
+    json.unshared_usernames @usernames_not_shared_with
+  end
+  # json.unshared_users @users_not_shared_with
+end

@@ -6,6 +6,7 @@ import BoardSharingDropdown from './board_sharing_dropdown';
 import CreateBoardDropdown from './create_board_dropdown';
 import { createBoard, requestBoards } from '../../actions/board_actions';
 import { requestUsers } from '../../actions/user_actions';
+import { addUserToBoard } from '../../actions/board_share_actions';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
@@ -16,6 +17,7 @@ class Header extends React.Component{
 
   componentDidMount(){
     this.props.requestBoards();
+    // this.props.requestUsers();
   }
 
   render(){
@@ -47,12 +49,15 @@ class Header extends React.Component{
         <div className="header-nav-bar">
           <BoardMenuDropdown boardMenu={menuPropsArray}/>
           <Link to={'/'}>
-            <img className="trello-image-link" src="https://d2k1ftgv7pobq7.cloudfront.net/meta/u/res/images/trello-header-logos/af7af6ed478d3460709d715d9b3f74a4/trello-logo-white.svg"/>
+            <img className="trello-image-link" src="http://www.clker.com/cliparts/1/3/R/K/0/D/black-white-rocket-md.png"/>
           </Link>
           <CreateBoardDropdown createBoard={this.props.createBoard} requestBoards={this.props.requestBoards}/>
           <BoardSharingDropdown
             boardId={ parseInt(this.props.location.pathname.slice(this.props.location.pathname.length-1))}
-            requestUsers={this.props.requestUsers} />
+            users={this.props.users}
+            addUserToBoard={this.props.addUserToBoard}
+            shared_users={ this.props.shared_users }
+            unshared_users={ this.props.unshared_users } />
           <UserMenu />
         </div>
       </div>
@@ -64,22 +69,27 @@ const mapStateToProps = (state) => {
   return {
     boards: state.boards,
     lists: state.lists,
-    cards: state.cards
+    cards: state.cards,
+    users: state.users,
+    shared_boards: state.shared_boards,
+    shared_users: state.users.shared_users,
+    unshared_users: state.users.unshared_users
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
     createBoard: (title) => {
-      //console.log(`my title is ${title}`);
       return dispatch(createBoard({title: title, privacy_status: false, listIds: []}));
     },
     requestBoards: () => {
-      //console.log("requesting board!");
       return dispatch(requestBoards());
     },
     requestUsers: () => {
       return dispatch(requestUsers());
+    },
+    addUserToBoard: (boardShareParams) => {
+      return dispatch(addUserToBoard(boardShareParams));
     },
   };
 };

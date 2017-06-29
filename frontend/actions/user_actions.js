@@ -1,11 +1,10 @@
 import * as APIUtil from '../util/session_api_util';
 export const RECEIVE_USERS = 'RECEIVE_USERS';
 
-
-export const receiveUsers = (users) => {
+export const receiveUsers = (response) => {
   return {
     type: RECEIVE_USERS,
-    users: users
+    response: response
   };
 };
 

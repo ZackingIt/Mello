@@ -82,3 +82,11 @@ export const fetchUsers = () => {
     url: '/api/users'
   });
 };
+
+export const addUserToBoard = (boardShareParams) => {
+  return $.ajax({
+    method: "POST",
+    url: '/api/board_shares',
+    data: { board_share: { user_id: boardShareParams.user_id, board_id: boardShareParams.board_id } }
+  });
+};
