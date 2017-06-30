@@ -21,8 +21,6 @@ class Header extends React.Component{
   }
 
   render(){
-    console.log("MY HEADER PROPS")
-    console.log(this.props)
     const {boards, lists, cards} = this.props;
     var boardLinkArray = [];
     var menuPropsArray = [];
@@ -42,7 +40,7 @@ class Header extends React.Component{
       }
     let boardSharingDropdown;
     if (this.props.location.pathname === "/home"){
-      boardSharingDropdown = "";
+      boardSharingDropdown = null;
     } else {
       boardSharingDropdown =  <BoardSharingDropdown
                   boardId={ parseInt(this.props.location.pathname.slice(this.props.location.pathname.length-1))}
@@ -52,15 +50,13 @@ class Header extends React.Component{
                   unshared_users={ this.props.unshared_users } />;
     }
 
-
-    console.log("my props/location");
-    console.log(parseInt(this.props.location.pathname.slice(this.props.location.pathname.length-1)));
     return(
       <div className="header-container">
         <div className="header-nav-bar">
           <BoardMenuDropdown boardMenu={menuPropsArray}/>
           <Link to={'/'}>
             <img className="trello-image-link" src="http://www.clker.com/cliparts/1/3/R/K/0/D/black-white-rocket-md.png"/>
+            <div className="trello-header-title"> Mello </div>
           </Link>
           <CreateBoardDropdown createBoard={this.props.createBoard} requestBoards={this.props.requestBoards}/>
           {boardSharingDropdown}

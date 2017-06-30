@@ -29,6 +29,26 @@ $menu-hover-blue:#298FCA;
   position: absolute;
   left: 45vw;
 
+-moz-transform: scaleX(-1);
+-o-transform: scaleX(-1);
+-webkit-transform: scaleX(-1);
+transform: scaleX(-1);
+filter: FlipH;
+-ms-filter: "FlipH";
+
+}
+
+.trello-header-title{
+  font-family: "Brush Script MT", cursive;
+	font-size: 36px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: bolder;
+	line-height: 30px;
+  color: white;
+  position: absolute;
+  left: 48vw;
+
 }
 
 .create-board-dropdown-form{

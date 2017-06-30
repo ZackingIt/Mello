@@ -118,7 +118,7 @@ const mapDispatchToProps = (dispatch) => {
       return dispatch(createList({ board_id: board_id, ord: ord, title: title} ));
     },
     handleCardEditSubmit: (card_id, body, list_id, order) => {
-      console.log("HANDLE CARD EDIT SUBMIT IS FIRING FROM FOUR LAYERS DOWN");
+      // console.log("HANDLE CARD EDIT SUBMIT IS FIRING FROM FOUR LAYERS DOWN");
       return dispatch( editCardText( {id: card_id, body: body, list_id: list_id, order: order }) );
 
     },

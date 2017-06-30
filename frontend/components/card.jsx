@@ -24,9 +24,9 @@ const ItemTypes = {
 const cardSource = {
   beginDrag(props) {
 
-    console.log("my starting state");
+    // console.log("my starting state");
     myState = merge(myState, {starting: props});
-    console.log(myState);
+    // console.log(myState);
 
     return {
       card_id: props.id,
@@ -50,11 +50,11 @@ const cardTarget = {
 
     // Obtain the dragged item
     const item = monitor.getItem();
-    console.log("my props");
-    console.log(props);
-    console.log("my ending state");
+    // console.log("my props");
+    // console.log(props);
+    // console.log("my ending state");
     myState = merge(myState, {ending: props});
-    console.log(myState);
+    // console.log(myState);
     props.moveCard(myState);
     // You can also do nothing and return a drop result,
     // which will be available as monitor.getDropResult()

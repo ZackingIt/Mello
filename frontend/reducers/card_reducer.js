@@ -23,16 +23,16 @@ const cardReducer = (state = {}, action) => {
       newState = merge({}, state, {[newCard.id]: newCard});
       return newState;
     case UPDATE_CARD:
-      console.log("my prior state");
-      console.log(state);
+      // console.log("my prior state");
+      // console.log(state);
       newCard = action.response.cardLoad;
       newState = merge({}, state, {[newCard.id]: newCard});
-      console.log("my new state");
-      console.log(newState);
+      // console.log("my new state");
+      // console.log(newState);
       return newState;
     case EDIT_CARD:
-      console.log("my EDIT CARD STATE");
-      console.log(action.response);
+      // console.log("my EDIT CARD STATE");
+      // console.log(action.response);
       newCard = action.response;
       newState = merge({}, state, {[newCard.id]: newCard});
       return newState;

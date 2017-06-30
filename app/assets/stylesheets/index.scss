@@ -17,10 +17,8 @@ $board-item-blue: #0469A4;
   display: flex;
   justify-content: flex-start;
   flex-direction: row;
-
   padding-left: 20px;
   padding-top: 7px;
-
 }
 
 
@@ -48,7 +46,7 @@ a.board-index-link {
   padding-left: 12px;
   font-size: 15px;
   border-radius: 4px;
-  background-color: #015B8F;
+  background-color: $header-blue;
   border: none;
 }
 

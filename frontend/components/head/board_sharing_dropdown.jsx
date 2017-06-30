@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { keys, merge, values } from 'lodash';
+import { keys, merge, values, isEmpty } from 'lodash';
 
 
 class BoardSharingDropdown extends React.Component {
@@ -29,8 +29,8 @@ class BoardSharingDropdown extends React.Component {
  handleSubmit(boardShareParams) {
    return (e) => {
      e.preventDefault();
-     console.log("My submitted ID IS");
-     console.log(boardShareParams);
+     // console.log("My submitted ID IS");
+     // console.log(boardShareParams);
      this.props.addUserToBoard(boardShareParams);
    };
  }
@@ -45,18 +45,19 @@ class BoardSharingDropdown extends React.Component {
  }
 
  render() {
-
+   if (isEmpty(this.props.users)) {
+     return null;
+   }
    let boardSharingModal;
    let availabilityButton;
-   console.log("BOARD SHARING PROPS BEOLOOOOOOO");
-   console.log(this.props);
    let unshared_users_output = [];
    if (this.props.unshared_users){
       for (let i = 0; i < this.props.unshared_users.unshared_user_ids.length; i++) {
         let boardShareParams = {user_id: null, board_id: this.props.boardId };
         boardShareParams['user_id'] = parseInt(this.props.unshared_users.unshared_user_ids[i]);
+        let currentUserName = this.props.unshared_users.unshared_usernames[i]
         unshared_users_output.push(
-               <div className="board-sharing-user-name">
+               <div key={currentUserName} className="board-sharing-user-name">
                  <button onClick={this.handleSubmit(boardShareParams)}>
                    { this.props.unshared_users.unshared_usernames[i] }
                  </button>
@@ -70,8 +71,9 @@ class BoardSharingDropdown extends React.Component {
       for (let i = 0; i < this.props.shared_users.shared_user_ids.length; i++) {
         let boardShareParams = {user_id: null, board_id: this.props.boardId };
         boardShareParams['user_id'] = parseInt(this.props.shared_users.shared_user_ids[i]);
+        let currentUnsharedUserName = this.props.unshared_users.unshared_usernames[i]
         shared_users_output.push(
-               <div className="board-sharing-user-name">
+               <div key={currentUnsharedUserName} className="board-sharing-user-name">
                  <button onClick={this.handleSubmit(boardShareParams)}>
                    { this.props.shared_users.shared_usernames[i] }
                  </button>

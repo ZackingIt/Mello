@@ -33,8 +33,8 @@ const ItemTypes = {
 class List extends React.Component{
   constructor(props){
     super(props);
-    console.log("my constructor props below")
-    console.log(props)
+    // console.log("my constructor props below")
+    // console.log(props)
     this.state = {cardBody: "", listId: props.listId, ord: values(props.listObj.cardIds).length};
     this.handleCreateCard = this.handleCreateCard.bind(this);
     this.handleCreateCardBodyChange = this.handleCreateCardBodyChange.bind(this);
@@ -71,8 +71,8 @@ class List extends React.Component{
     const { isDragging, connectDragSource, connectDropTarget } = this.props;
 
     const allCards = this.props.cards;
-    console.log("higher ord props of specific list");
-    console.log(this.props);
+    // console.log("higher ord props of specific list");
+    // console.log(this.props);
     const cardsBodyArray = this.props.listObj.cardIds.map( (cardId) => {
       const currentCard = allCards[cardId];
       // return ( <div key={cardId} className="card-item-element"> {currentCard.body} </div> );
@@ -97,16 +97,16 @@ class List extends React.Component{
     //   return (parseInt(a.ord) - parseInt(b.ord));
     // }
     //
-    // console.log("my card body array before sorting");
-    // console.log(cardsBodyArray);
+    // // console.log("my card body array before sorting");
+    // // console.log(cardsBodyArray);
     // cardsBodyArray.sort(compare);
-    // console.log("my card body array after sorting");
-    // console.log(cardsBodyArray);
+    // // console.log("my card body array after sorting");
+    // // console.log(cardsBodyArray);
     // let sortedWrappedCardArray = [];
     // sortedWrappedCardArray = cardsBodyArray.map( ( currentCard ) => {
     //   debugger
-    //   // console.log("my listObj card indices are below")
-    //   // console.log(this.props.listObj.cardIds.indexOf(parseInt(currentCard.id)))
+    //   // // console.log("my listObj card indices are below")
+    //   // // console.log(this.props.listObj.cardIds.indexOf(parseInt(currentCard.id)))
     //   return (<Card key={Math.random()*100} id={parseInt(currentCard.id)} listId={parseInt(this.state.listId)} cardIndex={currentCard.ord} body={currentCard.body}/>);
     // });
 
@@ -143,7 +143,7 @@ const listTarget = {
 
     // Obtain the dragged item
     const item = monitor.getItem();
-    console.log(props)
+    // console.log(props)
     // You can do something with it
     // ChessActions.movePiece(item.fromPosition, props.position);
 
@@ -158,11 +158,11 @@ const listTarget = {
     const listStartingIndex = monitor.getItem().listTarget;
     const listHoverIndex = props.listTarget;
 
-    // console.log("my listTarget Starting Index below");
-    // console.log(listStartingIndex);
+    // // console.log("my listTarget Starting Index below");
+    // // console.log(listStartingIndex);
     //
-    // console.log("my listHover Index below (maybe)");
-    // console.log(listHoverIndex);
+    // // console.log("my listHover Index below (maybe)");
+    // // console.log(listHoverIndex);
 
     if (listStartingIndex === listHoverIndex) {
       return;
@@ -204,8 +204,8 @@ const cardTarget = {
       return;
     }
 
-    console.log("my drop target is below");
-    console.log(props);
+    // console.log("my drop target is below");
+    // console.log(props);
 
     const item = monitor.getItem();
     return { moved: true };

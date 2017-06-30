@@ -1,5 +1,6 @@
 import { ADD_USER_TO_BOARD } from '../actions/board_share_actions';
 import { RECEIVE_BOARD_INDEX } from '../actions/board_actions';
+import { LOGOUT } from '../actions/session_actions';
 import { merge } from 'lodash';
 
 

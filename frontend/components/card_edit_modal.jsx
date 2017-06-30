@@ -15,12 +15,12 @@ class CardEditModal extends React.Component{
   }
 
   toggleBoardDropdown() {
-    console.log(" FIRING FROM LOCAL STATE -- clickthru works ");
-    console.log("my state is now");
+    // console.log(" FIRING FROM LOCAL STATE -- clickthru works ");
+    // console.log("my state is now");
     this.setState(prevState => ({
       modalPresence: !prevState.modalPresence
     }));
-    console.log(this.state.modalPresence);
+    // console.log(this.state.modalPresence);
   }
 
   handleModalEdit(e){
@@ -33,16 +33,16 @@ class CardEditModal extends React.Component{
   render(){
     var cardEditModal;
     var bodyLength = (this.state.body.length) * 0.5 + 30;
-    console.log(bodyLength);
+    // console.log(bodyLength);
     if ( this.state.modalPresence === false ){
-      console.log("false!");
+      // console.log("false!");
       cardEditModal = (
         <div onClick={ this.toggleBoardDropdown } className="card-item-element" >
           {this.props.bodyText}
         </div>
       );
     } else {
-      console.log("true!");
+      // console.log("true!");
       cardEditModal = (
         <form onSubmit={ this.props.handleCardEditSubmit.bind(this, this.props.id, this.state.body, this.props.listId, this.props.cardIndex) } className="card-item-element-true-modal" >
           <textarea style={{height: bodyLength + 'px'}} className="card-item-element-input" onChange={ this.handleModalEdit } value={this.state.body} />

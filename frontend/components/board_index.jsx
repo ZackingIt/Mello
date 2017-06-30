@@ -15,10 +15,10 @@ class BoardIndex extends React.Component{
   }
 
   render(){
-    console.log("My props for board index");
-    console.log(this.props);
+    // console.log("My props for board index");
+    // console.log(this.props);
     const {boards, lists, cards, shared_boards} = this.props;
-    console.log(shared_boards);
+    // console.log(shared_boards);
     if (Object.keys(boards).length === 0){
       return null;
     } else {
@@ -44,7 +44,7 @@ class BoardIndex extends React.Component{
           <div className="board-index-section">
             <div className="board-index-header">
               <i className="fa fa-user-o"></i>
-              <text className="board-index-header-text"> Personal Boards </text>
+              <text className="board-index-header-text"> Recent and Personal Boards </text>
             </div>
             <div className="board-index-container">
               {boardLinkArray}
@@ -65,8 +65,8 @@ class BoardIndex extends React.Component{
 }
 
 const mapStateToProps = (state) => {
-  console.log("my state in board index")
-  console.log(state);
+  // console.log("my state in board index");
+  // console.log(state);
   return {
     boards: state.boards,
     lists: state.lists,

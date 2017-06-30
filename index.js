@@ -1,1 +1,1 @@
-function a(b,) { console.log("hi"); }; a()
+function a(b,) { // console.log("hi"); }; a()
