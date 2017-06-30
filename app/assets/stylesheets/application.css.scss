@@ -72,9 +72,30 @@ button:focus {outline:0;}
 
 
 .landing-icon{
-  width: 150px;
-  height: 50px;
-  padding: 1px;
+  max-width: 5%;
+  height:auto;
+  padding: 12px;
+  position: absolute;
+  left: 2vw;
+  -moz-transform: scaleX(-1);
+  -o-transform: scaleX(-1);
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+  filter: FlipH;
+  -ms-filter: "FlipH";
+}
+
+.trello-header-title-landing{
+  font-family: "Brush Script MT", cursive;
+  font-size: 55px;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 600;
+  line-height: 32px;
+  color: white;
+  position: absolute;
+  left: 7vw;
+
 }
 
 .error-box{

@@ -28,7 +28,8 @@ class Greeting extends React.Component {
       return (
 
           <div className="landing-header">
-            <img className="landing-icon" src="https://d2k1ftgv7pobq7.cloudfront.net/meta/u/res/images/trello-header-logos/af7af6ed478d3460709d715d9b3f74a4/trello-logo-white.svg" />
+            <img className="landing-icon" src="https://www.clker.com/cliparts/1/3/R/K/0/D/black-white-rocket-md.png" />
+            <div className="trello-header-title-landing"> Mello </div>
             <div className="landing-header-spacer"></div>
                 <div className="landing-header-left">
                   <Link className="landing-login-bar" to='/login'>Log In</Link>
