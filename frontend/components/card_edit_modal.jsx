@@ -10,6 +10,7 @@ class CardEditModal extends React.Component{
     super(props);
     this.toggleBoardDropdown = this.toggleBoardDropdown.bind(this);
     this.handleModalEdit = this.handleModalEdit.bind(this);
+    this.onEditSubmit = this.onEditSubmit.bind(this);
     this.state = {modalPresence: false, body: props.bodyText};
 
   }
@@ -28,7 +29,10 @@ class CardEditModal extends React.Component{
     this.setState( { body: e.currentTarget.value } );
   }
 
-
+  onEditSubmit(e){
+    e.preventDefault();
+    this.props.handleCardEditSubmit(this.props.id, this.state.body, this.props.listId, this.props.cardIndex);
+  }
 
   render(){
     var cardEditModal;
@@ -44,7 +48,7 @@ class CardEditModal extends React.Component{
     } else {
       // console.log("true!");
       cardEditModal = (
-        <form onSubmit={ this.props.handleCardEditSubmit.bind(this, this.props.id, this.state.body, this.props.listId, this.props.cardIndex) } className="card-item-element-true-modal" >
+        <form onSubmit={ this.onEditSubmit } className="card-item-element-true-modal" >
           <textarea style={{height: bodyLength + 'px'}} className="card-item-element-input" onChange={ this.handleModalEdit } value={this.state.body} />
           <button type="submit" className="add-list-button-element">Save</button>
         </form>
