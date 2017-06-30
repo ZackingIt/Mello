@@ -19,18 +19,9 @@ class BoardSharingDropdown extends React.Component {
    }));
  }
 
- // handleSubmit(e){
- //     e.preventDefault();
- //     this.props.createBoard(this.state.title);
- //     this.handleToggleClick();
- //     this.setState({title: ""});
- // }
-
  handleSubmit(boardShareParams) {
    return (e) => {
      e.preventDefault();
-     // console.log("My submitted ID IS");
-     // console.log(boardShareParams);
      this.props.addUserToBoard(boardShareParams);
    };
  }
@@ -51,7 +42,7 @@ class BoardSharingDropdown extends React.Component {
    let boardSharingModal;
    let availabilityButton;
    let unshared_users_output = [];
-   if (this.props.unshared_users){
+   if (this.props.unshared_users.unshared_user_ids){
       for (let i = 0; i < this.props.unshared_users.unshared_user_ids.length; i++) {
         let boardShareParams = {user_id: null, board_id: this.props.boardId };
         boardShareParams['user_id'] = parseInt(this.props.unshared_users.unshared_user_ids[i]);
@@ -67,7 +58,7 @@ class BoardSharingDropdown extends React.Component {
    }
 
    let shared_users_output = [];
-   if (this.props.shared_users){
+   if (this.props.shared_users.shared_user_ids){
       for (let i = 0; i < this.props.shared_users.shared_user_ids.length; i++) {
         let boardShareParams = {user_id: null, board_id: this.props.boardId };
         boardShareParams['user_id'] = parseInt(this.props.shared_users.shared_user_ids[i]);
@@ -82,20 +73,6 @@ class BoardSharingDropdown extends React.Component {
       }
    }
 
-
-  //  let userIdList = keys(this.props.users.users);
-  //  let output = [];
-  //  let boardShareParams = {user_id: null, board_id: this.props.boardId };
-  //  userIdList.forEach( (id) => {
-  //    boardShareParams['user_id'] = parseInt(id);
-  //    output.push(
-  //      <div className="board-sharing-user-name">
-  //        <button onClick={this.handleSubmit(boardShareParams)}>
-  //          { this.props.shared_users.users[id].username }
-  //        </button>
-  //      </div>
-  //    );
-  //  });
 
    if ( this.state.modalPresence === true ){
      boardSharingModal = (<section className="create-board-dropdown-menu-container">
