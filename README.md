@@ -4,45 +4,81 @@
 
 [Mello Live Site][heroku]
 
-[heroku]: http://www.melloboard.herokuapp.com
+[heroku]: https://melloboard.herokuapp.com
 
-Mello is a superfast Trello-inspired note-taking application built on ReactJS + Rails.
+Mello is a superfast Trello-inspired note-taking application built on ReactJS + Rails and follows a Redux/Flux pattern.  Mello shines in showing off the incredible performance benefits of ReactJS and the huge benefits of organizing with React components.
+
+Additionally, drag and drop is a notoriously difficult front-end problem to get right from a user-experience perspective, and one that I've wanted to work on for a long time.
 
 
 ## Features & Implementation
 
-### Boards, Lists, and Cards
+### Lightning-fast
 
-  Users have boards, which can be shared to many users.  Boards components contain list components, which contain card components, which themselves contain card modal components.  Cards can be moved among lists.  
+Mello is substantially faster than other Kanban-style/Trello-style boards.  
+
+Trello -- roughly 1000ms JS response time.
+![image of Trello performance](docs/images/trello_screenshot.png)
+
+Mello -- roughly 100ms JS response time.  10x faster!
+![image of Mello performance](docs/images/mello_screenshot.png)
+
+
+### Boards
+
+  Users have boards, which can be shared to many users.  The board page navigation is always achievable through the menu bar on the left.
+
+![image of BoardIndex screenshot](docs/images/board_index_screenshot.png)
 
 ![image of BoardIndex component](docs/wireframes/BoardIndex.png)
 
+### Lists and Cards
+
+Boards components contain list components, which contain card components, which themselves contain card modal components.  Cards can be moved among lists.
+
+![image of BoardShow screenshot](docs/images/board_show_screenshot.png)
+
 ![image of BoardShow component](docs/wireframes/BoardShow.png)
 
-### Notebooks
 
-Implementing Notebooks started with a notebook table in the database.  The `Notebook` table contains two columns: `title` and `id`.  Additionally, a `notebook_id` column was added to the `Note` table.  
+### Drag and Drop
 
-The React component structure for notebooks mirrored that of notes: the `NotebookIndex` component renders a list of `CondensedNotebook`s as subcomponents, along with one `ExpandedNotebook`, kept track of by `NotebookStore.selectedNotebook()`.  
+Implementing drag & drop uses the ReactDnD library for mouse positioning and drag-detection only. All other logic, such as list ordering, event handling, and back-end updates were written natively.
 
-`NotebookIndex` render method:
+Drag & drop is mostly cleanly implemented by having the back-end drive the front-end view, with the front-end passively listening for a JSON response object to render.  This reduces the possibility of front-end state becoming out-of-sync.
 
-```javascript
-render: function () {
-  return ({this.state.notebooks.map(function (notebook) {
-    return <CondensedNotebook notebook={notebook} />
-  }
-  <ExpandedNotebook notebook={this.state.selectedNotebook} />)
-}
-```
 
 ### Board Sharing
 
-As with notebooks, tags are stored in the database through a `tag` table and a join table.  The `tag` table contains the columns `id` and `tag_name`.  The `tagged_notes` table is the associated join table, which contains three columns: `id`, `tag_id`, and `note_id`.  
+Board sharing is achieved through a join table, `board_shares`, and the JSON response is provided through the BoardIndex routes.
 
-Tags are maintained on the frontend in the `TagStore`.  Because creating, editing, and destroying notes can potentially affect `Tag` objects, the `NoteIndex` and the `NotebookIndex` both listen to the `TagStore`.  It was not necessary to create a `Tag` component, as tags are simply rendered as part of the individual `Note` components.  
+```ruby
 
-![tag screenshot](wireframes/tag-search.png)
+@boards = current_user.boards.includes(:lists)
+@shared_boards = current_user.shared_boards.includes(:lists)
+
+...
+
+json.set! :boards do
+  @boards.each do |board|
+    json.set! board.id do
+      json.author_id board.author_id
+      json.title board.title
+      json.listIds board.lists.map{|el| el.id}
+    end
+  end
+end
+json.set! :shared_boards do
+  @shared_boards.each do |board|
+    json.set! board.id do
+      json.author_id board.author_id
+      json.title board.title
+      json.listIds board.lists.map{|el| el.id}
+    end
+  end
+end
+
+```
 
 ## Future Directions for the Project
 
@@ -50,4 +86,7 @@ In addition to the features already implemented, I plan to continue work on this
 
 ### Search
 
-Searching notes is a standard feature of Mello.  I plan to utilize the Fuse.js library to create a fuzzy search of lists and cards.
+I plan to implement fuzzy searching across shared boards, lists, and cards using Fuse.js.
+
+### Async Drag & Drop
+Drag and drop is best executed asynchronously for ideal user experience.
