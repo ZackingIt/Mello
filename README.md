@@ -19,11 +19,12 @@ Mello is substantially faster than other Kanban-style/Trello-style boards.
 
 Trello -- roughly 1000ms JS response time.
 
-![image of Trello performance](docs/images/trello_screenshot.png = 100x100)
+![image of Trello performance] <img src="docs/images/mello_screenshot.png" style="width: 100px;"/>
+
 
 Mello -- roughly 100ms JS response time.  10x faster!
 
-![image of Mello performance](docs/images/mello_screenshot.png =100x100)
+![image of Mello performance](docs/images/mello_screenshot.png =100x)
 
 
 ### Boards
