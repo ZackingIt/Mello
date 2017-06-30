@@ -15,7 +15,9 @@ Mello is a superfast Trello-inspired note-taking application built on ReactJS + 
 
   Users have boards, which can be shared to many users.  Boards components contain list components, which contain card components, which themselves contain card modal components.  Cards can be moved among lists.  
 
-![image of notebook index](wireframes/home-logged-in.png)
+![image of BoardIndex component](docs/wireframes/BoardIndex.png)
+
+![image of BoardShow component](docs/wireframes/BoardShow.png)
 
 ### Notebooks
 
