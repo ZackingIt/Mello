@@ -5,6 +5,8 @@ import { findDOMNode } from 'react-dom';
 import { DragSource, DragDropContext, DragDropContextProvider, DropTarget } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 import Card from './card';
+import Masonry from 'react-masonry-component';
+
 
 const listSource = {
   beginDrag(props) {

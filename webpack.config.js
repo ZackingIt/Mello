@@ -22,11 +22,10 @@ module.exports = {
             'babel-preset-react'
           ].map(require.resolve),
         },
-        // query: {
-        //   cacheDirectory: true,
-        //   plugins: ['transform-decorators-legacy' ],
-        //   presets: ['es2015', 'stage-0', 'react']
-        }
+        {
+          test: /masonry|imagesloaded|fizzy\-ui\-utils|desandro\-|outlayer|get\-size|doc\-ready|eventie|eventemitter/,
+          loader: 'imports?define=>false&this=>window'
+        },
     ]
   },
   devtool: 'source-maps'
