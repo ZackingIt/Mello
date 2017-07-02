@@ -40,6 +40,7 @@ class List extends React.Component{
     this.state = {cardBody: "", listId: props.listId, ord: values(props.listObj.cardIds).length};
     this.handleCreateCard = this.handleCreateCard.bind(this);
     this.handleCreateCardBodyChange = this.handleCreateCardBodyChange.bind(this);
+    this.handleEnter = this.handleEnter.bind(this);
   }
 
   handleCreateCard(e) {
@@ -55,6 +56,13 @@ class List extends React.Component{
     this.setState({
       cardBody: e.currentTarget.value,
     });
+  }
+
+  handleEnter(e){
+    if (e.key === "Enter" && !e.shiftKey){
+      e.preventDefault();
+      this.props.createCard(this.state.listId, this.state.ord, this.state.cardBody);
+    }
   }
 
 
@@ -112,6 +120,7 @@ class List extends React.Component{
     //   return (<Card key={Math.random()*100} id={parseInt(currentCard.id)} listId={parseInt(this.state.listId)} cardIndex={currentCard.ord} body={currentCard.body}/>);
     // });
 
+    var bodyLength = 70;
 
     let listElement = (
       <section className="list-element">
@@ -122,8 +131,8 @@ class List extends React.Component{
           {/* { sortedWrappedCardArray } */}
           {cardsBodyArray}
         </div>
-        <form className="add-card-button-container" onSubmit={this.handleCreateCard}>
-          <input style={{'lineHeight': 200 + 'px'}} onChange={this.handleCreateCardBodyChange} className="add-card-input-element" value={this.state.cardBody}/>
+        <form className="add-card-button-container" onKeyPress={ this.handleEnter } onSubmit={this.handleCreateCard}>
+          <textarea style={{'height': bodyLength + 'px'}} onChange={this.handleCreateCardBodyChange} className="add-card-input-element" value={this.state.cardBody}/>
           <button type="submit" className="add-card-button-element">Add</button>
         </form>
       </section>);

@@ -19,6 +19,7 @@ class BoardShow extends React.Component{
     this.state = { listTitle: ""};
     this.handleCreateListTitleChange = this.handleCreateListTitleChange.bind(this);
     this.handleCreateList = this.handleCreateList.bind(this);
+    this.handleEnter = this.handleEnter.bind(this);
   }
 
   handleCreateListTitleChange(e){
@@ -31,6 +32,16 @@ class BoardShow extends React.Component{
     const boardId = parseInt(this.props.match.params.id);
     this.props.createList(boardId, this.props.board.listIds.length, this.state.listTitle);
     this.setState( { listTitle: "" } );
+  }
+
+  handleEnter(e){
+    console.log(e);
+    if (e.key === "Enter" && !e.shiftKey){
+      e.preventDefault();
+      const boardId = parseInt(this.props.match.params.id);
+      this.props.createList(boardId, this.props.board.listIds.length, this.state.listTitle);
+      this.setState( { listTitle: "" } );
+    }
   }
 
   componentDidMount(){
@@ -48,6 +59,15 @@ class BoardShow extends React.Component{
   render() {
     const {board, lists, cards} = this.props;
     let outputListArray = [];
+    let addCardElement = (
+                <form value="Add a List" onSubmit={this.handleCreateList} className="add-list-button-container">
+                  <div className="add-list-title">
+                    Add a List
+                  </div>
+                  <textarea onKeyPress={ this.handleEnter } onChange={this.handleCreateListTitleChange} className="add-list-input-element" value={this.state.listTitle} />
+                  <button type="submit" className="add-list-button-element">Save</button>
+
+                </form>)
     let boardTitle = "";
     if ((Object.keys(lists).length > 0) && board && (parseInt(this.props.match.params.id) === parseInt(board.id) )) {
       boardTitle = (this.props.board.title || "");
@@ -62,11 +82,15 @@ class BoardShow extends React.Component{
           cards={cards}/>);
       }
     }
+    outputListArray.push(addCardElement);
 
   var masonryOptions = {
     transitionDuration: 0,
-    gutter: 25,
-    fitWidth: true
+    gutter: 3,
+    fitWidth: true,
+    horizontalOrder: false,
+    stagger: 30,
+
   };
 
     return (
@@ -83,14 +107,7 @@ class BoardShow extends React.Component{
                 updateOnEachImageLoad={false} // default false and works only if disableImagesLoaded is false
             >
           {outputListArray}
-            <form value="Add a List" onSubmit={this.handleCreateList} className="add-list-button-container">
-              <div className="add-list-title">
-                Add a List
-              </div>
-              <input onChange={this.handleCreateListTitleChange} className="add-list-input-element" value={this.state.listTitle} />
-              <button type="submit" className="add-list-button-element">Save</button>
 
-            </form>
           </Masonry>
         </div>
       </section>

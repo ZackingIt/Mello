@@ -22,8 +22,6 @@ class CardEditModal extends React.Component{
     this.setState(prevState => ({
       modalPresence: !prevState.modalPresence
     }));
-    console.log("board dropped");
-    // console.log(this.state.modalPresence);
   }
 
   handleModalEdit(e){
@@ -32,36 +30,31 @@ class CardEditModal extends React.Component{
   }
 
   handleEnter(e){
-    console.log("entering handleenter phase")
     console.log(e);
     if (e.key === "Enter" && !e.shiftKey){
-      console.log("enter logged")
       e.preventDefault();
-      console.log(this.props);
       this.props.handleCardEditSubmit(this.props.id, this.state.body, this.props.listId, this.props.cardIndex);
     }
   }
 
   onEditSubmit(e){
+    console.log("edit submit firiing")
     e.preventDefault();
     this.props.handleCardEditSubmit(this.props.id, this.state.body, this.props.listId, this.props.cardIndex);
   }
 
   render(){
     var cardEditModal;
-    var bodyLength = (this.state.body.length) * 0.5 + 70;
-    // console.log(bodyLength);
+    var bodyLength = (this.state.body.length) * 0.7 + 65;
     if ( this.state.modalPresence === false ){
-      // console.log("false!");
       cardEditModal = (
         <div onClick={ this.toggleBoardDropdown } className="card-item-element" >
           {this.props.bodyText}
         </div>
       );
     } else {
-      // console.log("true!");
       cardEditModal = (
-        <form onKeyPress={ this.handleEnter } className="card-item-element-true-modal" >
+        <form onSubmit={ this.onEditSubmit } onKeyPress={ this.handleEnter } className="card-item-element-true-modal" >
           <textarea style={{height: bodyLength + 'px'}} className="card-item-element-input" onChange={ this.handleModalEdit } value={this.state.body} />
           <button type="submit" className="add-list-button-element">Save</button>
         </form>

@@ -78,8 +78,10 @@ $menu-hover-blue:#298FCA;
   box-shadow: 0px 0.5px $light-grey;
   font-size: 13px;
   color: $dark-grey;
-  word-break: normal;
   white-space: pre-wrap;
+
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 
 
 
@@ -90,19 +92,33 @@ $menu-hover-blue:#298FCA;
   background-color: #EDEFF0;
 }
 
+
 .add-card-button-container{
 
 
 }
 
-.add-card-input-element{
-  height: 65px;
-  padding: 7px;
-  text-align: left;
-  vertical-align: text-top;
+
+textarea.add-card-input-element{
+  background-color: white;
+  margin-bottom: 4px;
+  padding-left: 7px;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  border-radius: 3px;
+  color: blue;
+  border: 1px solid $light-grey;
+  box-shadow: 0px 0.5px $light-grey;
+  font-size: 13px;
+  color: $dark-grey;
+  word-break: normal;
+
   width: 100%;
-  resize: vertical;
+  //copy this for other textareas
+  overflow: hidden;
   outline: none;
+  resize: vertical;
+
 
 }
 
@@ -184,7 +200,7 @@ $menu-hover-blue:#298FCA;
   box-shadow: 0px 0.5px $light-grey;
   font-size: 13px;
   color: $dark-grey;
-  word-break: break-all;
+  word-break: normal;
 }
 
 .card-item-element-input{
@@ -196,7 +212,7 @@ $menu-hover-blue:#298FCA;
   box-shadow: 0px 0.5px $light-grey;
   font-size: 13px;
   color: $dark-grey;
-  word-break: break-all;
+  word-break: normal;
   min-height: 1.1em;
 
   width: 100%;
