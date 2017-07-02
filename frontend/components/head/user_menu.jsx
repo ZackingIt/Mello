@@ -26,6 +26,17 @@ class UserMenu extends React.Component {
     }));
   }
 
+  handleEnter(e){
+    //e.key and e.shiftkey
+    if (e.key === "enter"){
+      this.setState(prevState => ({
+        modalPresence: false
+      }));
+    }
+    //keyhandler on the input field AND textarea
+    //clickhandler on the button
+  }
+
   render(){
     let user = this.props.user;
     let userDropdown;

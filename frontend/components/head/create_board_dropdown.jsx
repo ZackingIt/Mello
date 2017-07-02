@@ -20,8 +20,20 @@ class CreateBoardDropdown extends React.Component {
      e.preventDefault();
      this.props.createBoard(this.state.title);
      this.handleToggleClick();
-     this.setState({title: ""})
+     this.setState({title: ""});
  }
+
+ // handleEnter(e){
+ //   //e.key and e.shiftkey
+ //   if (e.key === "enter"){
+ //     this.setState(prevState => ({
+ //       modalPresence: false
+ //     }));
+ //   }
+ //   //keyhandler on the input field AND textarea
+ //   //clickhandler on the button
+ //
+ // }
 
  handleChange(field) {
    return (e) => {

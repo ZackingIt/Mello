@@ -37,6 +37,7 @@ class BoardShow extends React.Component{
 
 
 
+
   componentWillReceiveProps(nextProps){
     const nextPropsId = nextProps.match.params.id;
     if (this.props.match.params.id !== nextPropsId) {

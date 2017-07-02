@@ -15,6 +15,20 @@ class BoardMenuDropdown extends React.Component{
     }));
   }
 
+  handleEnter(e){
+    //e.key and e.shiftkey
+    if (e.key === "Enter"){
+      this.setState(prevState => ({
+        modalPresence: false
+      }));
+    }
+    //keyhandler on the input field AND textarea
+    //clickhandler on the button
+
+  }
+
+
+
   render () {
     let output = this.props.boardMenu.map((board, idx) => {
       return (

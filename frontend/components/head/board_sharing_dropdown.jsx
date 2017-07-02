@@ -13,6 +13,11 @@ class BoardSharingDropdown extends React.Component {
 
  }
 
+
+//keyhandler on the input field AND textarea
+//clickhandler on the button
+
+
  handleToggleClick() {
    this.setState(prevState => ({
      modalPresence: !prevState.modalPresence

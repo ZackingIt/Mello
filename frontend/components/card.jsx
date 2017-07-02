@@ -125,6 +125,8 @@ class Card extends React.Component{
     }));
   }
 
+
+
   render(){
 
     if (!this.props.body) {
