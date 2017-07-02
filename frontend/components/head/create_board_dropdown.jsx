@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import onClickOutside from 'react-onclickoutside';
+
 
 class CreateBoardDropdown extends React.Component {
   constructor(props) {
@@ -23,17 +25,12 @@ class CreateBoardDropdown extends React.Component {
      this.setState({title: ""});
  }
 
- // handleEnter(e){
- //   //e.key and e.shiftkey
- //   if (e.key === "enter"){
- //     this.setState(prevState => ({
- //       modalPresence: false
- //     }));
- //   }
- //   //keyhandler on the input field AND textarea
- //   //clickhandler on the button
- //
- // }
+ handleClickOutside(e) {
+   this.setState(prevState => ({
+     modalPresence: false
+   }));
+ }
+
 
  handleChange(field) {
    return (e) => {
@@ -71,4 +68,4 @@ class CreateBoardDropdown extends React.Component {
  }
 }
 
-export default CreateBoardDropdown;
+export default onClickOutside(CreateBoardDropdown);

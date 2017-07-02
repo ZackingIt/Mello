@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { keys, merge, values, isEmpty } from 'lodash';
+import onClickOutside from 'react-onclickoutside';
 
 
 class BoardSharingDropdown extends React.Component {
@@ -14,8 +15,6 @@ class BoardSharingDropdown extends React.Component {
  }
 
 
-//keyhandler on the input field AND textarea
-//clickhandler on the button
 
 
  handleToggleClick() {
@@ -38,6 +37,12 @@ class BoardSharingDropdown extends React.Component {
      newState[field] = e.currentTarget.value;
      this.setState(newState);
    };
+ }
+
+ handleClickOutside(e) {
+   this.setState(prevState => ({
+     modalPresence: false
+   }));
  }
 
  render() {
@@ -114,4 +119,4 @@ class BoardSharingDropdown extends React.Component {
 }
 
 
-export default BoardSharingDropdown;
+export default onClickOutside(BoardSharingDropdown);

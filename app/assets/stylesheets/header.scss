@@ -96,8 +96,8 @@ filter: FlipH;
   top: 40px;
   left: 3px;
   border: 1px solid $light-grey;
-  overflow: scroll;
-  height: 100%;
+  overflow: hidden;
+  height: 90%;
 }
 
 .board-menu-item-left-box{

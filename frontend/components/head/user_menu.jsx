@@ -3,6 +3,8 @@ import { logout } from '../../actions/session_actions';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Redirect, withRouter } from 'react-router';
+import onClickOutside from 'react-onclickoutside';
+
 
 class UserMenu extends React.Component {
 
@@ -13,10 +15,17 @@ class UserMenu extends React.Component {
     this.state = {modalPresence: false};
 
   }
+
   handleLogout() {
     this.props.logout().then(
       () => this.props.history.push("/login")
     );
+  }
+
+  handleClickOutside(e) {
+    this.setState(prevState => ({
+      modalPresence: false
+    }));
   }
 
   toggleUserDropdown(){
@@ -78,4 +87,4 @@ const mapDispatchToProps = (dispatch) => ({
   logout: () => dispatch(logout())
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(UserMenu));
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(onClickOutside(UserMenu)));

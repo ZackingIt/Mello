@@ -1,4 +1,7 @@
 import React from 'react';
+import onClickOutside from 'react-onclickoutside';
+
+
 
 class BoardMenuDropdown extends React.Component{
 
@@ -7,6 +10,12 @@ class BoardMenuDropdown extends React.Component{
     this.state = {modalPresence: false};
     this.toggleBoardDropdown = this.toggleBoardDropdown.bind(this);
 
+  }
+
+  handleClickOutside(e) {
+    this.setState(prevState => ({
+      modalPresence: false
+    }));
   }
 
   toggleBoardDropdown() {
@@ -22,12 +31,7 @@ class BoardMenuDropdown extends React.Component{
         modalPresence: false
       }));
     }
-    //keyhandler on the input field AND textarea
-    //clickhandler on the button
-
   }
-
-
 
   render () {
     let output = this.props.boardMenu.map((board, idx) => {
@@ -64,4 +68,4 @@ class BoardMenuDropdown extends React.Component{
 }
 
 
-export default BoardMenuDropdown;
+export default onClickOutside(BoardMenuDropdown);
