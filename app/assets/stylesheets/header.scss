@@ -98,6 +98,9 @@ filter: FlipH;
   border: 1px solid $light-grey;
   overflow: hidden;
   height: 90%;
+
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .board-menu-item-left-box{
