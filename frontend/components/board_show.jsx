@@ -89,7 +89,7 @@ class BoardShow extends React.Component{
     gutter: 3,
     fitWidth: true,
     horizontalOrder: true,
-    stagger: 30,
+    stagger: 300,
 
   };
 
