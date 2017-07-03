@@ -37,6 +37,7 @@ Mello -- roughly 100ms JS response time.  10x faster!
 ### Lists and Cards
 
 Boards components contain list components, which contain card components, which themselves contain card modal components.  Cards can be moved among lists.
+Notice the Pinterest-style "masonry" layout here: we can now re-size our browser windows to any size we want and lists will neatly and efficiently re-allocate themselves.
 
 ![image of BoardShow screenshot](docs/images/board_show_screenshot.png)
 
