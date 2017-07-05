@@ -63,8 +63,7 @@ class Header extends React.Component{
         <div className="header-nav-bar">
           <BoardMenuDropdown boardMenu={menuPropsArray}/>
           <Link to={'/'}>
-            <img className="trello-image-link" src="https://www.clker.com/cliparts/1/3/R/K/0/D/black-white-rocket-md.png"/>
-            <div className="trello-header-title"> Mello </div>
+            <div className="trello-header-title"> <i id="trello-header-icon" className="fa fa-trello"></i> Mello </div>
           </Link>
           <CreateBoardDropdown createBoard={this.props.createBoard} requestBoards={this.props.requestBoards}/>
           {boardSharingDropdown}

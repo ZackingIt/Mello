@@ -25,7 +25,6 @@ class Api::MovesController < ApplicationController
 
       increment_order = []
       decrement_order = []
-
       @card.update(list_id: new_list_id, ord: new_card_order )
         if old_list_id != new_list_id && @card.update(list_id: new_list_id, ord: new_card_order )
           increment_order = Card.where(["list_id = ? AND ord > ? AND id <> ?", new_list_id, new_card_order, @card.id]).to_a
@@ -37,7 +36,6 @@ class Api::MovesController < ApplicationController
           decrement_order = Card.where(["list_id = ? AND ord >= ? AND ord <= ? AND id <> ?", new_list_id, new_card_order, old_card_order, @card.id]).to_a
         else
           p "HITTING UNKNOWN EDGE CASE"
-          debugger
         end
       p "pre-conversion"
       p increment_order

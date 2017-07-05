@@ -31,6 +31,7 @@ class CardEditModal extends React.Component{
 
   handleEnter(e){
     console.log(e);
+        debugger
     if (e.key === "Enter" && !e.shiftKey){
       e.preventDefault();
       this.props.handleCardEditSubmit(this.props.id, this.state.body, this.props.listId, this.props.cardIndex);
@@ -40,6 +41,7 @@ class CardEditModal extends React.Component{
   onEditSubmit(e){
     console.log("edit submit firiing")
     e.preventDefault();
+    debugger
     this.props.handleCardEditSubmit(this.props.id, this.state.body, this.props.listId, this.props.cardIndex);
   }
 

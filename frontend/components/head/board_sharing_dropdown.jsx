@@ -11,11 +11,7 @@ class BoardSharingDropdown extends React.Component {
    this.state = {modalPresence: false, title: "", availableUsers: []};
    this.handleToggleClick = this.handleToggleClick.bind(this);
    this.handleSubmit = this.handleSubmit.bind(this);
-
  }
-
-
-
 
  handleToggleClick() {
    this.setState(prevState => ({
@@ -85,7 +81,7 @@ class BoardSharingDropdown extends React.Component {
 
 
    if ( this.state.modalPresence === true ){
-     boardSharingModal = (<section className="create-board-dropdown-menu-container">
+     boardSharingModal = (<section className="share-board-dropdown-menu-container">
                             <div className="create-board-dropdown-menu-header">
                               Add Users to Board
                             </div>

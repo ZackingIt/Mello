@@ -49,10 +49,15 @@ filter: FlipH;
   left: 48vw;
 }
 
+#trello-header-icon{
+  font-size: 31px;
+
+}
+
+
 .create-board-dropdown-form{
   display: flex;
   flex-direction: column;
-
 }
 
 
@@ -61,7 +66,7 @@ filter: FlipH;
   background-color: #FFFFFF;
   font-family: "Helvetica Neue";
   border-radius: 3px;
-  box-shadow: 3px 3px 5px $light-grey;
+  box-shadow: 1px 1px 1px $light-grey;
   padding-top: 15px;
   padding-bottom: 4px;
   padding-right: 4px;
@@ -217,7 +222,7 @@ button.board-sharing-dropdown-container{
   background-color: #FFFFFF;
   font-family: "Helvetica Neue";
   border-radius: 3px;
-  box-shadow: 3px 3px 5px $light-grey;
+  box-shadow: 1px 1px 1px grey;
   padding-top: 15px;
   padding-bottom: 4px;
   border: 1px solid $light-grey;
@@ -322,7 +327,7 @@ div.outerEnclosingDiv{
     background-color: #FFFFFF;
     font-family: "Helvetica Neue";
     border-radius: 3px;
-    box-shadow: 3px 3px 5px #DCDCDC;
+    box-shadow: 1px 1px 1px #DCDCDC;
     padding-top: 3px;
     padding-bottom: 4px;
     border: 1px solid #DCDCDC;
@@ -330,6 +335,28 @@ div.outerEnclosingDiv{
     height: 151px;
     padding-right: 10px;
     padding-left: 10px;
+}
+
+section.share-board-dropdown-menu-container {
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 45px;
+    right: 14px;
+    width: 144px;
+    background-color: #FFFFFF;
+    font-family: "Helvetica Neue";
+    border-radius: 3px;
+    box-shadow: 1px 1px 1px #DCDCDC;
+    padding-top: 3px;
+    padding-bottom: 4px;
+    border: 1px solid #DCDCDC;
+    width: 271px;
+    height: auto;
+    padding-right: 10px;
+    padding-left: 10px;
+    padding-bottom: 10px;
 }
 
 .create-board-dropdown-menu-header{
@@ -361,7 +388,7 @@ input.create-board-dropdown-menu-input {
 
 button.create-board-dropdown-menu-button {
     background-color: #61BD4F;
-    box-shadow: 2px 2px 2px #0C3953;
+    box-shadow: 1px 1px 1px #0C3953;
     padding: 7px;
     font-weight: bold;
     font-size: 13px;

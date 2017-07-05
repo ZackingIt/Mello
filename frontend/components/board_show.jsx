@@ -60,7 +60,7 @@ class BoardShow extends React.Component{
     const {board, lists, cards} = this.props;
     let outputListArray = [];
     let addCardElement = (
-                <form value="Add a List" onSubmit={this.handleCreateList} className="add-list-button-container">
+                < form key={ 1001 } value="Add a List" onSubmit={this.handleCreateList} className="add-list-button-container">
                   <div className="add-list-title">
                     Add a List
                   </div>
@@ -150,6 +150,7 @@ const mapDispatchToProps = (dispatch) => {
     },
     handleCardEditSubmit: (card_id, body, list_id, order) => {
       // console.log("HANDLE CARD EDIT SUBMIT IS FIRING FROM FOUR LAYERS DOWN");
+      
       return dispatch( editCardText( {id: card_id, body: body, list_id: list_id, order: order }) );
 
     },

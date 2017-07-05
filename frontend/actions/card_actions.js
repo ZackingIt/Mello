@@ -53,6 +53,7 @@ export const moveCard = (cardParams) => {
 };
 
 export const editCardText = ( cardParams ) => {
+
   return (dispatch) => {
     APIUtil.editCard(cardParams).then( response => {
       dispatch(receiveCardEdit(response));

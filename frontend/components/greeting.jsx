@@ -28,7 +28,7 @@ class Greeting extends React.Component {
       return (
 
           <div className="landing-header">
-            <img className="landing-icon" src="https://www.clker.com/cliparts/1/3/R/K/0/D/black-white-rocket-md.png" />
+            
             <div className="trello-header-title-landing"> Mello </div>
             <div className="landing-header-spacer"></div>
                 <div className="landing-header-left">
