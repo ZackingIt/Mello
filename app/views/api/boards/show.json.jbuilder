@@ -21,6 +21,8 @@ end
 
 json.cards({})
 json.set! :cards do
+  json.listHoverIndex nil
+  json.cardHoverIndex nil
   @board.cards.each do |card|
     json.set! card.id do
       json.list_id card.list_id

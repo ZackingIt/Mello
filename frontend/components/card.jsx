@@ -4,8 +4,9 @@ import { values, merge } from 'lodash';
 import { findDOMNode } from 'react-dom';
 import { DragSource, DragDropContext, DragDropContextProvider, DropTarget } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
-import { moveCard } from '../actions/card_actions';
+import { moveCard, generateDropZone } from '../actions/card_actions';
 import CardEditModal from './card_edit_modal';
+
 
 const style = {
   border: 'none',
@@ -23,18 +24,20 @@ const ItemTypes = {
 
 const cardSource = {
   beginDrag(props) {
-
     // console.log("my starting state");
     myState = merge(myState, {starting: props});
     // console.log(myState);
-
     return {
       card_id: props.id,
       cardIndex: props.cardIndex,
       listIndex: props.listId,
-
     };
   },
+};
+
+const renderGreyDropZone = (listHoverIndex, cardHoverIndex) => {
+
+
 };
 
 var myState = {starting: {}, ending: {}};
@@ -72,36 +75,36 @@ const cardTarget = {
     const listHoverIndex = props.listId;
 
     console.log(`card: ` + cardHoverIndex + ` lists:` + listHoverIndex);
-
+    props.dropZone({cardHoverIndex: cardHoverIndex, listHoverIndex: listHoverIndex});
     if (cardStartingIndex === cardHoverIndex) {
       return;
     }
 
     // Determine rectangle on screen
-    const hoverBoundingRect = findDOMNode(component).getBoundingClientRect();
-
-    // Get vertical middle
-    const hoverMiddleY = (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2;
-
-    // Determine mouse position
-    const clientOffset = monitor.getClientOffset();
-
-    // Get pixels to the top
-    const hoverClientY = clientOffset.y - hoverBoundingRect.top;
-
-    // Only perform the move when the mouse has crossed half of the items height
-    // When dragging downwards, only move when the cursor is below 50%
-    // When dragging upwards, only move when the cursor is above 50%
-
-    // Dragging downwards
-    if (cardStartingIndex < cardHoverIndex && hoverClientY < hoverMiddleY) {
-      return;
-    }
-
-    // Dragging upwards
-    if (cardStartingIndex > cardHoverIndex && hoverClientY > hoverMiddleY) {
-      return;
-    }
+    // const hoverBoundingRect = findDOMNode(component).getBoundingClientRect();
+    //
+    // // Get vertical middle
+    // const hoverMiddleY = (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2;
+    //
+    // // Determine mouse position
+    // const clientOffset = monitor.getClientOffset();
+    //
+    // // Get pixels to the top
+    // const hoverClientY = clientOffset.y - hoverBoundingRect.top;
+    //
+    // // Only perform the move when the mouse has crossed half of the items height
+    // // When dragging downwards, only move when the cursor is below 50%
+    // // When dragging upwards, only move when the cursor is above 50%
+    //
+    // // Dragging downwards
+    // if (cardStartingIndex < cardHoverIndex && hoverClientY < hoverMiddleY) {
+    //   return;
+    // }
+    //
+    // // Dragging upwards
+    // if (cardStartingIndex > cardHoverIndex && hoverClientY > hoverMiddleY) {
+    //   return;
+    // }
 
     // Time to actually perform the action
     // props.moveCard(listStartingIndex, listHoverIndex, cardStartingIndex, cardHoverIndex);
@@ -118,7 +121,7 @@ const cardTarget = {
 class Card extends React.Component{
   constructor(props){
     super(props);
-    this.state = {modalPresence: false, title: ""};
+    this.state = {modalPresence: false, title: "", greyCard: false};
   }
 
   handleToggleClick() {
@@ -139,7 +142,7 @@ class Card extends React.Component{
     const { isDragging, connectDragSource, connectDropTarget } = this.props;
 
     const opacity = isDragging ? 0 : 1;
-      return connectDragSource(connectDropTarget(
+    return connectDragSource(connectDropTarget(
         <div>
           {<CardEditModal id={ this.props.id } listId={ this.props.listId } cardIndex={ this.props.cardIndex } bodyText={bodyText} handleCardEditSubmit={this.props.handleCardEditSubmit  } />}
         </div>
@@ -167,6 +170,10 @@ const mapDispatchToProps = (dispatch) => {
   return {
     moveCard: (thisState) => {
       return dispatch(moveCard( thisState ));
+    },
+
+    dropZone: (dropZoneParams) => {
+      return dispatch(generateDropZone( dropZoneParams ));
     },
   };
 };

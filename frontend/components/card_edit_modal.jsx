@@ -8,7 +8,7 @@ import HTML5Backend from 'react-dnd-html5-backend';
 class CardEditModal extends React.Component{
   constructor(props){
     super(props);
-    this.toggleBoardDropdown = this.toggleBoardDropdown.bind(this);
+    this.toggleModal = this.toggleModal.bind(this);
     this.handleModalEdit = this.handleModalEdit.bind(this);
     this.onEditSubmit = this.onEditSubmit.bind(this);
     this.state = {modalPresence: false, body: props.bodyText};
@@ -16,7 +16,7 @@ class CardEditModal extends React.Component{
 
   }
 
-  toggleBoardDropdown() {
+  toggleModal() {
     // console.log(" FIRING FROM LOCAL STATE -- clickthru works ");
     // console.log("my state is now");
     this.setState(prevState => ({
@@ -30,8 +30,6 @@ class CardEditModal extends React.Component{
   }
 
   handleEnter(e){
-    console.log(e);
-        debugger
     if (e.key === "Enter" && !e.shiftKey){
       e.preventDefault();
       this.props.handleCardEditSubmit(this.props.id, this.state.body, this.props.listId, this.props.cardIndex);
@@ -39,9 +37,7 @@ class CardEditModal extends React.Component{
   }
 
   onEditSubmit(e){
-    console.log("edit submit firiing")
     e.preventDefault();
-    debugger
     this.props.handleCardEditSubmit(this.props.id, this.state.body, this.props.listId, this.props.cardIndex);
   }
 
@@ -50,8 +46,10 @@ class CardEditModal extends React.Component{
     var bodyLength = (this.state.body.length) * 0.7 + 65;
     if ( this.state.modalPresence === false ){
       cardEditModal = (
-        <div onClick={ this.toggleBoardDropdown } className="card-item-element" >
-          {this.props.bodyText}
+        <div className="card-item-element-parent-grab">
+          <div onClick={ this.toggleModal } className="card-item-element" >
+            {this.props.bodyText}
+          </div>
         </div>
       );
     } else {

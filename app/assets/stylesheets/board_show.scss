@@ -82,10 +82,14 @@ $menu-hover-blue:#298FCA;
 
   word-wrap: break-word;
   overflow-wrap: break-word;
+}
 
-
-
-
+.card-item-element-parent-grab{
+  position: relative;
+  width: 100%;
+  height: 180%;
+  min-height: 20px;
+  // outline: 1px solid black;
 }
 
 .card-item-element:hover{

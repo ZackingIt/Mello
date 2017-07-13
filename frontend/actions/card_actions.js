@@ -5,6 +5,7 @@ import { values } from 'lodash';
 export const RECEIVE_CARD = "RECEIVE_CARD";
 export const UPDATE_CARD = "UPDATE_CARD";
 export const EDIT_CARD = "EDIT_CARD";
+export const CREATE_DROPZONE = "CREATE_DROPZONE";
 
 
 export const receiveCard = (response) => {
@@ -25,6 +26,13 @@ export const updateCard = (response) => {
   return {
     type: UPDATE_CARD,
     response: response,
+  };
+};
+
+export const createDropZone = (dropParams) => {
+  return {
+    type: CREATE_DROPZONE,
+    response: dropParams,
   };
 };
 
@@ -49,6 +57,13 @@ export const moveCard = (cardParams) => {
     APIUtil.moveCard(cardParams).then( response =>{
       dispatch(updateCard(response));
     });
+  };
+};
+
+export const generateDropZone = (dropParams) => {
+  
+  return (dispatch) => {
+    dispatch(createDropZone(dropParams));
   };
 };
 

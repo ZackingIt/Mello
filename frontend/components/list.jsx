@@ -1,3 +1,4 @@
+import { connect as connectOriginal } from 'react-redux';
 
 import React from 'react';
 import { values, merge } from 'lodash';
@@ -6,7 +7,25 @@ import { DragSource, DragDropContext, DragDropContextProvider, DropTarget } from
 import HTML5Backend from 'react-dnd-html5-backend';
 import Card from './card';
 import Masonry from 'react-masonry-component';
+import { moveCard } from '../actions/card_actions';
 
+var myState = {starting: {}, ending: {}};
+
+const cardSource = {
+  beginDrag(props) {
+
+    myState = merge(myState, {starting: props});
+    console.log("starting LIST state");
+    console.log(myState);
+
+    return {
+      card_id: props.id,
+      cardIndex: props.cardIndex,
+      listIndex: props.listId,
+
+    };
+  },
+};
 
 const listSource = {
   beginDrag(props) {
@@ -30,6 +49,73 @@ const ItemTypes = {
   LIST: 'list',
 };
 
+const listTarget = {
+  drop(props, monitor, component) {
+    console.log("LIST DROP TARGET ACTIVIATED");
+    if (monitor.didDrop()) {
+      // If you want, you can check whether some nested
+      // target already handled drop
+      return;
+    }
+
+    // Obtain the dragged item
+    const item = monitor.getItem();
+    // console.log(props)
+    // You can do something with it
+    // ChessActions.movePiece(item.fromPosition, props.position);
+
+
+    // You can also do nothing and return a drop result,
+    // which will be available as monitor.getDropResult()
+    // in the drag source's endDrag() method
+    return { moved: true };
+  },
+
+  hover(props, monitor, component) {
+    const listStartingIndex = monitor.getItem().listTarget;
+    const listHoverIndex = props.listTarget;
+    console.log("LIST INDEX PROPS");
+    console.log(props);
+
+
+    // // console.log("my listTarget Starting Index below");
+    // // console.log(listStartingIndex);
+    //
+    // // console.log("my listHover Index below (maybe)");
+    // // console.log(listHoverIndex);
+
+    // if (listStartingIndex === listHoverIndex) {
+    //   return;
+    // }
+    //
+    // // Determine rectangle on screen
+    // const hoverBoundingRect = findDOMNode(component).getBoundingClientRect();
+    //
+    // // Get vertical middle
+    // const hoverMiddleY = (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2;
+    //
+    // // Determine mouse position
+    // const clientOffset = monitor.getClientOffset();
+    //
+    // // Get pixels to the top
+    // const hoverClientY = clientOffset.y - hoverBoundingRect.top;
+    //
+    // // Only perform the move when the mouse has crossed half of the items height
+    // // When dragging downwards, only move when the cursor is below 50%
+    // // When dragging upwards, only move when the cursor is above 50%
+    //
+    // // Dragging downwards
+    // if (listStartingIndex < listHoverIndex && hoverClientY < hoverMiddleY) {
+    //   return;
+    // }
+    //
+    // // Dragging upwards
+    // if (listStartingIndex > listHoverIndex && hoverClientY > hoverMiddleY) {
+    //   return;
+    // }
+
+  },
+};
 
 
 class List extends React.Component{
@@ -86,13 +172,19 @@ class List extends React.Component{
     const cardsBodyArray = this.props.listObj.cardIds.map( (cardId) => {
       const currentCard = allCards[cardId];
       // return ( <div key={cardId} className="card-item-element"> {currentCard.body} </div> );
-      return (<Card
-        key={Math.random()*100}
-        id={cardId}
-        handleCardEditSubmit={this.props.handleCardEditSubmit}
-        listId={this.state.listId}
-        cardIndex={this.props.listObj.cardIds.indexOf(cardId)}
-        body={currentCard.body}/>);
+      return (
+        // connectDragSource(connectDropTarget(
+          <div>
+            <Card
+              key={Math.random()*100}
+              id={cardId}
+              handleCardEditSubmit={this.props.handleCardEditSubmit}
+              listId={this.state.listId}
+              cardIndex={this.props.listObj.cardIds.indexOf(cardId)}
+              body={currentCard.body}/>
+          </div>
+        // ))
+      );
     });
     // let cardsBodyArray = [];
     // for (let key in this.props.cards) {
@@ -136,121 +228,18 @@ class List extends React.Component{
           <button type="submit" className="add-card-button-element">Add</button>
         </form>
       </section>);
-      return connectDropTarget(
-            <div style={Object.assign({ opacity }, style)}> {listElement} </div>
-          );
 
+      return (
+        connectDragSource(connectDropTarget(
+          <div style={Object.assign({ opacity }, style)}>
+            {listElement}
+          </div>
+        ))
+      );
   }
 }
 
-const listTarget = {
 
-  drop(props, monitor, component) {
-    if (monitor.didDrop()) {
-      // If you want, you can check whether some nested
-      // target already handled drop
-      return;
-    }
-
-    // Obtain the dragged item
-    const item = monitor.getItem();
-    // console.log(props)
-    // You can do something with it
-    // ChessActions.movePiece(item.fromPosition, props.position);
-
-
-    // You can also do nothing and return a drop result,
-    // which will be available as monitor.getDropResult()
-    // in the drag source's endDrag() method
-    return { moved: true };
-  },
-
-  hover(props, monitor, component) {
-    const listStartingIndex = monitor.getItem().listTarget;
-    const listHoverIndex = props.listTarget;
-    console.log("LIST INDEX PROPS");
-    console.log(props);
-
-    
-    // // console.log("my listTarget Starting Index below");
-    // // console.log(listStartingIndex);
-    //
-    // // console.log("my listHover Index below (maybe)");
-    // // console.log(listHoverIndex);
-
-    if (listStartingIndex === listHoverIndex) {
-      return;
-    }
-
-    // Determine rectangle on screen
-    const hoverBoundingRect = findDOMNode(component).getBoundingClientRect();
-
-    // Get vertical middle
-    const hoverMiddleY = (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2;
-
-    // Determine mouse position
-    const clientOffset = monitor.getClientOffset();
-
-    // Get pixels to the top
-    const hoverClientY = clientOffset.y - hoverBoundingRect.top;
-
-    // Only perform the move when the mouse has crossed half of the items height
-    // When dragging downwards, only move when the cursor is below 50%
-    // When dragging upwards, only move when the cursor is above 50%
-
-    // Dragging downwards
-    if (listStartingIndex < listHoverIndex && hoverClientY < hoverMiddleY) {
-      return;
-    }
-
-    // Dragging upwards
-    if (listStartingIndex > listHoverIndex && hoverClientY > hoverMiddleY) {
-      return;
-    }
-
-  },
-};
-
-const cardTarget = {
-
-  drop(props, monitor, component) {
-    if (monitor.didDrop()) {
-      return;
-    }
-
-    // console.log("my drop target is below");
-    // console.log(props);
-
-    const item = monitor.getItem();
-    // console.log("my item");
-    // console.log(item);
-
-    return { moved: true };
-  },
-
-  hover(props, monitor, component) {
-    const cardStartingIndex = monitor.getItem().cardIndex;
-    const listStartingIndex = monitor.getItem().listTarget;
-    const cardHoverIndex = props.cardIndex;
-    const listHoverIndex = props.listTarget;
-
-    if (cardStartingIndex === cardHoverIndex) {
-      return;
-    }
-
-    const hoverBoundingRect = findDOMNode(component).getBoundingClientRect();
-    const hoverMiddleY = (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2;
-    const clientOffset = monitor.getClientOffset();
-    const hoverClientY = clientOffset.y - hoverBoundingRect.top;
-    if (cardStartingIndex < cardHoverIndex && hoverClientY < hoverMiddleY) {
-      return;
-    }
-    if (cardStartingIndex > cardHoverIndex && hoverClientY > hoverMiddleY) {
-      return;
-    }
-
-  },
-};
 
 function connectSource(connect, monitor){
   return{
@@ -266,4 +255,19 @@ function connectTarget(connect){
   };
 }
 
-export default (DropTarget(ItemTypes.CARD, cardTarget, connectTarget))(List);
+
+// export default (
+//   DragSource( ItemTypes.CARD, cardSource, connectSource)(
+//     DropTarget(ItemTypes.LIST, listTarget, connectTarget)(List))
+// );
+
+const mapDispatchToProps = (dispatch) => {
+  return {};
+};
+
+
+
+export default connectOriginal(null, mapDispatchToProps)(
+  DragSource( ItemTypes.CARD, cardSource, connectSource)(
+  DropTarget(ItemTypes.LIST, listTarget, connectTarget)(List))
+);

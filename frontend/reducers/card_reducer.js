@@ -1,5 +1,6 @@
 import { RECEIVE_BOARD } from '../actions/board_actions';
-import { RECEIVE_CARD, UPDATE_CARD, EDIT_CARD } from '../actions/card_actions';
+import { RECEIVE_CARD, UPDATE_CARD, EDIT_CARD, CREATE_DROPZONE }
+from '../actions/card_actions';
 import { LOGOUT } from '../actions/session_actions';
 
 import { merge } from 'lodash';
@@ -29,6 +30,13 @@ const cardReducer = (state = {}, action) => {
       newState = merge({}, state, {[newCard.id]: newCard});
       // console.log("my new state");
       // console.log(newState);
+      return newState;
+    case CREATE_DROPZONE:
+      console.log("my action.response");
+      console.log(action.response);
+      let listHoverIndex = action.response.listHoverIndex;
+      let cardHoverIndex = action.response.cardHoverIndex;
+      newState = merge({}, state, {listHoverIndex: listHoverIndex, cardHoverIndex: cardHoverIndex});
       return newState;
     case EDIT_CARD:
       // console.log("my EDIT CARD STATE");
