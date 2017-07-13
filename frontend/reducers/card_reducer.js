@@ -41,9 +41,13 @@ const cardReducer = (state = {}, action) => {
     case EDIT_CARD:
       // console.log("my EDIT CARD STATE");
       // console.log(action.response);
-      newCard = action.response;
-      newState = merge({}, state, {[newCard.id]: newCard});
-      return newState;
+      if (action.response){
+        newCard = action.response;
+        newState = merge({}, state, {[newCard.id]: newCard});
+        return newState;
+      } else {
+        return state;
+      }
     case LOGOUT:
         return {};
     case "IGNORE":

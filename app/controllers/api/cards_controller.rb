@@ -11,11 +11,13 @@ class Api::CardsController < ApplicationController
   end
 
   def update
-    @card = Card.find(params[:id])
-    if @card.update(card_params)
-      render json: @card
-    else
-      render json: @card.errors.full_messages, status: 422
+    if params[:id] != "undefined"
+      @card = Card.find(params[:id])
+      if @card.update(card_params)
+        render json: @card
+      else
+        render json: @card.errors.full_messages, status: 422
+      end
     end
   end
 

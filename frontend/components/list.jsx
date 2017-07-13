@@ -170,7 +170,13 @@ class List extends React.Component{
     // console.log("higher ord props of specific list");
     // console.log(this.props);
     const cardsBodyArray = this.props.listObj.cardIds.map( (cardId) => {
-      const currentCard = allCards[cardId];
+    let currentCard = allCards[cardId];
+    // if (!currentCard){
+    //   currentCard = {body: ""};
+    //   console.log('entering current card checker')
+    //   currentCard['body'] = "";
+    // }
+
       // return ( <div key={cardId} className="card-item-element"> {currentCard.body} </div> );
       return (
         // connectDragSource(connectDropTarget(

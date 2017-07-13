@@ -107,7 +107,7 @@ const cardTarget = {
     }
 
     // Time to actually perform the action
-    props.moveCard(listStartingIndex, listHoverIndex, cardStartingIndex, cardHoverIndex);
+    // props.moveCard(listStartingIndex, listHoverIndex, cardStartingIndex, cardHoverIndex);
 
 
     // Note: we're mutating the monitor item here!
