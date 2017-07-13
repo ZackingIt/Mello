@@ -75,39 +75,39 @@ const cardTarget = {
     const listHoverIndex = props.listId;
 
     console.log(`card: ` + cardHoverIndex + ` lists:` + listHoverIndex);
-    props.dropZone({cardHoverIndex: cardHoverIndex, listHoverIndex: listHoverIndex});
+    // props.dropZone({cardHoverIndex: cardHoverIndex, listHoverIndex: listHoverIndex});
     if (cardStartingIndex === cardHoverIndex) {
       return;
     }
 
     // Determine rectangle on screen
-    // const hoverBoundingRect = findDOMNode(component).getBoundingClientRect();
-    //
-    // // Get vertical middle
-    // const hoverMiddleY = (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2;
-    //
-    // // Determine mouse position
-    // const clientOffset = monitor.getClientOffset();
-    //
-    // // Get pixels to the top
-    // const hoverClientY = clientOffset.y - hoverBoundingRect.top;
-    //
-    // // Only perform the move when the mouse has crossed half of the items height
-    // // When dragging downwards, only move when the cursor is below 50%
-    // // When dragging upwards, only move when the cursor is above 50%
-    //
-    // // Dragging downwards
-    // if (cardStartingIndex < cardHoverIndex && hoverClientY < hoverMiddleY) {
-    //   return;
-    // }
-    //
-    // // Dragging upwards
-    // if (cardStartingIndex > cardHoverIndex && hoverClientY > hoverMiddleY) {
-    //   return;
-    // }
+    const hoverBoundingRect = findDOMNode(component).getBoundingClientRect();
+
+    // Get vertical middle
+    const hoverMiddleY = (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2;
+
+    // Determine mouse position
+    const clientOffset = monitor.getClientOffset();
+
+    // Get pixels to the top
+    const hoverClientY = clientOffset.y - hoverBoundingRect.top;
+
+    // Only perform the move when the mouse has crossed half of the items height
+    // When dragging downwards, only move when the cursor is below 50%
+    // When dragging upwards, only move when the cursor is above 50%
+
+    // Dragging downwards
+    if (cardStartingIndex < cardHoverIndex && hoverClientY < hoverMiddleY) {
+      return;
+    }
+
+    // Dragging upwards
+    if (cardStartingIndex > cardHoverIndex && hoverClientY > hoverMiddleY) {
+      return;
+    }
 
     // Time to actually perform the action
-    // props.moveCard(listStartingIndex, listHoverIndex, cardStartingIndex, cardHoverIndex);
+    props.moveCard(listStartingIndex, listHoverIndex, cardStartingIndex, cardHoverIndex);
 
 
     // Note: we're mutating the monitor item here!
@@ -172,9 +172,9 @@ const mapDispatchToProps = (dispatch) => {
       return dispatch(moveCard( thisState ));
     },
 
-    dropZone: (dropZoneParams) => {
-      return dispatch(generateDropZone( dropZoneParams ));
-    },
+    // dropZone: (dropZoneParams) => {
+    //   return dispatch(generateDropZone( dropZoneParams ));
+    // },
   };
 };
 
