@@ -13,7 +13,8 @@ json.set! :lists do
       json.board_id list.board_id
       json.title list.title
       json.ord list.ord
-      json.cardIds list.cards.map{|el| el.id}
+      json.cardIds list.cards.sort_by{|card| card.ord}.map{|card| card.id}
+      # json.cardIds list.cards.map{|el| el.id}
     end
   end
 end

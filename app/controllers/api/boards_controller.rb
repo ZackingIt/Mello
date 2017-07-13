@@ -35,6 +35,11 @@ class Api::BoardsController < ApplicationController
 
     @usernames_not_shared_with = User.where(id: @user_ids_not_shared_with)
                                 .map{|user| user.username}
+    p "My lits"
+    p @board.lists
+
+    p "My cards"
+    @board.lists.each{|list| p list.cards}
     render :show
   end
 
