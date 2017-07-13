@@ -168,7 +168,10 @@ const listTarget = {
   hover(props, monitor, component) {
     const listStartingIndex = monitor.getItem().listTarget;
     const listHoverIndex = props.listTarget;
+    console.log("LIST INDEX PROPS");
+    console.log(props);
 
+    
     // // console.log("my listTarget Starting Index below");
     // // console.log(listStartingIndex);
     //
@@ -219,6 +222,9 @@ const cardTarget = {
     // console.log(props);
 
     const item = monitor.getItem();
+    // console.log("my item");
+    // console.log(item);
+
     return { moved: true };
   },
 

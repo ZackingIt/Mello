@@ -50,8 +50,8 @@ const cardTarget = {
 
     // Obtain the dragged item
     const item = monitor.getItem();
-    // console.log("my props");
-    // console.log(props);
+    console.log("my props");
+    console.log(props);
     // console.log("my ending state");
     myState = merge(myState, {ending: props});
     // console.log(myState);
@@ -69,7 +69,9 @@ const cardTarget = {
     const listStartingIndex = monitor.getItem().listIndex;
 
     const cardHoverIndex = props.cardIndex;
-    const listHoverIndex = props.listIndex;
+    const listHoverIndex = props.listId;
+
+    console.log(`card: ` + cardHoverIndex + ` lists:` + listHoverIndex);
 
     if (cardStartingIndex === cardHoverIndex) {
       return;
