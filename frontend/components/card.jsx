@@ -55,8 +55,6 @@ const cardTarget = {
 
     // Obtain the dragged item
     const item = monitor.getItem();
-    console.log("my props");
-    console.log(props);
     // console.log("my ending state");
     myState = merge(myState, {ending: props});
     // console.log(myState);

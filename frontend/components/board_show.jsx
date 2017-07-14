@@ -35,7 +35,6 @@ class BoardShow extends React.Component{
   }
 
   handleEnter(e){
-    console.log(e);
     if (e.key === "Enter" && !e.shiftKey){
       e.preventDefault();
       const boardId = parseInt(this.props.match.params.id);
