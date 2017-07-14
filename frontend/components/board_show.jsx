@@ -57,7 +57,7 @@ class BoardShow extends React.Component{
   }
 
   render() {
-    const {board, lists, cards} = this.props;
+    const {board, lists, cards, hovering} = this.props;
     let outputListArray = [];
     let addCardElement = (
                 < form key={ 1001 } value="Add a List" onSubmit={this.handleCreateList} className="add-list-button-container">
@@ -79,7 +79,9 @@ class BoardShow extends React.Component{
           createCard={this.props.createCard}
           listId={parseInt(key)}
           listObj={listObj}
-          cards={cards}/>);
+          cards={cards}
+          hovering={hovering}
+          />);
       }
     }
     outputListArray.push(addCardElement);
@@ -131,11 +133,11 @@ const mapStateToProps = (state, ownProps) => {
       ownLists[key] = state.lists[key];
     }
   }
-
   return {
     board: state.boards[ownProps.match.params.id],
     lists: state.lists, // select the lists for this board - write a SELECTOR
     cards: state.cards, // select the cards for these lists
+    hovering: state.hover
   };
 };
 
@@ -150,7 +152,7 @@ const mapDispatchToProps = (dispatch) => {
     },
     handleCardEditSubmit: (card_id, body, list_id, order) => {
       // console.log("HANDLE CARD EDIT SUBMIT IS FIRING FROM FOUR LAYERS DOWN");
-      
+
       return dispatch( editCardText( {id: card_id, body: body, list_id: list_id, order: order }) );
 
     },

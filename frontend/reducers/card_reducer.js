@@ -31,13 +31,6 @@ const cardReducer = (state = {}, action) => {
       // console.log("my new state");
       // console.log(newState);
       return newState;
-    case CREATE_DROPZONE:
-      // console.log("my action.response");
-      // console.log(action.response);
-      let listHoverIndex = action.response.listHoverIndex;
-      let cardHoverIndex = action.response.cardHoverIndex;
-      newState = merge({}, state, {listHoverIndex: listHoverIndex, cardHoverIndex: cardHoverIndex});
-      return newState;
     case EDIT_CARD:
       // console.log("my EDIT CARD STATE");
       // console.log(action.response);

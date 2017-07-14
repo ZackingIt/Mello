@@ -22,7 +22,6 @@ const cardSource = {
       card_id: props.id,
       cardIndex: props.cardIndex,
       listIndex: props.listId,
-
     };
   },
 };
@@ -41,7 +40,8 @@ const style = {
   padding: '0px',
   marginBottom: '.5rem',
   backgroundColor: 'none',
-  cursor: 'move',
+  cursor: 'pointer',
+  opacity: 1.0,
 };
 
 const ItemTypes = {
@@ -161,37 +161,25 @@ class List extends React.Component{
       return <div key={Math.random()*100}></div>;
     }
 
-    const opacity = isDragging ? 0 : 1;
-
+    const opacity = 1;
     const listTitle = this.props.listObj.title;
-    const { isDragging, connectDragSource, connectDropTarget } = this.props;
-
+    const { isDragging, connectDragSource, connectDropTarget, hovering } = this.props;
     const allCards = this.props.cards;
-    // console.log("higher ord props of specific list");
-    // console.log(this.props);
-    const cardsBodyArray = this.props.listObj.cardIds.map( (cardId) => {
-    let currentCard = allCards[cardId];
-    // if (!currentCard){
-    //   currentCard = {body: ""};
-    //   console.log('entering current card checker')
-    //   currentCard['body'] = "";
-    // }
-
-      // return ( <div key={cardId} className="card-item-element"> {currentCard.body} </div> );
-      return (
-        // connectDragSource(connectDropTarget(
-          <div>
-            <Card
-              key={Math.random()*100}
-              id={cardId}
-              handleCardEditSubmit={this.props.handleCardEditSubmit}
-              listId={this.state.listId}
-              cardIndex={this.props.listObj.cardIds.indexOf(cardId)}
-              body={currentCard.body}/>
-          </div>
-        // ))
-      );
-    });
+    const cardsBodyArray = this.props.listObj.cardIds.map( (cardId, idx) => {
+      let currentCard = allCards[cardId];
+        return (
+            <div key={idx}>
+              <Card
+                hovering={hovering}
+                id={cardId}
+                handleCardEditSubmit={this.props.handleCardEditSubmit}
+                listId={this.state.listId}
+                cardIndex={this.props.listObj.cardIds.indexOf(cardId)}
+                body={currentCard.body}/>
+            </div>
+        );
+      }
+    );
     // let cardsBodyArray = [];
     // for (let key in this.props.cards) {
     //   if ( this.props.cards[key].list_id == this.props.listId ){
@@ -245,8 +233,6 @@ class List extends React.Component{
   }
 }
 
-
-
 function connectSource(connect, monitor){
   return{
     connectDragPreview: connect.dragPreview(),
@@ -261,17 +247,9 @@ function connectTarget(connect){
   };
 }
 
-
-// export default (
-//   DragSource( ItemTypes.CARD, cardSource, connectSource)(
-//     DropTarget(ItemTypes.LIST, listTarget, connectTarget)(List))
-// );
-
 const mapDispatchToProps = (dispatch) => {
   return {};
 };
-
-
 
 export default connectOriginal(null, mapDispatchToProps)(
   DragSource( ItemTypes.CARD, cardSource, connectSource)(

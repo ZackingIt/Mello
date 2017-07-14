@@ -4,7 +4,8 @@ import { values, merge } from 'lodash';
 import { findDOMNode } from 'react-dom';
 import { DragSource, DragDropContext, DragDropContextProvider, DropTarget } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
-import { moveCard, generateDropZone } from '../actions/card_actions';
+import { moveCard } from '../actions/card_actions';
+import { generateDropZone } from '../actions/hover_actions';
 import CardEditModal from './card_edit_modal';
 
 
@@ -13,7 +14,8 @@ const style = {
   padding: 'none',
   marginBottom: '.5rem',
   backgroundColor: 'none',
-  cursor: 'move',
+  cursor: 'pointer',
+  opacity: 1.0,
 };
 
 const ItemTypes = {
@@ -66,16 +68,19 @@ const cardTarget = {
   },
 
   hover(props, monitor, component) {
-    // debugger
-
     const cardStartingIndex = monitor.getItem().cardIndex;
     const listStartingIndex = monitor.getItem().listIndex;
 
     const cardHoverIndex = props.cardIndex;
     const listHoverIndex = props.listId;
+    // component.isMounted = true;
+    // console.log("HOVER PROPS")
+    // console.log(props)
+    // console.log("my component");
+    // console.log(component);
 
-    console.log(`card: ` + cardHoverIndex + ` lists:` + listHoverIndex);
-    // props.dropZone({cardHoverIndex: cardHoverIndex, listHoverIndex: listHoverIndex});
+    // console.log(`card: ` + cardHoverIndex + ` lists: ` + listHoverIndex);
+    props.dropZone({cardHoverIndex: props.id, listHoverIndex: listHoverIndex});
     if (cardStartingIndex === cardHoverIndex) {
       return;
     }
@@ -133,18 +138,44 @@ class Card extends React.Component{
 
 
   render(){
-
+    // console.log("PROPS");
     if (!this.props.body) {
       return <div></div>;
     }
+
+    // console.log("CARD");
+    // console.log(this.props.id);
+    // console.log(this.props.listId);
+    //
+    // console.log("HOVERING");
+    // console.log(this.props.hovering.cardHoverIndex);
+    // console.log(this.props.hovering.listHoverIndex);
+    //
+
     let bodyText = this.props.body;
+    let greyModal =(
+      <div className="">
+
+      </div>);
+    if (this.props.id === this.props.hovering.cardHoverIndex && this.props.listId === this.props.hovering.listHoverIndex){
+      greyModal = (
+        <div className="grey-box">
+
+        </div>);
+    }
 
     const { isDragging, connectDragSource, connectDropTarget } = this.props;
 
-    const opacity = isDragging ? 0 : 1;
+    const opacity = 1;
     return connectDragSource(connectDropTarget(
         <div>
-          {<CardEditModal id={ this.props.id } listId={ this.props.listId } cardIndex={ this.props.cardIndex } bodyText={bodyText} handleCardEditSubmit={this.props.handleCardEditSubmit  } />}
+          {<CardEditModal id={ this.props.id }
+            listId={ this.props.listId }
+            cardIndex={ this.props.cardIndex }
+            bodyText={bodyText}
+            handleCardEditSubmit={this.props.handleCardEditSubmit}
+          />}
+          {greyModal}
         </div>
 
       )
@@ -172,9 +203,9 @@ const mapDispatchToProps = (dispatch) => {
       return dispatch(moveCard( thisState ));
     },
 
-    // dropZone: (dropZoneParams) => {
-    //   return dispatch(generateDropZone( dropZoneParams ));
-    // },
+    dropZone: (dropZoneParams) => {
+      return dispatch(generateDropZone( dropZoneParams ));
+    },
   };
 };
 

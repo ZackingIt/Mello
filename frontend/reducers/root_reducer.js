@@ -5,6 +5,7 @@ import listReducer from './list_reducer';
 import cardReducer from './card_reducer';
 import userReducer from './user_reducer';
 import sharedBoardReducer from './shared_board_reducer';
+import hoverReducer from './hover_reducer';
 
 
 const rootReducer = combineReducers({
@@ -14,6 +15,7 @@ const rootReducer = combineReducers({
   cards: cardReducer,
   users: userReducer,
   shared_boards: sharedBoardReducer,
+  hover: hoverReducer,
 });
 
 export default rootReducer;

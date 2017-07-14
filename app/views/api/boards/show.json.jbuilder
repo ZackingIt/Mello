@@ -21,8 +21,6 @@ end
 
 json.cards({})
 json.set! :cards do
-  json.listHoverIndex nil
-  json.cardHoverIndex nil
   @board.cards.each do |card|
     json.set! card.id do
       json.list_id card.list_id
@@ -43,4 +41,9 @@ json.set! :user_sharing do
     json.unshared_usernames @usernames_not_shared_with
   end
   # json.unshared_users @users_not_shared_with
+end
+
+json.set! :hovering do
+  json.listHoverIndex nil
+  json.cardHoverIndex nil
 end
