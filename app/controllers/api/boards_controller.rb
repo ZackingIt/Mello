@@ -10,6 +10,7 @@ class Api::BoardsController < ApplicationController
 
   def create
     @board = current_user.boards.new(board_params)
+    # same as below:
     # @board = Board.new(board_params)
     # @board.author_id = current_user.id
 
@@ -35,10 +36,6 @@ class Api::BoardsController < ApplicationController
 
     @usernames_not_shared_with = User.where(id: @user_ids_not_shared_with)
                                 .map{|user| user.username}
-    p "My lits"
-    p @board.lists
-
-    p "My cards"
     @board.lists.each{|list| p list.cards}
     render :show
   end
