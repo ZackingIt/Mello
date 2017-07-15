@@ -14,14 +14,11 @@ const hoverReducer = (state = {}, action) => {
 
   switch (action.type){
     case CREATE_DROPZONE:
-    // console.log("CREATE_DROPZONE");
-    // console.log(action);
     return state;
       // if (action.response.listHoverIndex){
       //   let listHoverIndex = action.response.listHoverIndex;
       //   let cardHoverIndex = action.response.cardHoverIndex;
       //
-      //   // console.log(`listHoverIndex: ` + listHoverIndex);
       //   newState = merge({}, state, {listHoverIndex: listHoverIndex, cardHoverIndex: cardHoverIndex});
       //   return newState;
       // } else {

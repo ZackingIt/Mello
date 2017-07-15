@@ -15,9 +15,6 @@ const cardSource = {
   beginDrag(props) {
 
     myState = merge(myState, {starting: props});
-    console.log("starting LIST state");
-    console.log(myState);
-
     return {
       card_id: props.id,
       cardIndex: props.cardIndex,
@@ -51,7 +48,6 @@ const ItemTypes = {
 
 const listTarget = {
   drop(props, monitor, component) {
-    console.log("LIST DROP TARGET ACTIVIATED");
     if (monitor.didDrop()) {
       // If you want, you can check whether some nested
       // target already handled drop
@@ -60,29 +56,12 @@ const listTarget = {
 
     // Obtain the dragged item
     const item = monitor.getItem();
-    // console.log(props)
-    // You can do something with it
-    // ChessActions.movePiece(item.fromPosition, props.position);
-
-
-    // You can also do nothing and return a drop result,
-    // which will be available as monitor.getDropResult()
-    // in the drag source's endDrag() method
     return { moved: true };
   },
 
   hover(props, monitor, component) {
     const listStartingIndex = monitor.getItem().listTarget;
     const listHoverIndex = props.listTarget;
-    console.log("LIST INDEX PROPS");
-    console.log(props);
-
-
-    // // console.log("my listTarget Starting Index below");
-    // // console.log(listStartingIndex);
-    //
-    // // console.log("my listHover Index below (maybe)");
-    // // console.log(listHoverIndex);
 
     if (listStartingIndex === listHoverIndex) {
       return;
@@ -121,8 +100,6 @@ const listTarget = {
 class List extends React.Component{
   constructor(props){
     super(props);
-    // console.log("my constructor props below")
-    // console.log(props)
     this.state = {cardBody: "", listId: props.listId, ord: values(props.listObj.cardIds).length};
     this.handleCreateCard = this.handleCreateCard.bind(this);
     this.handleCreateCardBodyChange = this.handleCreateCardBodyChange.bind(this);
@@ -151,11 +128,6 @@ class List extends React.Component{
     }
   }
 
-
-  //arguments of bind are evaluated when bind is invoked(at moment of binding, not onclick)
-  //therefore putting params in bind when the params are async is dangerous -- binding will not sync with params
-  //our method here works because render is re-called, so bind is re-bound at every keystroke.
-
   render(){
     if (!this.props.listObj) {
       return <div key={Math.random()*100}></div>;
@@ -180,6 +152,8 @@ class List extends React.Component{
         );
       }
     );
+
+    //async code
     // let cardsBodyArray = [];
     // for (let key in this.props.cards) {
     //   if ( this.props.cards[key].list_id == this.props.listId ){
@@ -193,16 +167,10 @@ class List extends React.Component{
     //   return (parseInt(a.ord) - parseInt(b.ord));
     // }
     //
-    // // console.log("my card body array before sorting");
-    // // console.log(cardsBodyArray);
     // cardsBodyArray.sort(compare);
-    // // console.log("my card body array after sorting");
-    // // console.log(cardsBodyArray);
     // let sortedWrappedCardArray = [];
     // sortedWrappedCardArray = cardsBodyArray.map( ( currentCard ) => {
     //   debugger
-    //   // // console.log("my listObj card indices are below")
-    //   // // console.log(this.props.listObj.cardIds.indexOf(parseInt(currentCard.id)))
     //   return (<Card key={Math.random()*100} id={parseInt(currentCard.id)} listId={parseInt(this.state.listId)} cardIndex={currentCard.ord} body={currentCard.body}/>);
     // });
 

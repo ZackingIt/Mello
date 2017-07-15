@@ -11,8 +11,6 @@ import { createCard, receiveCardEdit, editCardText } from '../actions/card_actio
 import onClickOutside from 'react-onclickoutside';
 import Masonry from 'react-masonry-component';
 
-
-
 class BoardShow extends React.Component{
   constructor(props){
     super(props);
@@ -119,12 +117,7 @@ class BoardShow extends React.Component{
 
 
 
-//how do i know what my state is initially?
-//why doesn't mapstateToProps run on page load? re: debugger?
-
 const mapStateToProps = (state, ownProps) => {
-  // remember that state is the GLOBAL state
-  // state.boards is the return of the entire boardReducer
 
   let ownLists = {};
   for (let key in state.lists){
@@ -150,7 +143,6 @@ const mapDispatchToProps = (dispatch) => {
       return dispatch(createList({ board_id: board_id, ord: ord, title: title} ));
     },
     handleCardEditSubmit: (card_id, body, list_id, order) => {
-      // console.log("HANDLE CARD EDIT SUBMIT IS FIRING FROM FOUR LAYERS DOWN");
 
       return dispatch( editCardText( {id: card_id, body: body, list_id: list_id, order: order }) );
 

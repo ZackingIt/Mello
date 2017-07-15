@@ -17,8 +17,6 @@ class CardEditModal extends React.Component{
   }
 
   toggleModal() {
-    // console.log(" FIRING FROM LOCAL STATE -- clickthru works ");
-    // console.log("my state is now");
     this.setState(prevState => ({
       modalPresence: !prevState.modalPresence
     }));

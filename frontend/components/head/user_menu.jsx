@@ -29,21 +29,17 @@ class UserMenu extends React.Component {
   }
 
   toggleUserDropdown(){
-    //// console.log("woof woof");
     this.setState(prevState => ({
       modalPresence: !prevState.modalPresence
     }));
   }
 
   handleEnter(e){
-    //e.key and e.shiftkey
     if (e.key === "enter"){
       this.setState(prevState => ({
         modalPresence: false
       }));
     }
-    //keyhandler on the input field AND textarea
-    //clickhandler on the button
   }
 
   render(){

@@ -26,9 +26,7 @@ const ItemTypes = {
 
 const cardSource = {
   beginDrag(props) {
-    // console.log("my starting state");
     myState = merge(myState, {starting: props});
-    // console.log(myState);
     return {
       card_id: props.id,
       cardIndex: props.cardIndex,
@@ -55,9 +53,7 @@ const cardTarget = {
 
     // Obtain the dragged item
     const item = monitor.getItem();
-    // console.log("my ending state");
     myState = merge(myState, {ending: props});
-    // console.log(myState);
     props.moveCard(myState);
     // You can also do nothing and return a drop result,
     // which will be available as monitor.getDropResult()
@@ -71,14 +67,8 @@ const cardTarget = {
 
     const cardHoverIndex = props.cardIndex;
     const listHoverIndex = props.listId;
-    // component.isMounted = true;
-    // console.log("HOVER PROPS")
-    // console.log(props)
-    // console.log("my component");
-    // console.log(component);
 
-    // console.log(`card: ` + cardHoverIndex + ` lists: ` + listHoverIndex);
-    props.dropZone({cardHoverIndex: props.id, listHoverIndex: listHoverIndex});
+    // props.dropZone({cardHoverIndex: props.id, listHoverIndex: listHoverIndex});
     if (cardStartingIndex === cardHoverIndex) {
       return;
     }
@@ -109,15 +99,6 @@ const cardTarget = {
       return;
     }
 
-    // Time to actually perform the action
-    // props.moveCard(listStartingIndex, listHoverIndex, cardStartingIndex, cardHoverIndex);
-
-
-    // Note: we're mutating the monitor item here!
-    // Generally it's better to avoid mutations,
-    // but it's good here for the sake of performance
-    // to avoid expensive index searches.
-    // monitor.getItem().cardIndex = cardHoverIndex;
   },
 };
 
@@ -136,19 +117,9 @@ class Card extends React.Component{
 
 
   render(){
-    // console.log("PROPS");
     if (!this.props.body) {
       return <div></div>;
     }
-
-    // console.log("CARD");
-    // console.log(this.props.id);
-    // console.log(this.props.listId);
-    //
-    // console.log("HOVERING");
-    // console.log(this.props.hovering.cardHoverIndex);
-    // console.log(this.props.hovering.listHoverIndex);
-    //
 
     let bodyText = this.props.body;
     let greyModal =(
