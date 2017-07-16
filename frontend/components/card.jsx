@@ -22,10 +22,14 @@ const ItemTypes = {
   CARD: 'card',
   LIST: 'list',
 };
+var myState = {starting: {}, ending: {}};
 
 
 const cardSource = {
   beginDrag(props) {
+
+  myState = merge(myState, {starting: props});
+
     return {
       card_id: props.id,
       cardIndex: props.cardIndex,
@@ -34,7 +38,6 @@ const cardSource = {
   },
 };
 
-var myState = {starting: {}, ending: {}};
 
 const cardTarget = {
 
