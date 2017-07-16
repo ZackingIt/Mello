@@ -34,6 +34,8 @@ const cardSource = {
   },
 };
 
+var myState = {starting: {}, ending: {}};
+
 const cardTarget = {
 
   drop(props, monitor, component) {
