@@ -1,10 +1,7 @@
 class Api::MovesController < ApplicationController
 
   def create
-    p "PARAMSSSSS"
-    p params
     if (params.flatten.include?("cardLoad"))
-      p "ENTERING SONNN "
       my_id = params[:cardLoad][:starting][:id].to_i
       @card = Card.find(my_id)
       old_list = @card.list
