@@ -28,8 +28,10 @@ class Greeting extends React.Component {
       return (
 
           <div className="landing-header">
-            
-            <div className="trello-header-title-landing"> Mello </div>
+            <div className="trello-logo-wrapper">
+              <img className="trello-landing-logo" src="http://i.imgur.com/ZJyMBuS.png" />
+              <div className="trello-header-title-landing"> Mello </div>
+            </div>
             <div className="landing-header-spacer"></div>
                 <div className="landing-header-left">
                   <Link className="landing-login-bar" to='/login'>Log In</Link>

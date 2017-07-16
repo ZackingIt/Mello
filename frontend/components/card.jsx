@@ -26,7 +26,6 @@ const ItemTypes = {
 
 const cardSource = {
   beginDrag(props) {
-    myState = merge(myState, {starting: props});
     return {
       card_id: props.id,
       cardIndex: props.cardIndex,
@@ -35,19 +34,10 @@ const cardSource = {
   },
 };
 
-const renderGreyDropZone = (listHoverIndex, cardHoverIndex) => {
-
-
-};
-
-var myState = {starting: {}, ending: {}};
-
 const cardTarget = {
 
   drop(props, monitor, component) {
     if (monitor.didDrop()) {
-      // If you want, you can check whether some nested
-      // target already handled drop
       return;
     }
 

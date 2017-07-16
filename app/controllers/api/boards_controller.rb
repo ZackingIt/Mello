@@ -10,7 +10,7 @@ class Api::BoardsController < ApplicationController
 
   def create
     @board = current_user.boards.new(board_params)
-    # same as below:
+    # One-liner above equivalent to code below:
     # @board = Board.new(board_params)
     # @board.author_id = current_user.id
 

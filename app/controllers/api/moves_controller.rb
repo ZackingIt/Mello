@@ -6,9 +6,9 @@ class Api::MovesController < ApplicationController
       @card = Card.find(my_id)
       old_list = @card.list
       new_cards = old_list.cards.sort_by{|card| card.ord}
-      i = 0
 
       # need to revise this into a batch process
+      i = 0
       while i < new_cards.length
         new_cards[i].update(ord: i)
         i+=1

@@ -76,18 +76,32 @@ button:focus {outline:0;}
   padding: 15px;
 }
 
-.landing-icon{
-  max-width: 5%;
-  height:auto;
-  padding: 12px;
-  position: absolute;
-  left: 2vw;
-  -moz-transform: scaleX(-1);
-  -o-transform: scaleX(-1);
-  -webkit-transform: scaleX(-1);
-  transform: scaleX(-1);
-  filter: FlipH;
-  -ms-filter: "FlipH";
+// .landing-icon{
+//   max-width: 5%;
+//   height:auto;
+//   padding: 12px;
+//   position: absolute;
+//   left: 2vw;
+//   -moz-transform: scaleX(-1);
+//   -o-transform: scaleX(-1);
+//   -webkit-transform: scaleX(-1);
+//   transform: scaleX(-1);
+//   filter: FlipH;
+//   -ms-filter: "FlipH";
+// }
+
+.trello-logo-wrapper{
+  display: flex;
+  flex-direction: row;
+
+
+}
+
+.trello-landing-logo{
+  color: white;
+  width: 33px;
+  height: 33px;
+
 }
 
 .trello-header-title-landing{
@@ -98,9 +112,9 @@ button:focus {outline:0;}
   font-weight: 600;
   line-height: 32px;
   color: white;
-  position: absolute;
-  left: 7vw;
-
+  position: relative;
+  left: 1vw;
+  bottom: 0vh;
 }
 
 .error-box{
