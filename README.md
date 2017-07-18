@@ -1,5 +1,3 @@
-# Mello Production Readme
-
 # Mello
 
 [Mello Live Site][heroku]
