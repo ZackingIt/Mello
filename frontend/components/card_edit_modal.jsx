@@ -13,7 +13,6 @@ class CardEditModal extends React.Component{
     this.onEditSubmit = this.onEditSubmit.bind(this);
     this.state = {modalPresence: false, body: props.bodyText};
     this.handleEnter = this.handleEnter.bind(this);
-
   }
 
   toggleModal() {

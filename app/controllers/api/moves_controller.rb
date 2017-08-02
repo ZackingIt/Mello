@@ -28,8 +28,8 @@ class Api::MovesController < ApplicationController
       decrement_order = Card.where(["list_id = ? AND ord <= ? AND id <> ?", new_list_id, new_card_order, @card.id])
                             .sort_by{|card| card.ord}
 
-      decrement_order.each_with_index { |el, idx| el.update(list_id: new_list_id, ord: idx)}
-      increment_order.each_with_index { |el, idx| el.update(list_id: new_list_id, ord: (idx + decrement_order.length))}
+      decrement_order.each_with_index { |el, idx| el.update(list_id: new_list_id, ord: idx) }
+      increment_order.each_with_index { |el, idx| el.update(list_id: new_list_id, ord: (idx + decrement_order.length)) }
 
       @card.update(list_id: new_list_id, ord: new_card_order )
 

@@ -4,7 +4,7 @@ import { values, merge } from 'lodash';
 import { findDOMNode } from 'react-dom';
 import { DragSource, DragDropContext, DragDropContextProvider, DropTarget } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
-import { moveCard } from '../actions/card_actions';
+import { moveCard, renderCardMove } from '../actions/card_actions';
 import { generateDropZone } from '../actions/hover_actions';
 import CardEditModal from './card_edit_modal';
 
@@ -166,7 +166,9 @@ const mapDispatchToProps = (dispatch) => {
     moveCard: (thisState) => {
       return dispatch(moveCard( thisState ));
     },
-
+    renderCardMove: (thisState) => {
+      return dispatch(renderCardMove (thisState));
+    },
     dropZone: (dropZoneParams) => {
       return dispatch(generateDropZone( dropZoneParams ));
     },

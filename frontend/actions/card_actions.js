@@ -45,10 +45,20 @@ export const createCard = (cardParams) => {
 
 
 export const moveCard = (cardParams) => {
+  console.log("cardParams")
+  console.log(cardParams)
   return (dispatch) => {
     APIUtil.moveCard(cardParams).then( response =>{
+      console.log("my response");
+      console.log(response);
       dispatch(updateCard(response));
     });
+  };
+};
+
+export const renderCardMove = (cardParams) => {
+  return (dispatch) => {
+    dispatch(updateCard(cardParams));
   };
 };
 
