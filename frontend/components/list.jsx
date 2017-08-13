@@ -3,7 +3,8 @@ import { connect as connectOriginal } from 'react-redux';
 import React from 'react';
 import { values, merge } from 'lodash';
 import { findDOMNode } from 'react-dom';
-import { DragSource, DragDropContext, DragDropContextProvider, DropTarget } from 'react-dnd';
+import { DragSource, DragDropContext, DragDropContextProvider,
+         DropTarget } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 import Card from './card';
 import Masonry from 'react-masonry-component';
@@ -100,7 +101,8 @@ const listTarget = {
 class List extends React.Component{
   constructor(props){
     super(props);
-    this.state = {cardBody: "", listId: props.listId, ord: values(props.listObj.cardIds).length};
+    this.state = { cardBody: "", listId: props.listId,
+                   ord: values(props.listObj.cardIds).length };
     this.handleCreateCard = this.handleCreateCard.bind(this);
     this.handleCreateCardBodyChange = this.handleCreateCardBodyChange.bind(this);
     this.handleEnter = this.handleEnter.bind(this);
@@ -108,7 +110,8 @@ class List extends React.Component{
 
   handleCreateCard(e) {
     e.preventDefault();
-    this.props.createCard(this.state.listId, this.state.ord, this.state.cardBody);
+    this.props.createCard(this.state.listId, this.state.ord,
+                          this.state.cardBody);
     this.setState({
       cardBody: ""
     });
@@ -124,30 +127,32 @@ class List extends React.Component{
   handleEnter(e){
     if (e.key === "Enter" && !e.shiftKey){
       e.preventDefault();
-      this.props.createCard(this.state.listId, this.state.ord, this.state.cardBody);
+      this.props.createCard(this.state.listId, this.state.ord,
+                            this.state.cardBody);
     }
   }
 
   render(){
     if (!this.props.listObj) {
-      return <div key={Math.random()*100}></div>;
+      return <div key={ Math.random()*100 }></div>;
     }
 
     const opacity = 1;
     const listTitle = this.props.listObj.title;
-    const { isDragging, connectDragSource, connectDropTarget, hovering } = this.props;
+    const { isDragging, connectDragSource,
+            connectDropTarget, hovering } = this.props;
     const allCards = this.props.cards;
     const cardsBodyArray = this.props.listObj.cardIds.map( (cardId, idx) => {
       let currentCard = allCards[cardId];
         return (
-            <div key={idx}>
+            <div key={ idx }>
               <Card
-                hovering={hovering}
-                id={cardId}
-                handleCardEditSubmit={this.props.handleCardEditSubmit}
-                listId={this.state.listId}
-                cardIndex={this.props.listObj.cardIds.indexOf(cardId)}
-                body={currentCard.body}/>
+                hovering={ hovering }
+                id={ cardId}
+                handleCardEditSubmit={ this.props.handleCardEditSubmit }
+                listId={ this.state.listId }
+                cardIndex={ this.props.listObj.cardIds.indexOf(cardId) }
+                body={ currentCard.body }/>
             </div>
         );
       }
@@ -179,22 +184,31 @@ class List extends React.Component{
     let listElement = (
       <section className="list-element">
         <div className="list-title-element">
-          {listTitle}
+          { listTitle }
         </div>
         <div className="card-array-element">
-          {/* { sortedWrappedCardArray } */}
-          {cardsBodyArray}
+          { /* { sortedWrappedCardArray } */ }
+          { cardsBodyArray }
         </div>
-        <form className="add-card-button-container" onKeyPress={ this.handleEnter } onSubmit={this.handleCreateCard}>
-          <textarea style={{'height': bodyLength + 'px'}} onChange={this.handleCreateCardBodyChange} className="add-card-input-element" value={this.state.cardBody}/>
-          <button type="submit" className="add-card-button-element">Add</button>
+        <form className="add-card-button-container"
+          onKeyPress={ this.handleEnter }
+          onSubmit={ this.handleCreateCard }>
+          <textarea style={ {'height': bodyLength + 'px'} }
+            onChange={ this.handleCreateCardBodyChange }
+            className="add-card-input-element"
+            value={ this.state.cardBody }/>
+          <button
+            type="submit"
+            className="add-card-button-element">
+            Add
+          </button>
         </form>
       </section>);
 
       return (
         connectDragSource(connectDropTarget(
-          <div style={Object.assign({ opacity }, style)}>
-            {listElement}
+          <div style={ Object.assign({ opacity }, style) }>
+            { listElement }
           </div>
         ))
       );
@@ -220,6 +234,6 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 export default connectOriginal(null, mapDispatchToProps)(
-  DragSource( ItemTypes.CARD, cardSource, connectSource)(
+  DragSource(ItemTypes.CARD, cardSource, connectSource)(
   DropTarget(ItemTypes.LIST, listTarget, connectTarget)(List))
 );

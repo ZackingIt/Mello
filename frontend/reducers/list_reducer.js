@@ -55,9 +55,10 @@ const listReducer = (state = {}, action) => {
       //     newState[key].cardIds.push(action.response.id);
       //   }
       // }
+      console.log("MY ACTION RESPONSE");
+      console.log(action.response);
       newState[action.response.cardLoad.starting.listId].cardIds = action.response.cardIds.fromPile;
       newState[action.response.cardLoad.ending.listId].cardIds = action.response.cardIds.toPile;
-
       return newState;
     case LOGOUT:
       return {};

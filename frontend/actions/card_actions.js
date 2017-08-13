@@ -45,11 +45,11 @@ export const createCard = (cardParams) => {
 
 
 export const moveCard = (cardParams) => {
-  console.log("cardParams")
-  console.log(cardParams)
+  console.log("cardParams zy");
+  console.log(cardParams);
   return (dispatch) => {
-    APIUtil.moveCard(cardParams).then( response =>{
-      console.log("my response");
+    APIUtil.moveCard(cardParams).then( response => {
+      console.log("my response zy");
       console.log(response);
       dispatch(updateCard(response));
     });
@@ -57,6 +57,13 @@ export const moveCard = (cardParams) => {
 };
 
 export const renderCardMove = (cardParams) => {
+  // dispatch(updateCard(earlyResponse))
+  // need cardParams for cardIds{fromPile: array ofIds} -- we don't rely on the
+  // card params input whatsoever
+  //desired format is same as the response format under my response zy
+  //which is a hash containing fromPile, toPile keys, pointing to an array of card ids
+  //
+
   return (dispatch) => {
     dispatch(updateCard(cardParams));
   };

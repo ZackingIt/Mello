@@ -68,7 +68,6 @@ const mapStateToProps = (state) => {
     cards: state.cards,
     shared_boards: state.shared_boards,
   };
-
 };
 
 const mapDispatchToProps = dispatch => {
