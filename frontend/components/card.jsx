@@ -39,7 +39,21 @@ const cardSource = {
       cardIndex: props.cardIndex,
       listIndex: props.listId,
     };
-  },
+  }
+  // endDrag: function (props, monitor, component) {
+  //
+  //
+  //   if (!monitor.didDrop()) {
+  //     return;
+  //   }
+  //   var dropResult = monitor.getDropResult();
+  //
+  //   console.log("***my end drag props***");
+  //   console.log(dropResult);
+  //
+  //   // someFluxAction(dropResult)
+  // }
+
 };
 
 
@@ -64,85 +78,9 @@ const cardTarget = {
     console.log("MEGAPROPS");
     console.log(movedCardId);
 
-    //identify the card ids that are part of a specific list by indexing into props.lists[list_id]
-    //invoke props.renderCardMove()
-
     myState = merge(myState, {ending: props});
     props.moveCard(myState);
 
-    for (let listId in props.lists) {
-      console.log("my list id is");
-      console.log(listId);
-      console.log("my modified Card array");
-      console.log(props.lists[listId]);
-
-    }
-
-
-    //need to construct the cardParams state here
-    // console.log("MY MYSTATE BELOW");
-    // console.log(myState);
-    // const startingListId = myState.starting.listId;
-    // const movingCardId = myState.starting.id;
-    //
-    // const endingListId = myState.ending.listId;
-    // console.log("my starting list id");
-    // console.log(startingListId);
-    //
-    // console.log("my ending list id");
-    // console.log(endingListId);
-    //
-    // const endingCardPosition = myState.ending.cardIndex + 1;
-    //need to also re-render the later cards forward 1 step
-    // let cardArrayEnding = [];
-    // let cardArrayBeginning = [];
-    // let endingCards = myState.ending.cards;
-    // let startingCards = myState.starting.cards;
-
-    // let startingCards = myState.ending.cards;
-    // console.log("mystate.ending.cards");
-    // console.log(endingCards);
-    //
-    // console.log("mystate.starting.cards");
-    // console.log(startingCards);
-
-
-    // for (let key in endingCards) {
-    //   endingCards[key].id = parseInt(key);
-      // console.log("card list id");
-      // console.log(endingCards[key]);
-    //   if ( endingCards[key].list_id == endingListId ) {
-    //     cardArrayEnding.push(endingCards[key]);
-    //   }
-    //   if ( startingCards[key].list_id == startingListId ){
-    //     cardArrayBeginning.push(endingCards[key]);
-    //   }
-    // }
-    //
-    // console.log("my starting card array");
-    // console.log(cardArrayBeginning);
-
-    // const cardToMove = startingCards[movingCardId];
-    // console.log("card being moved");
-    // console.log(cardToMove);
-    //
-    // cardArrayEnding.push(cardToMove);
-    //
-    // for (let key in startingCards) {
-    //   if (startingCards[key].id !== movingCardId && startingCards[key].list_id === startingListId) {
-    //     cardArrayBeginning.push(startingCards[key]);
-    //   }
-    // }
-
-    const compareByOrd = (card1, card2) => {
-      if ( card1.ord < card2.ord ){
-        return -1;
-      }
-      if (card1.ord > card2.ord){
-        return 1;
-      }
-      return 0;
-    };
 
     let fromPile = props.lists[startingListId].cardIds.filter( (cardId) => {
       console.log(cardId);
@@ -158,8 +96,6 @@ const cardTarget = {
 
     console.log("to pile");
     console.log(toPile);
-
-
 
     let cardParams = { cardLoad: {starting: {listId: startingListId}, ending: {listId: endingListId}}, cardIds: { toPile: toPile, fromPile: fromPile } };
     props.renderCardMove(cardParams);

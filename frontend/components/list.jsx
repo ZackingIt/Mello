@@ -158,27 +158,6 @@ class List extends React.Component{
       }
     );
 
-    //async code
-    // let cardsBodyArray = [];
-    // for (let key in this.props.cards) {
-    //   if ( this.props.cards[key].list_id == this.props.listId ){
-    //     let newObj = this.props.cards[key];
-    //     newObj.id = key;
-    //     cardsBodyArray.push(newObj);
-    //   }
-    // }
-    //
-    // function compare(a,b) {
-    //   return (parseInt(a.ord) - parseInt(b.ord));
-    // }
-    //
-    // cardsBodyArray.sort(compare);
-    // let sortedWrappedCardArray = [];
-    // sortedWrappedCardArray = cardsBodyArray.map( ( currentCard ) => {
-    //   debugger
-    //   return (<Card key={Math.random()*100} id={parseInt(currentCard.id)} listId={parseInt(this.state.listId)} cardIndex={currentCard.ord} body={currentCard.body}/>);
-    // });
-
     var bodyLength = 70;
 
     let listElement = (
@@ -232,6 +211,8 @@ function connectTarget(connect){
 const mapDispatchToProps = (dispatch) => {
   return {};
 };
+
+// export default connectOriginal(null, mapDispatchToProps)(List);
 
 export default connectOriginal(null, mapDispatchToProps)(
   DragSource(ItemTypes.CARD, cardSource, connectSource)(
