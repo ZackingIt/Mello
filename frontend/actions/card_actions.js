@@ -20,7 +20,6 @@ export const updateCard = (response) => {
       response: {},
     };
   }
-  // need to deal with empty case
   return {
     type: UPDATE_CARD,
     response: response,
@@ -45,16 +44,11 @@ export const createCard = (cardParams) => {
 
 
 export const moveCard = (APIParams, cardParams) => {
-  console.log("APIParams zy");
-  console.log(APIParams);
-  console.log("card params zy");
-  console.log(cardParams);
+
 
   return (dispatch) => {
     dispatch(updateCard(cardParams));
     APIUtil.moveCard(APIParams).then( response => {
-      console.log("my response zy");
-      console.log(response);
       dispatch(updateCard(response));
     });
   };
