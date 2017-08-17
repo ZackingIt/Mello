@@ -65,16 +65,7 @@ const cardSource = {
       return cardId !== movedCardId;
     });
 
-    console.log("TOP PILE BEFORE MOVING");
-    console.log(toPile);
-
     toPile.splice(updatedIndex, 0, movedCardId);
-    console.log("moved card id");
-    console.log(movedCardId);
-    console.log("from pile");
-    console.log(fromPile);
-    console.log("to pile");
-    console.log(toPile);
 
     let cardParams = { cardLoad: {starting: {listId: startingListId}, ending: {listId: endingListId}}, cardIds: { toPile: toPile, fromPile: fromPile } };
     props.moveCard(myState, cardParams);
