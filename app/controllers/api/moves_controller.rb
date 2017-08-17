@@ -2,17 +2,9 @@ class Api::MovesController < ApplicationController
 
   def create
     if (params.flatten.include?("cardLoad"))
-      p "my params"
-      p params
       my_id = params[:cardLoad][:starting][:id].to_i
       new_list_id = params[:cardLoad][:ending][:listId].to_i
-      old_list_id = params[:cardLoad][:starting][:listId].to_i
-      # if new_list_id != old_list_id
       new_card_order = (params[:cardLoad][:ending][:cardIndex].to_i + 0.5)
-      # else
-        # new_card_order = params[:cardLoad][:ending][:cardIndex].to_i
-      # end
-
       starting_list_id = params[:cardLoad][:starting][:listId].to_i
 
       Card.update(my_id, {list_id: new_list_id, ord: new_card_order})
