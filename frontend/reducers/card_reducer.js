@@ -24,9 +24,39 @@ const cardReducer = (state = {}, action) => {
       newState = merge({}, state, {[newCard.id]: newCard});
       return newState;
     case UPDATE_CARD:
+
+      //erroneous code
+      // newCard = action.response.cardLoad;
+      // newState = merge({}, state, {[newCard.id]: newCard});
+      // return newState;
+
+      // new try
       newCard = action.response.cardLoad;
-      newState = merge({}, state, {[newCard.id]: newCard});
-      return newState;
+      console.log("NEW CARD ID");
+
+      if (newCard.id){
+        console.log("UPDATE CARD STATE");
+        console.log(action.response);
+        console.log(newCard.id);
+        console.log("NEW CARD is possibly Starting");
+        console.log(newCard);
+        console.log("my current state");
+        console.log(state);
+        newState = merge({}, state, {[newCard.id]: { id: parseInt(newCard.id),
+                         list_id: parseInt(newCard.list_id),
+                         ord: parseInt(newCard.ord),
+                         body: newCard.body
+                        }});
+        console.log("new state");
+        console.log(newState);
+        return newState;
+      } else {
+        return state;
+      }
+      // potential code
+      // console.log("my action response");
+      // console.log(action.response);
+      // return action.response.cardLoad;
     case EDIT_CARD:
       if (action.response){
         newCard = action.response;

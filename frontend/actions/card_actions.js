@@ -44,11 +44,15 @@ export const createCard = (cardParams) => {
 };
 
 
-export const moveCard = (cardParams) => {
-  console.log("cardParams zy");
+export const moveCard = (APIParams, cardParams) => {
+  console.log("APIParams zy");
+  console.log(APIParams);
+  console.log("card params zy");
   console.log(cardParams);
+
   return (dispatch) => {
-    APIUtil.moveCard(cardParams).then( response => {
+    dispatch(updateCard(cardParams));
+    APIUtil.moveCard(APIParams).then( response => {
       console.log("my response zy");
       console.log(response);
       dispatch(updateCard(response));

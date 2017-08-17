@@ -25,13 +25,21 @@ const ItemTypes = {
 var myState = {starting: {}, ending: {}};
 var movedCardId;
 var startingListId;
+var updatedIndex;
+var cardDroppedOnId;
+var endingListId;
+var dropProps;
+var beginDragProps;
+
 
 const cardSource = {
   beginDrag(props) {
 
-  myState = merge(myState, {starting: props});
-  console.log("my card source props");
-  console.log(props);
+  // myState = merge(myState, {starting: props});
+  beginDragProps = props;
+  // myState = {starting: {props}, ending: {}};
+  // console.log("my card source props");
+  // console.log(props);
   movedCardId = props.id;
   startingListId = props.listId;
     return {
@@ -39,20 +47,75 @@ const cardSource = {
       cardIndex: props.cardIndex,
       listIndex: props.listId,
     };
+  },
+  endDrag: function (props, monitor, component) {
+
+
+    if (!monitor.didDrop()) {
+      return;
+    }
+
+    const item = monitor.getItem();
+
+    var dropResult = monitor.getDropResult();
+
+    // console.log("***my end drag props***");
+    // console.log(dropResult);
+    //
+    // console.log("my drop item");
+    // console.log(item);
+    //
+    //
+    //
+    // console.log("*****my end drag props");
+    // console.log(dropProps);
+
+    // someFluxAction(dropResult)
+
+    //
+    // console.log("MEGAPROPS");
+    // console.log(movedCardId);
+    // console.log("begin drag props");
+    // console.log("drop props");
+    // console.log(dropProps);
+    // console.log(beginDragProps);
+    // myState = {id: movedCardId, list_id: endingListId, ord: updatedIndex};
+    myState = {id: movedCardId, list_id: endingListId, ord: updatedIndex, starting: beginDragProps, ending: dropProps};
+
+    // myState = merge(myState, {ending: dropProps});
+    // props.moveCard(myState);
+    // console.log("my state drop PROPS");
+    // console.log(myState);
+
+
+    let fromPile = props.lists[startingListId].cardIds.filter( (cardId) => {
+      // console.log("mpved card id");
+      // console.log(movedCardId);
+      return cardId !== movedCardId;
+    });
+
+    let toPile = props.lists[endingListId].cardIds.filter( (cardId) => {
+      return cardId !== movedCardId;
+    });
+
+    toPile.splice(updatedIndex, 0, movedCardId);
+    // console.log("moved card id");
+    // console.log(movedCardId);
+    // console.log("from pile");
+    // console.log(fromPile);
+    //
+    // console.log("to pile");
+    // console.log(toPile);
+
+    let cardParams = { cardLoad: {starting: {listId: startingListId}, ending: {listId: endingListId}}, cardIds: { toPile: toPile, fromPile: fromPile } };
+    // props.renderCardMove(cardParams);
+    // console.log("MY CARD PARAMS INSIDE DROP");
+    // console.log(cardParams);
+    // console.log("MY LAST STATE");
+    // console.log(myState);
+    props.moveCard(myState, cardParams);
+
   }
-  // endDrag: function (props, monitor, component) {
-  //
-  //
-  //   if (!monitor.didDrop()) {
-  //     return;
-  //   }
-  //   var dropResult = monitor.getDropResult();
-  //
-  //   console.log("***my end drag props***");
-  //   console.log(dropResult);
-  //
-  //   // someFluxAction(dropResult)
-  // }
 
 };
 
@@ -63,45 +126,17 @@ const cardTarget = {
     if (monitor.didDrop()) {
       return;
     }
-    // Obtain the dragged item
     const item = monitor.getItem();
-    console.log("MY CARD State pre merge BELOW");
-    console.log(myState);
 
-    console.log("my card props are below");
-    console.log(props);
-    let updatedIndex = props.cardIndex + 1;
+    cardDroppedOnId = props.id;
+    endingListId = props.listId;
+    dropProps = props;
 
-    let cardDroppedOnId = props.id;
-    let endingListId = props.listId;
-
-    console.log("MEGAPROPS");
-    console.log(movedCardId);
-
-    myState = merge(myState, {ending: props});
-    props.moveCard(myState);
-
-
-    let fromPile = props.lists[startingListId].cardIds.filter( (cardId) => {
-      console.log(cardId);
-      return cardId !== movedCardId;
-    });
-
-    let toPile = props.lists[endingListId].cardIds;
-    toPile.splice(updatedIndex, 0, movedCardId);
-    console.log("moved card id");
-    console.log(movedCardId);
-    console.log("from pile");
-    console.log(fromPile);
-
-    console.log("to pile");
-    console.log(toPile);
-
-    let cardParams = { cardLoad: {starting: {listId: startingListId}, ending: {listId: endingListId}}, cardIds: { toPile: toPile, fromPile: fromPile } };
-    props.renderCardMove(cardParams);
-    // You can also do nothing and return a drop result,
-    // which will be available as monitor.getDropResult()
-    // in the drag source's endDrag() method
+    if (startingListId === endingListId){
+      updatedIndex = props.cardIndex + 1;
+    } else {
+      updatedIndex = props.cardIndex + 1;
+    }
     return { moved: true };
   },
 
@@ -223,12 +258,14 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    moveCard: (thisState) => {
-      return dispatch(moveCard( thisState ));
+    moveCard: (APIParams, cardParams) => {
+      console.log("my dispatch card params");
+      console.log(cardParams);
+      return dispatch(moveCard( APIParams, cardParams ));
     },
-    renderCardMove: (thisState) => {
-      return dispatch(renderCardMove (thisState));
-    },
+    // renderCardMove: (thisState) => {
+    //   return dispatch(renderCardMove (thisState));
+    // },
     dropZone: (dropZoneParams) => {
       return dispatch(generateDropZone( dropZoneParams ));
     },
