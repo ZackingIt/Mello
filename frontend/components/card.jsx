@@ -221,8 +221,6 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     moveCard: (APIParams, cardParams) => {
-      console.log("my dispatch card params");
-      console.log(cardParams);
       return dispatch(moveCard( APIParams, cardParams ));
     },
     // renderCardMove: (thisState) => {
