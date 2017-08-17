@@ -6,10 +6,19 @@ class Api::MovesController < ApplicationController
       #need to write case where list ids are the same and the new order is less than old order
 
       my_id = params[:cardLoad][:starting][:id].to_i
+
+      old_list_id = params[:cardLoad][:starting][:listId].to_i
       new_list_id = params[:cardLoad][:ending][:listId].to_i
 
-      new_card_order = (params[:cardLoad][:ending][:cardIndex].to_i + 0.5)
-      p "merge successful"
+      old_card_order = params[:cardLoad][:starting][:cardIndex].to_i
+      new_card_order = params[:cardLoad][:ending][:cardIndex].to_i
+
+      if new_card_order < old_card_order && new_list_id == old_list_id
+        new_card_order = (params[:cardLoad][:ending][:cardIndex].to_i - 0.5)
+      else
+        new_card_order = (params[:cardLoad][:ending][:cardIndex].to_i + 0.5)
+      end
+
       p "MY NEW CARD ORDER"
       p new_card_order
       p "my moved card"
