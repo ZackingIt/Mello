@@ -60,7 +60,6 @@ export const renderCardMove = (cardParams) => {
   // card params input whatsoever
   //desired format is same as the response format under my response zy
   //which is a hash containing fromPile, toPile keys, pointing to an array of card ids
-  //
 
   return (dispatch) => {
     dispatch(updateCard(cardParams));
