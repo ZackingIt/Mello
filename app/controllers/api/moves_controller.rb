@@ -2,9 +2,14 @@ class Api::MovesController < ApplicationController
 
   def create
     if (params.flatten.include?("cardLoad"))
+
+      #need to write case where list ids are the same and the new order is less than old order
+
       my_id = params[:cardLoad][:starting][:id].to_i
       new_list_id = params[:cardLoad][:ending][:listId].to_i
+
       new_card_order = (params[:cardLoad][:ending][:cardIndex].to_i + 0.5)
+      p "merge successful"
       p "MY NEW CARD ORDER"
       p new_card_order
       p "my moved card"
