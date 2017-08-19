@@ -6,17 +6,17 @@ import { DragSource, DragDropContext, DragDropContextProvider, DropTarget }
 from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 
-class CardEditModal extends React.Component{
+class ListEditModal extends React.Component{
   constructor(props){
     super(props);
     this.toggleModal = this.toggleModal.bind(this);
     this.handleModalEdit = this.handleModalEdit.bind(this);
     this.onEditSubmit = this.onEditSubmit.bind(this);
-    this.state = {modalPresence: false, body: props.bodyText};
+    this.state = {modalPresence: false, title: props.title};
     this.handleEnter = this.handleEnter.bind(this);
   }
 
-  toggleModal() {
+  toggleModal(e) {
     this.setState(prevState => ({
       modalPresence: !prevState.modalPresence
     }));
@@ -24,54 +24,52 @@ class CardEditModal extends React.Component{
 
   handleModalEdit(e){
     e.preventDefault();
-    this.setState( { body: e.currentTarget.value } );
+    this.setState( { title: e.currentTarget.value } );
   }
 
   handleEnter(e){
+
     if (e.key === "Enter" && !e.shiftKey){
       e.preventDefault();
-      this.props.handleCardEditSubmit(this.props.id, this.state.body,
-                                      this.props.listId, this.props.cardIndex);
+      this.props.handleListEditSubmit(this.props.listId, this.state.title);
     }
   }
 
   onEditSubmit(e){
     e.preventDefault();
-    this.props.handleCardEditSubmit(this.props.id, this.state.body,
-                                    this.props.listId, this.props.cardIndex);
+    this.props.handleListEditSubmit(this.props.listId, this.state.title);
   }
 
   render(){
-    var cardEditModal;
-    var bodyLength = (this.state.body.length) * 0.55 + 35;
+    var listEditModal;
+    var bodyLength = 30;
     if ( this.state.modalPresence === false ){
-      cardEditModal = (
-        <div className="card-item-element-parent-grab">
-          <div onClick={ this.toggleModal } className="card-item-element" >
-            {this.props.bodyText}
+      listEditModal = (
+        <div className="list-title-element">
+          <div onClick={ this.toggleModal }>
+            { this.props.title }
           </div>
         </div>
       );
     } else {
-      cardEditModal = (
+      listEditModal = (
         <form onSubmit={ this.onEditSubmit }
               onKeyPress={ this.handleEnter }
-              className="card-item-element-true-modal" >
+              className="list-title-element-true-modal" >
           <textarea style={{height: bodyLength + 'px'}}
-                    className="card-item-element-input"
+                    className="list-item-element-input"
                     onChange={ this.handleModalEdit }
-                    value={this.state.body} />
-          <button type="submit"
-                  className="add-list-button-element">Save</button>
+                    value={this.state.title} />
         </form>
+
       );
     }
     return(
       <div>
-        {cardEditModal}
+        {listEditModal}
       </div>
     );
   }
 }
 
-export default CardEditModal;
+export default ListEditModal;

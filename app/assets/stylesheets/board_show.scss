@@ -4,7 +4,7 @@ $babby-blue: #C7E2F1;
 $header-blue: #026AA7;
 $dark-grey: #505050;
 $menu-hover-blue:#298FCA;
-
+$list-grey: #E2E4E6;
 
 .board-show-title{
   background-color: #0079BF;
@@ -45,7 +45,7 @@ $menu-hover-blue:#298FCA;
 
 .list-element{
   padding: 10px 7px 7px;
-  background-color: #E2E4E6;
+  background-color: $list-grey;
   color: $dark-grey;
   margin: 5px;
   margin-bottom: 8px;
@@ -65,8 +65,9 @@ $menu-hover-blue:#298FCA;
   font-size: 14px;
   color: $dark-grey;
   word-break: break-all;
-
 }
+
+
 
 .card-item-element, .add-card-input-element{
   background-color: white;
@@ -207,7 +208,7 @@ textarea.add-card-input-element{
   word-break: normal;
 }
 
-.card-item-element-input{
+.card-item-element-input, .list-item-element-input{
   background-color: white;
   margin-bottom: 4px;
   padding: 7px;
@@ -218,15 +219,17 @@ textarea.add-card-input-element{
   color: $dark-grey;
   word-break: normal;
   min-height: 1.1em;
-
   width: 100%;
 
   //copy this for other textareas
   overflow: hidden;
   outline: none;
   resize: vertical;
+}
 
-
+.list-item-element-input {
+  font-weight: bold;
+  background-color: $list-grey;
 }
 
 .opacity-handler{

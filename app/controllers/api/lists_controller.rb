@@ -15,8 +15,20 @@ class Api::ListsController < ApplicationController
     render :show
   end
 
+  def update
+    if params[:id] != "undefined"
+      @list = List.find(params[:id])
+      if @list.update(list_params)
+        render json: @list
+      else
+        render json: @list.errors.full_messages, status: 422
+      end
+    end
+  end
+
+
   def list_params
-    params.require(:list).permit(:board_id, :title, :ord)
+    params.require(:list).permit(:id, :board_id, :title, :ord)
   end
 
 end

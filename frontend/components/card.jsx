@@ -2,7 +2,8 @@ import React from 'react';
 import { connect as connectOriginal } from 'react-redux';
 import { values, merge } from 'lodash';
 import { findDOMNode } from 'react-dom';
-import { DragSource, DragDropContext, DragDropContextProvider, DropTarget } from 'react-dnd';
+import { DragSource, DragDropContext, DragDropContextProvider, DropTarget }
+from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 import { moveCard, renderCardMove } from '../actions/card_actions';
 import { generateDropZone } from '../actions/hover_actions';
@@ -54,7 +55,8 @@ const cardSource = {
 
     var dropResult = monitor.getDropResult();
 
-    myState = {id: movedCardId, list_id: endingListId, ord: updatedIndex, starting: beginDragProps, ending: dropProps};
+    myState = {id: movedCardId, list_id: endingListId, ord: updatedIndex,
+               starting: beginDragProps, ending: dropProps};
 
 
     let fromPile = props.lists[startingListId].cardIds.filter( (cardId) => {
@@ -67,7 +69,9 @@ const cardSource = {
 
     toPile.splice(updatedIndex, 0, movedCardId);
 
-    let cardParams = { cardLoad: {starting: {listId: startingListId}, ending: {listId: endingListId}}, cardIds: { toPile: toPile, fromPile: fromPile } };
+    let cardParams = { cardLoad: {starting: {listId: startingListId},
+                       ending: {listId: endingListId}},
+                       cardIds: { toPile: toPile, fromPile: fromPile } };
     props.moveCard(myState, cardParams);
 
   }
@@ -173,7 +177,8 @@ class Card extends React.Component{
     const opacity = 1;
     return connectDragSource(connectDropTarget(
         <div>
-          {<CardEditModal id={ this.props.id }
+          {<CardEditModal
+            id={ this.props.id }
             listId={ this.props.listId }
             cardIndex={ this.props.cardIndex }
             bodyText={bodyText}

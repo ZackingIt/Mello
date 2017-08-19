@@ -6,7 +6,7 @@ import Header from './head/header';
 import List from './list';
 
 import { requestBoard } from '../actions/board_actions';
-import { createList } from '../actions/list_actions';
+import { createList, editListText } from '../actions/list_actions';
 import { createCard, receiveCardEdit, editCardText } from '../actions/card_actions';
 import onClickOutside from 'react-onclickoutside';
 import Masonry from 'react-masonry-component';
@@ -71,13 +71,14 @@ class BoardShow extends React.Component{
       for (let key in lists) {
         let listObj = lists[key];
         outputListArray.push(
-          <List key={Math.random()*1000}
-          handleCardEditSubmit={this.props.handleCardEditSubmit}
-          createCard={this.props.createCard}
-          listId={parseInt(key)}
-          listObj={listObj}
-          cards={cards}
-          hovering={hovering}
+          <List key={ Math.random()*1000 }
+          handleListEditSubmit={ this.props.handleListEditSubmit }
+          handleCardEditSubmit={ this.props.handleCardEditSubmit }
+          createCard={ this.props.createCard }
+          listId={ parseInt(key) }
+          listObj={ listObj }
+          cards={ cards }
+          hovering={ hovering }
           />);
       }
     }
@@ -146,6 +147,9 @@ const mapDispatchToProps = (dispatch) => {
 
       return dispatch( editCardText( {id: card_id, body: body, list_id: list_id, order: order }) );
 
+    },
+    handleListEditSubmit: (listId, title) => {
+      return dispatch( editListText( {id: listId, title: title} ) )
     },
     createCard: (list_id, ord, body) => {
       return dispatch(createCard({ list_id: list_id, ord: ord, body: body, due_date: null, completed: false } ));

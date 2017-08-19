@@ -9,6 +9,8 @@ import HTML5Backend from 'react-dnd-html5-backend';
 import Card from './card';
 import Masonry from 'react-masonry-component';
 import { moveCard } from '../actions/card_actions';
+import ListEditModal from './list_edit_modal';
+
 
 var myState = {starting: {}, ending: {}};
 
@@ -139,6 +141,11 @@ class List extends React.Component{
 
     const opacity = 1;
     const listTitle = this.props.listObj.title;
+    let listEditModal = <ListEditModal
+                         listId={ this.state.listId }
+                         title={ listTitle }
+                         handleListEditSubmit={ this.props.handleListEditSubmit }
+                        />;
     const { isDragging, connectDragSource,
             connectDropTarget, hovering } = this.props;
     const allCards = this.props.cards;
@@ -162,11 +169,8 @@ class List extends React.Component{
 
     let listElement = (
       <section className="list-element">
-        <div className="list-title-element">
-          { listTitle }
-        </div>
+        { listEditModal }
         <div className="card-array-element">
-          { /* { sortedWrappedCardArray } */ }
           { cardsBodyArray }
         </div>
         <form className="add-card-button-container"

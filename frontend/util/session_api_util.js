@@ -61,6 +61,15 @@ export const createList = (list) => {
   });
 };
 
+export const editList = (list) => {
+  return $.ajax({
+    method: "PATCH",
+    url: `/api/lists/${list.id}`,
+    data: { list: list }  //list sets the key: "list"
+  });
+};
+
+
 export const editCard = (card) => {
   return $.ajax({
     method: "PATCH",

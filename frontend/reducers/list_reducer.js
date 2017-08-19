@@ -1,6 +1,6 @@
 import { RECEIVE_BOARD } from '../actions/board_actions';
 import { RECEIVE_CARD, UPDATE_CARD } from '../actions/card_actions';
-import { RECEIVE_LIST } from '../actions/list_actions';
+import { RECEIVE_LIST, EDIT_LIST } from '../actions/list_actions';
 import { LOGOUT } from '../actions/session_actions';
 
 
@@ -25,6 +25,7 @@ const listReducer = (state = {}, action) => {
   let parentList;
   let newState;
   let newParent;
+  let newList;
   switch (action.type){
     case RECEIVE_BOARD:
       output = action.response.lists;
@@ -32,7 +33,6 @@ const listReducer = (state = {}, action) => {
       // we need to merge in the new lists with the old
     case RECEIVE_LIST:
       output = action.response.list;
-
       return merge({}, state, {[output.id]: output});
 
     case RECEIVE_CARD:
@@ -47,6 +47,15 @@ const listReducer = (state = {}, action) => {
       newState[res.cardLoad.starting.listId].cardIds = res.cardIds.fromPile;
       newState[res.cardLoad.ending.listId].cardIds = res.cardIds.toPile;
       return newState;
+    case EDIT_LIST:
+      if (action.response){
+        newList = action.response;
+        newState = merge({}, state, {[newList.id]: newList});
+        return newState;
+      } else {
+        return state;
+      }
+
     case LOGOUT:
       return {};
     default:
