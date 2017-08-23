@@ -216,8 +216,6 @@ const mapDispatchToProps = (dispatch) => {
   return {};
 };
 
-// export default connectOriginal(null, mapDispatchToProps)(List);
-
 export default connectOriginal(null, mapDispatchToProps)(
   DragSource(ItemTypes.CARD, cardSource, connectSource)(
   DropTarget(ItemTypes.LIST, listTarget, connectTarget)(List))

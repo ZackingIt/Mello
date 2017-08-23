@@ -1,10 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { values } from 'lodash';
-
 import Header from './head/header';
 import List from './list';
-
 import { requestBoard } from '../actions/board_actions';
 import { createList, editListText } from '../actions/list_actions';
 import { createCard, receiveCardEdit, editCardText } from '../actions/card_actions';

@@ -10,15 +10,15 @@ import { generateDropZone } from '../actions/hover_actions';
 import CardEditModal from './card_edit_modal';
 
 
-const style = {
-  border: 'none',
-  padding: 'none',
-  marginBottom: '.5rem',
-  backgroundColor: 'none',
-  cursor: 'pointer',
-  opacity: 1.0,
-};
-
+// const style = {
+//   border: 'none',
+//   padding: 'none',
+//   marginBottom: '.5rem',
+//   backgroundColor: 'none',
+//   cursor: 'pointer',
+//   opacity: 1.0,
+// };
+//
 const ItemTypes = {
   CARD: 'card',
   LIST: 'list',
@@ -105,7 +105,7 @@ const cardTarget = {
 
     const cardHoverIndex = props.cardIndex;
     const listHoverIndex = props.listId;
-
+    // console.log(props);
     // props.dropZone({cardHoverIndex: props.id, listHoverIndex: listHoverIndex});
     if (cardStartingIndex === cardHoverIndex) {
       return;
@@ -143,7 +143,7 @@ const cardTarget = {
 class Card extends React.Component{
   constructor(props){
     super(props);
-    this.state = {modalPresence: false, title: "", greyCard: false};
+    this.state = { modalPresence: false, title: "", greyCard: false };
   }
 
   handleToggleClick() {
@@ -151,8 +151,6 @@ class Card extends React.Component{
       modalPresence: !prevState.modalPresence
     }));
   }
-
-
 
   render(){
     if (!this.props.body) {
@@ -162,7 +160,6 @@ class Card extends React.Component{
     let bodyText = this.props.body;
     let greyModal =(
       <div className="">
-
       </div>);
     if (this.props.id === this.props.hovering.cardHoverIndex &&
         this.props.listId === this.props.hovering.listHoverIndex){
@@ -186,7 +183,6 @@ class Card extends React.Component{
           />}
           {greyModal}
         </div>
-
       )
     );
   }
@@ -213,7 +209,6 @@ const mapStateToProps = (state) => {
     cards: state.cards,
     shared_boards: state.shared_boards,
   };
-
 };
 
 const mapDispatchToProps = (dispatch) => {
@@ -221,9 +216,6 @@ const mapDispatchToProps = (dispatch) => {
     moveCard: (APIParams, cardParams) => {
       return dispatch(moveCard( APIParams, cardParams ));
     },
-    // renderCardMove: (thisState) => {
-    //   return dispatch(renderCardMove (thisState));
-    // },
     dropZone: (dropZoneParams) => {
       return dispatch(generateDropZone( dropZoneParams ));
     },
