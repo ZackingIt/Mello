@@ -15,7 +15,7 @@ const rootReducer = combineReducers({
   cards: cardReducer,
   users: userReducer,
   shared_boards: sharedBoardReducer,
-  hover: hoverReducer,
+  // hover: hoverReducer,
 });
 
 export default rootReducer;

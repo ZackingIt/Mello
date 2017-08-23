@@ -63,8 +63,8 @@ const listTarget = {
   },
 
   hover(props, monitor, component) {
-    const listStartingIndex = monitor.getItem().listTarget;
-    const listHoverIndex = props.listTarget;
+    let listStartingIndex = monitor.getItem().listTarget;
+    let listHoverIndex = props.listTarget;
 
     if (listStartingIndex === listHoverIndex) {
       return;

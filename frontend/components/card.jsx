@@ -158,16 +158,16 @@ class Card extends React.Component{
     }
 
     let bodyText = this.props.body;
-    let greyModal =(
-      <div className="">
-      </div>);
-    if (this.props.id === this.props.hovering.cardHoverIndex &&
-        this.props.listId === this.props.hovering.listHoverIndex){
-      greyModal = (
-        <div className="grey-box">
-
-        </div>);
-    }
+    // let greyModal =(
+    //   <div className="">
+    //   </div>);
+    // if (this.props.id === this.props.hovering.cardHoverIndex &&
+    //     this.props.listId === this.props.hovering.listHoverIndex){
+    //   greyModal = (
+    //     <div className="grey-box">
+    //
+    //     </div>);
+    // }
 
     const { isDragging, connectDragSource, connectDropTarget } = this.props;
 
@@ -181,7 +181,7 @@ class Card extends React.Component{
             bodyText={bodyText}
             handleCardEditSubmit={this.props.handleCardEditSubmit}
           />}
-          {greyModal}
+          {/* {greyModal} */}
         </div>
       )
     );
