@@ -44,8 +44,6 @@ export const createCard = (cardParams) => {
 
 
 export const moveCard = (APIParams, cardParams) => {
-
-
   return (dispatch) => {
     dispatch(updateCard(cardParams));
     APIUtil.moveCard(APIParams).then( response => {

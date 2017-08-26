@@ -56,7 +56,6 @@ const listTarget = {
       // target already handled drop
       return;
     }
-
     // Obtain the dragged item
     const item = monitor.getItem();
     return { moved: true };
@@ -65,6 +64,10 @@ const listTarget = {
   hover(props, monitor, component) {
     let listStartingIndex = monitor.getItem().listTarget;
     let listHoverIndex = props.listTarget;
+
+    console.log("LIST hover PROPS");
+    console.log(props);
+
 
     if (listStartingIndex === listHoverIndex) {
       return;

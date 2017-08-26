@@ -18,7 +18,7 @@ import CardEditModal from './card_edit_modal';
 //   cursor: 'pointer',
 //   opacity: 1.0,
 // };
-//
+
 const ItemTypes = {
   CARD: 'card',
   LIST: 'list',
@@ -72,6 +72,8 @@ const cardSource = {
     let cardParams = { cardLoad: {starting: {listId: startingListId},
                        ending: {listId: endingListId}},
                        cardIds: { toPile: toPile, fromPile: fromPile } };
+
+
     props.moveCard(myState, cardParams);
 
   }
@@ -96,6 +98,7 @@ const cardTarget = {
     } else {
       updatedIndex = props.cardIndex + 1;
     }
+
     return { moved: true };
   },
 
@@ -158,17 +161,6 @@ class Card extends React.Component{
     }
 
     let bodyText = this.props.body;
-    // let greyModal =(
-    //   <div className="">
-    //   </div>);
-    // if (this.props.id === this.props.hovering.cardHoverIndex &&
-    //     this.props.listId === this.props.hovering.listHoverIndex){
-    //   greyModal = (
-    //     <div className="grey-box">
-    //
-    //     </div>);
-    // }
-
     const { isDragging, connectDragSource, connectDropTarget } = this.props;
 
     const opacity = 1;
@@ -181,7 +173,6 @@ class Card extends React.Component{
             bodyText={bodyText}
             handleCardEditSubmit={this.props.handleCardEditSubmit}
           />}
-          {/* {greyModal} */}
         </div>
       )
     );
